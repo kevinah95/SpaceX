@@ -20,8 +20,10 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "ComposeApp"
-            isStatic = true
+            baseName = "spacex"
+            isStatic = false
+            freeCompilerArgs += "-Xbinary=bundleId=io.github.kevinah95.spacex"
+            linkerOpts.add("-lsqlite3")
         }
     }
     
@@ -48,6 +50,9 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+        nativeMain.dependencies {
+            implementation(libs.sqldelight.driver.native)
         }
     }
 }
