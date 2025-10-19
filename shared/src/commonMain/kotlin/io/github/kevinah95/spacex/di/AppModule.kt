@@ -1,7 +1,7 @@
 package io.github.kevinah95.spacex.di
 
 
-import io.github.kevinah95.spacex.RocketLaunchViewModel
+import io.github.kevinah95.spacex.ui.RocketLaunchViewModel
 import io.github.kevinah95.spacex.SpaceXSDK
 import io.github.kevinah95.spacex.cache.DriverFactory
 import io.github.kevinah95.spacex.network.SpaceXApi
