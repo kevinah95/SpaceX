@@ -17,6 +17,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,7 +30,7 @@ import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 import io.github.kevinah95.spacex.theme.AppTheme
 import io.github.kevinah95.spacex.theme.app_theme_successful
 import io.github.kevinah95.spacex.theme.app_theme_unsuccessful
-import io.github.kevinah95.spacex.ui.RocketLaunchViewModel
+import io.github.kevinah95.spacex.ui.rocketLaunch.RocketLaunchViewModel
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
@@ -41,7 +42,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @Preview
 fun App() {
     val viewModel = koinViewModel<RocketLaunchViewModel>()
-    val state by remember { viewModel.state }
+    val state by viewModel.uiState.collectAsState()
     val coroutineScope = rememberCoroutineScope()
     var isRefreshing by remember { mutableStateOf(false) }
     val pullToRefreshState = rememberPullToRefreshState()
