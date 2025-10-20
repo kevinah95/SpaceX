@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.serialization.json.Json
 
-class RemoteRocketLaunchDataSource(private val ioDispatcher: CoroutineDispatcher) {
+class RemoteRocketLaunchesDataSource(private val ioDispatcher: CoroutineDispatcher) {
     private val httpClient = HttpClient {
         install(ContentNegotiation) {
             json(Json {

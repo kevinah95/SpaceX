@@ -5,7 +5,7 @@ import io.github.kevinah95.spacex.domain.entity.Patch
 import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 
 
-internal class LocalRocketLaunchDataSource(databaseDriverFactory: DriverFactory) {
+internal class LocalRocketLaunchesDataSource(databaseDriverFactory: DriverFactory) {
     private val database = AppDatabase.Companion(databaseDriverFactory.createDriver())
     private val dbQuery = database.appDatabaseQueries
 
