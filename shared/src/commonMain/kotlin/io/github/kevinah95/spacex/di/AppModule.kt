@@ -2,9 +2,9 @@ package io.github.kevinah95.spacex.di
 
 
 import io.github.kevinah95.spacex.ui.RocketLaunchViewModel
-import io.github.kevinah95.spacex.SpaceXSDK
-import io.github.kevinah95.spacex.cache.DriverFactory
-import io.github.kevinah95.spacex.network.SpaceXApi
+import io.github.kevinah95.spacex.data.sdk.SpaceXSDK
+import io.github.kevinah95.spacex.data.cache.DriverFactory
+import io.github.kevinah95.spacex.data.network.SpaceXApi
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 

@@ -4,8 +4,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.github.kevinah95.spacex.SpaceXSDK
-import io.github.kevinah95.spacex.entity.RocketLaunch
+import io.github.kevinah95.spacex.data.sdk.SpaceXSDK
+import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 import kotlinx.coroutines.launch
 
 class RocketLaunchViewModel(private val sdk: SpaceXSDK) : ViewModel() {

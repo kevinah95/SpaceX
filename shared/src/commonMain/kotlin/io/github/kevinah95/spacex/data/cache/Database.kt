@@ -1,12 +1,13 @@
-package io.github.kevinah95.spacex.cache
+package io.github.kevinah95.spacex.data.cache
 
-import io.github.kevinah95.spacex.entity.Links
-import io.github.kevinah95.spacex.entity.Patch
-import io.github.kevinah95.spacex.entity.RocketLaunch
+import io.github.kevinah95.spacex.data.cache.AppDatabase
+import io.github.kevinah95.spacex.domain.entity.Links
+import io.github.kevinah95.spacex.domain.entity.Patch
+import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 
 
 internal class Database(databaseDriverFactory: DriverFactory) {
-    private val database = AppDatabase(databaseDriverFactory.createDriver())
+    private val database = AppDatabase.Companion(databaseDriverFactory.createDriver())
     private val dbQuery = database.appDatabaseQueries
 
     internal fun getAllLaunches(): List<RocketLaunch> {

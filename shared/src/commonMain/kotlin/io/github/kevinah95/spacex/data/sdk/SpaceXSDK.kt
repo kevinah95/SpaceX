@@ -1,10 +1,9 @@
-package io.github.kevinah95.spacex
+package io.github.kevinah95.spacex.data.sdk
 
-import io.github.kevinah95.spacex.cache.Database
-import io.github.kevinah95.spacex.cache.DriverFactory
-import io.github.kevinah95.spacex.entity.RocketLaunch
-import io.github.kevinah95.spacex.network.SpaceXApi
-
+import io.github.kevinah95.spacex.data.cache.Database
+import io.github.kevinah95.spacex.data.cache.DriverFactory
+import io.github.kevinah95.spacex.data.network.SpaceXApi
+import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 
 class SpaceXSDK(databaseDriverFactory: DriverFactory, val api: SpaceXApi) {
     private val database = Database(databaseDriverFactory)

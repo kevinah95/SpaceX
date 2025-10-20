@@ -1,4 +1,4 @@
-package io.github.kevinah95.spacex.entity
+package io.github.kevinah95.spacex.domain.entity
 
 
 import kotlinx.serialization.SerialName

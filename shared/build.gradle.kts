@@ -59,7 +59,7 @@ android {
 sqldelight {
     databases {
         create("AppDatabase") {
-            packageName.set("io.github.kevinah95.spacex.cache")
+            packageName.set("io.github.kevinah95.spacex.data.cache")
         }
     }
 }

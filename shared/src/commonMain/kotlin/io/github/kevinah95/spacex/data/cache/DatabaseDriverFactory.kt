@@ -1,4 +1,4 @@
-package io.github.kevinah95.spacex.cache
+package io.github.kevinah95.spacex.data.cache
 
 import app.cash.sqldelight.db.SqlDriver
 import org.koin.core.scope.Scope
