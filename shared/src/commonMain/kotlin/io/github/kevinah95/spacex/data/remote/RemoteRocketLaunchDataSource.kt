@@ -1,4 +1,4 @@
-package io.github.kevinah95.spacex.data.network
+package io.github.kevinah95.spacex.data.remote
 
 import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 import io.ktor.client.HttpClient
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.serialization.json.Json
 
-class SpaceXApi(private val ioDispatcher: CoroutineDispatcher) {
+class RemoteRocketLaunchDataSource(private val ioDispatcher: CoroutineDispatcher) {
     private val httpClient = HttpClient {
         install(ContentNegotiation) {
             json(Json {

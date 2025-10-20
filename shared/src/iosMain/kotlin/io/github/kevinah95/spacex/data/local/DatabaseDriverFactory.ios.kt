@@ -1,4 +1,4 @@
-package io.github.kevinah95.spacex.data.cache
+package io.github.kevinah95.spacex.data.local
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
