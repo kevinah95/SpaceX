@@ -23,10 +23,8 @@ class SpaceXApi(private val ioDispatcher: CoroutineDispatcher) {
     }
 
     val latestLaunches: Flow<List<RocketLaunch>> = flow {
-        while(true) {
-            val latestLaunches = httpClient.get("https://api.spacexdata.com/v5/launches").body<List<RocketLaunch>>()
-            emit(latestLaunches) // Emits the result of the request to the flow
-        }
+        val latestLaunches = httpClient.get("https://api.spacexdata.com/v5/launches").body<List<RocketLaunch>>()
+        emit(latestLaunches)
     }
         .flowOn(ioDispatcher)
 }
