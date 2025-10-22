@@ -1,4 +1,4 @@
-package io.github.kevinah95.spacex.data.cache
+package io.github.kevinah95.spacex.data.local
 
 import android.content.Context
 import app.cash.sqldelight.db.SqlDriver
