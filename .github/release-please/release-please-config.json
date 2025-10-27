@@ -9,6 +9,9 @@
       "prerelease": false
     }
   },
+  "extra-files": [
+    "composeApp/build.gradle.kts"
+  ],
   "changelog-sections": [
     {"type": "feat", "section": "✨ Features", "hidden": false},
     {"type": "fix", "section": "🐛 Bug Fixes", "hidden": false},
