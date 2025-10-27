@@ -63,10 +63,15 @@ android {
 
     signingConfigs {
         getByName("debug") {
-            storeFile = file("${System.getProperty("user.home")}/.android/debug.keystore")
-            storePassword = "android"
-            keyAlias = "androiddebugkey"
-            keyPassword = "android"
+            // Use environment variables in CI, fallback to local debug keystore
+            storeFile = if (System.getenv("KEYSTORE_FILE") != null) {
+                file(System.getenv("KEYSTORE_FILE"))
+            } else {
+                file("${System.getProperty("user.home")}/.android/debug.keystore")
+            }
+            storePassword = System.getenv("KEYSTORE_PASSWORD") ?: "android"
+            keyAlias = System.getenv("KEY_ALIAS") ?: "androiddebugkey"
+            keyPassword = System.getenv("KEY_PASSWORD") ?: "android"
         }
     }
 
