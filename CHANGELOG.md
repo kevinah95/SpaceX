@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/kevinah95/SpaceX/compare/v1.0.1...v1.0.2) (2025-10-27)
+
+
+### 🏗️ Build System
+
+* **composeApp:** Compute versionCode from versionName ([70b8935](https://github.com/kevinah95/SpaceX/commit/70b8935dfd7dbedd8889a46768e5ca08cf0811a3))
+* **composeApp:** Update version name to 1.0.1 ([dee2dc4](https://github.com/kevinah95/SpaceX/commit/dee2dc47e30c414386b1ffefae0ea841abb93ab2))
+
 ## [1.0.1](https://github.com/kevinah95/SpaceX/compare/v1.0.0...v1.0.1) (2025-10-27)
 
 
