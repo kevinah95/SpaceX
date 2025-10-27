@@ -61,6 +61,15 @@ android {
     namespace = "io.github.kevinah95.spacex"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("${System.getProperty("user.home")}/.android/debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+    }
+
     defaultConfig {
         applicationId = "io.github.kevinah95.spacex"
         minSdk = libs.versions.android.minSdk.get().toInt()
@@ -76,6 +85,7 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
