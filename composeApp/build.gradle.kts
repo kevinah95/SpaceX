@@ -1,6 +1,19 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
+// Compute an integer versionCode from a semantic versionName like "1.2.3[-suffix]".
+// Scheme: MAJOR * 10000 + MINOR * 100 + PATCH (e.g., 1.2.3 -> 10203)
+fun versionCodeFrom(versionName: String): Int {
+    val match = Regex("""(\n?)(\d+)\.(\d+)\.(\n?)(\d+)""").find(versionName)
+        ?: Regex("""(\d+)\.(\d+)(?:\.(\d+))?""").find(versionName)
+        ?: return 1
+    val groups = match.groupValues
+    val major = groups.getOrNull(2)?.toIntOrNull() ?: groups.getOrNull(1)?.toIntOrNull() ?: 0
+    val minor = groups.getOrNull(3)?.toIntOrNull() ?: 0
+    val patch = groups.getOrNull(5)?.toIntOrNull() ?: groups.getOrNull(4)?.toIntOrNull() ?: 0
+    return major * 10000 + minor * 100 + patch
+}
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
@@ -79,8 +92,10 @@ android {
         applicationId = "io.github.kevinah95.spacex"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0.1" // x-release-please-version
+        // Keep versionName managed by release-please; versionCode is derived from it.
+        val relVersionName = "1.0.0" // x-release-please-version
+        versionName = relVersionName
+        versionCode = versionCodeFrom(relVersionName)
     }
     packaging {
         resources {
