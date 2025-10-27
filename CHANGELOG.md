@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.1](https://github.com/kevinah95/SpaceX/compare/v1.0.0...v1.0.1) (2025-10-27)
+
+
+### 📚 Documentation
+
+* Update README and add release signing documentation ([0db7652](https://github.com/kevinah95/SpaceX/commit/0db7652a80152f5559614acb6490e470803144a0))
+
+
+### 🏗️ Build System
+
+* **composeApp:** Update version name to 1.0.0 ([06921c6](https://github.com/kevinah95/SpaceX/commit/06921c6b544623afbe96d4471a980ffaf54c4517))
+
 ## 1.0.0 (2025-10-27)
 
 
