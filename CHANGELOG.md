@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/kevinah95/SpaceX/compare/v1.1.1...v1.1.2) (2025-10-28)
+
+
+### 🐛 Bug Fixes
+
+* **release-please:** Add extra file for changelog generation ([e3fa6de](https://github.com/kevinah95/SpaceX/commit/e3fa6def8f5c2b98f6dc1326e33b3960b34e4fc9))
+
 ## [1.1.1](https://github.com/kevinah95/SpaceX/compare/v1.1.0...v1.1.1) (2025-10-28)
 
 
