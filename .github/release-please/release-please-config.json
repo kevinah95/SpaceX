@@ -10,6 +10,11 @@
     }
   },
   "extra-files": [
+    {
+      "type": "json",
+      "path": ".github/release-please/alpha/.release-please-manifest.json",
+      "jsonpath": "$['.']"
+    },
     "composeApp/build.gradle.kts",
     "composeApp/src/commonMain/kotlin/io/github/kevinah95/spacex/App.kt"
   ],
