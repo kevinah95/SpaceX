@@ -84,6 +84,37 @@ android {
             keyAlias = System.getenv("KEY_ALIAS") ?: "androiddebugkey"
             keyPassword = System.getenv("KEY_PASSWORD") ?: "android"
         }
+
+        create("release") {
+            // Production keystore
+            storeFile = if (System.getenv("RELEASE_KEYSTORE_FILE") != null) {
+                file(System.getenv("RELEASE_KEYSTORE_FILE"))
+            } else {
+                // Fallback temporal al debug keystore
+                file("${System.getProperty("user.home")}/.android/debug.keystore")
+            }
+            storePassword = System.getenv("RELEASE_KEYSTORE_PASSWORD") ?: "android"
+            keyAlias = System.getenv("RELEASE_KEY_ALIAS") ?: "androiddebugkey"
+            keyPassword = System.getenv("RELEASE_KEY_PASSWORD") ?: "android"
+        }
+    }
+
+    // Define environments (flavors)
+    flavorDimensions += "environment"
+    productFlavors {
+        create("alpha") {
+            dimension = "environment"
+            applicationIdSuffix = ".alpha"
+            versionNameSuffix = "-alpha"
+            // Example config you can use in code if you enable buildConfig
+            // buildConfigField("String", "ENVIRONMENT", "\"alpha\"")
+        }
+        
+        create("prod") {
+            dimension = "environment"
+            // Production has no suffixes
+            // buildConfigField("String", "ENVIRONMENT", "\"prod\"")
+        }
     }
 
     defaultConfig {
@@ -101,11 +132,16 @@ android {
         }
     }
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
+        getByName("debug") {
             signingConfig = signingConfigs.getByName("debug")
         }
+        
+        getByName("release") {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
+        }
     }
+    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11

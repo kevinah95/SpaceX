@@ -1,0 +1,67 @@
+on:
+  push:
+    branches:
+      - alpha
+
+permissions:
+  contents: write
+  pull-requests: write
+
+name: release-please-alpha
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Load secret
+        id: op-load-secret
+        uses: 1password/load-secrets-action@v2
+        with:
+          export-env: false
+        env:
+          OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.OP_SERVICE_ACCOUNT_TOKEN }}
+          RELEASE_PLEASE_PAT: op://Development/RELEASE_PLEASE_PAT/token
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          token: ${{ steps.op-load-secret.outputs.RELEASE_PLEASE_PAT }}
+          target-branch: alpha
+          config-file: .github/release-please/alpha/release-please-config.json
+          manifest-file: .github/release-please/alpha/.release-please-manifest.json
+      - name: Create google-services.json
+        if: ${{ steps.release.outputs.release_created }}
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > ./composeApp/google-services.json
+      - name: Decode and setup keystore
+        if: ${{ steps.release.outputs.release_created }}
+        # Generate it locally: `base64 -i ~/.android/debug.keystore`
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/debug.keystore
+      - name: Set up JDK
+        if: ${{ steps.release.outputs.release_created }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Build Android App
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          KEYSTORE_FILE: ${{ github.workspace }}/debug.keystore
+          KEYSTORE_PASSWORD: android
+          KEY_ALIAS: androiddebugkey
+          KEY_PASSWORD: android
+        run: ./gradlew :composeApp:assembleAlphaRelease
+      - name: Upload Release Artifact
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ steps.release.outputs.tag_name }} ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk
+      - name: Firebase App Distribution
+        if: ${{ steps.release.outputs.release_created }}
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_CREDENTIAL_FILE_CONTENT }}
+          testers: "kevinah95@gmail.com"
+          file: ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk
+          releaseNotes: ${{ steps.release.outputs.body }}
