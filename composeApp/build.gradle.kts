@@ -104,8 +104,11 @@ android {
     productFlavors {
         create("alpha") {
             dimension = "environment"
+            
+            // applicationId will be "io.github.kevinah95.spacex.alpha"
+            // comes from defaultConfig.applicationId + applicationIdSuffix
             applicationIdSuffix = ".alpha"
-            versionNameSuffix = "-alpha"
+            
             resValue("string", "app_name", "SpaceX alpha")
             // Alpha uses debug keystore for signing
             signingConfig = signingConfigs.getByName("debug")
@@ -124,7 +127,6 @@ android {
         applicationId = "io.github.kevinah95.spacex"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        // Keep versionName managed by release-please; versionCode is derived from it.
         val relVersionName = "1.2.0" // x-release-please-version
         versionName = relVersionName
         versionCode = versionCodeFrom(relVersionName)
@@ -141,7 +143,6 @@ android {
         
         getByName("release") {
             isMinifyEnabled = false
-            // Let flavors decide signing; do not override here
         }
     }
     
