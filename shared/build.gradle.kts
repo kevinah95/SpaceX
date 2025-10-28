@@ -13,7 +13,8 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
+    iosX64()
     iosArm64()
     iosSimulatorArm64()
     
@@ -62,4 +63,5 @@ sqldelight {
             packageName.set("io.github.kevinah95.spacex.data.local")
         }
     }
+    linkSqlite = true
 }

@@ -29,13 +29,14 @@ kotlin {
     }
     
     listOf(
+        iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "spacex"
+            baseName = "ComposeApp"
             isStatic = false
-            freeCompilerArgs += "-Xbinary=bundleId=io.github.kevinah95.spacex"
+            freeCompilerArgs += "-Xbinary=bundleId=io.github.kevinah95.composeapp"
             linkerOpts.add("-lsqlite3")
         }
     }
@@ -63,9 +64,6 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
-        }
-        nativeMain.dependencies {
-            implementation(libs.sqldelight.driver.native)
         }
     }
 }
