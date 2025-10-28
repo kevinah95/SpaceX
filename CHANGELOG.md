@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5-alpha.2](https://github.com/kevinah95/SpaceX/compare/v1.1.5-alpha.1...v1.1.5-alpha.2) (2025-10-28)
+
+
+### 🐛 Bug Fixes
+
+* **alpha:** Add extra files for release process ([b1f22d9](https://github.com/kevinah95/SpaceX/commit/b1f22d948a5a7e00165a4e4214badaf1fd53cb52))
+
 ## [1.1.5-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.1.5-alpha...v1.1.5-alpha.1) (2025-10-28)
 
 
