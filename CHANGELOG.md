@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0-alpha.6](https://github.com/kevinah95/SpaceX/compare/v1.2.0-alpha.5...v1.2.0-alpha.6) (2025-10-28)
+
+
+### 🐛 Bug Fixes
+
+* **release-please:** Update keystore setup for production ([6f89487](https://github.com/kevinah95/SpaceX/commit/6f894873a5228d388529ed7c104cfee155d3b5af))
+
 ## [1.2.0-alpha.5](https://github.com/kevinah95/SpaceX/compare/v1.1.5-alpha.5...v1.2.0-alpha.5) (2025-10-28)
 
 
