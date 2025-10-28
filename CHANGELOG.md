@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0-alpha.5](https://github.com/kevinah95/SpaceX/compare/v1.1.5-alpha.5...v1.2.0-alpha.5) (2025-10-28)
+
+
+### ✨ Features
+
+* **gradle-cache:** Update keystore and JDK version in workflows ([5318d58](https://github.com/kevinah95/SpaceX/commit/5318d58cffc981efaf9e7bdcf669f3056c853286))
+
 ## [1.1.5-alpha.5](https://github.com/kevinah95/SpaceX/compare/v1.1.5-alpha.4...v1.1.5-alpha.5) (2025-10-28)
 
 
