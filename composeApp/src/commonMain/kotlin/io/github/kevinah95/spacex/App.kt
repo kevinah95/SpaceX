@@ -2,8 +2,10 @@ package io.github.kevinah95.spacex
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -46,16 +48,30 @@ fun App() {
     val coroutineScope = rememberCoroutineScope()
     var isRefreshing by remember { mutableStateOf(false) }
     val pullToRefreshState = rememberPullToRefreshState()
+    val versionName = "1.0.2" // x-release-please-version
 
     AppTheme {
         Scaffold(
             topBar = {
                 TopAppBar(
                     title = {
-                        Text(
-                            "SpaceX Launches",
-                            style = MaterialTheme.typography.headlineLarge
-                        )
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(end = 16.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.Bottom
+                        ) {
+                            Text(
+                                "SpaceX Launches",
+                                style = MaterialTheme.typography.headlineLarge
+                            )
+                            Text(
+                                text = "v${versionName}",
+                                style = MaterialTheme.typography.labelSmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+                            )
+                        }
                     }
                 )
             }
