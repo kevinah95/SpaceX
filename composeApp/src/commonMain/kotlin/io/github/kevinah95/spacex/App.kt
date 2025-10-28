@@ -55,22 +55,26 @@ fun App() {
             topBar = {
                 TopAppBar(
                     title = {
-                        Row(
+                        Column(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(end = 16.dp),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.Bottom
                         ) {
                             Text(
                                 "SpaceX Launches",
                                 style = MaterialTheme.typography.headlineLarge
                             )
-                            Text(
-                                text = "v${versionName}",
-                                style = MaterialTheme.typography.labelSmall,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
-                            )
+                            Row(
+                                modifier = Modifier
+                                    .padding(start = 2.dp)
+                            ) {
+                                Text(
+                                    text = "v${versionName}",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
+                                        alpha = 0.5f
+                                    )
+                                )
+                            }
                         }
                     }
                 )
