@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/kevinah95/SpaceX/compare/v1.0.2...v1.1.0) (2025-10-28)
+
+
+### ✨ Features
+
+* Display version name in the top bar ([6deb366](https://github.com/kevinah95/SpaceX/commit/6deb3669a7bba22fcc796461fc3fb5d1bf12a9ce))
+
 ## [1.0.2](https://github.com/kevinah95/SpaceX/compare/v1.0.1...v1.0.2) (2025-10-27)
 
 
