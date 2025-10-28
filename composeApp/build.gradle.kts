@@ -106,12 +106,14 @@ android {
             dimension = "environment"
             applicationIdSuffix = ".alpha"
             versionNameSuffix = "-alpha"
+            resValue("string", "app_name", "SpaceX alpha")
             // Alpha uses debug keystore for signing
             signingConfig = signingConfigs.getByName("debug")
         }
         
         create("prod") {
             dimension = "environment"
+            resValue("string", "app_name", "SpaceX")
             // Production has no suffixes
             // Prod uses release keystore for signing
             signingConfig = signingConfigs.getByName("release")
