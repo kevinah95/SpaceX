@@ -1,5 +1,41 @@
 # Changelog
 
+## [1.2.0](https://github.com/kevinah95/SpaceX/compare/v1.1.4...v1.2.0) (2025-10-28)
+
+
+### ✨ Features
+
+* **android:** Set app name for alpha and prod flavors ([230e819](https://github.com/kevinah95/SpaceX/commit/230e819836e13518f12dcdbc6c4545d59c43576b))
+* **gradle-cache:** Update keystore and JDK version in workflows ([5318d58](https://github.com/kevinah95/SpaceX/commit/5318d58cffc981efaf9e7bdcf669f3056c853286))
+
+
+### 🐛 Bug Fixes
+
+* **alpha:** Add extra files for release process ([b1f22d9](https://github.com/kevinah95/SpaceX/commit/b1f22d948a5a7e00165a4e4214badaf1fd53cb52))
+* **alpha:** Remove unnecessary release keystore variables ([a4489b3](https://github.com/kevinah95/SpaceX/commit/a4489b36d0e44cf9ba5e1e77ac4151a0d7dd0cde))
+* **alpha:** Update Firebase credentials for alpha release ([2edbe54](https://github.com/kevinah95/SpaceX/commit/2edbe54ee2c978170733ede3ee8ce8c74e1adea5))
+* **alpha:** Update google-services.json secret reference ([d551c31](https://github.com/kevinah95/SpaceX/commit/d551c31607e6e14c327203e4f09788cf416bd6b1))
+* **release-please:** Update keystore setup for production ([6f89487](https://github.com/kevinah95/SpaceX/commit/6f894873a5228d388529ed7c104cfee155d3b5af))
+* Update signing configuration for flavors ([011adf7](https://github.com/kevinah95/SpaceX/commit/011adf734f1af609611aead8d792e290887a927c))
+
+
+### 🔧 Miscellaneous Chores
+
+* :bookmark: prerelease 1.1.5-alpha ([#10](https://github.com/kevinah95/SpaceX/issues/10)) ([527e426](https://github.com/kevinah95/SpaceX/commit/527e42625ad288f974afb13b0e1152f3ef170c02))
+* :bookmark: prerelease 1.1.5-alpha.1 ([#11](https://github.com/kevinah95/SpaceX/issues/11)) ([bc2b729](https://github.com/kevinah95/SpaceX/commit/bc2b729086ae272e9c8c2e6ede622d7ad8953c67))
+* :bookmark: prerelease 1.1.5-alpha.2 ([#12](https://github.com/kevinah95/SpaceX/issues/12)) ([fa39250](https://github.com/kevinah95/SpaceX/commit/fa39250d2786bb434191513dfe72634bb6dedffc))
+* :bookmark: prerelease 1.1.5-alpha.3 ([#13](https://github.com/kevinah95/SpaceX/issues/13)) ([7679312](https://github.com/kevinah95/SpaceX/commit/7679312e85ace21f016b19604630feae076ac141))
+* :bookmark: prerelease 1.1.5-alpha.4 ([#14](https://github.com/kevinah95/SpaceX/issues/14)) ([dbf2682](https://github.com/kevinah95/SpaceX/commit/dbf2682af51dc83e9b49b5e626357bd9e52b7df2))
+* :bookmark: prerelease 1.1.5-alpha.5 ([#15](https://github.com/kevinah95/SpaceX/issues/15)) ([5a8cf09](https://github.com/kevinah95/SpaceX/commit/5a8cf0972d9a013b0d24af622858eb52640b0842))
+* :bookmark: prerelease 1.2.0-alpha.5 ([#16](https://github.com/kevinah95/SpaceX/issues/16)) ([fdd68e3](https://github.com/kevinah95/SpaceX/commit/fdd68e3230e35f2be6a9c9ca688b68dcbe2c7f63))
+* :bookmark: prerelease 1.2.0-alpha.6 ([#17](https://github.com/kevinah95/SpaceX/issues/17)) ([f60d063](https://github.com/kevinah95/SpaceX/commit/f60d063ef4e5714be9b718fe5256850884b755c8))
+* :bookmark: prerelease 1.2.0-alpha.7 ([#18](https://github.com/kevinah95/SpaceX/issues/18)) ([830f9c5](https://github.com/kevinah95/SpaceX/commit/830f9c592aa7f389e45b8882490eeac99a478ddf))
+
+
+### 🏗️ Build System
+
+* Add release configuration and workflow ([af0f687](https://github.com/kevinah95/SpaceX/commit/af0f6879ac07177936fd3641c91b0b97bbd62aab))
+
 ## [1.2.0-alpha.7](https://github.com/kevinah95/SpaceX/compare/v1.2.0-alpha.6...v1.2.0-alpha.7) (2025-10-28)
 
 
