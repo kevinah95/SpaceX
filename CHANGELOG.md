@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5-alpha](https://github.com/kevinah95/SpaceX/compare/v1.1.4...v1.1.5-alpha) (2025-10-28)
+
+
+### 🏗️ Build System
+
+* Add release configuration and workflow ([af0f687](https://github.com/kevinah95/SpaceX/commit/af0f6879ac07177936fd3641c91b0b97bbd62aab))
+
 ## [1.1.4](https://github.com/kevinah95/SpaceX/compare/v1.1.3...v1.1.4) (2025-10-28)
 
 
