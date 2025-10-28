@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/kevinah95/SpaceX/compare/v1.1.3...v1.1.4) (2025-10-28)
+
+
+### 🏗️ Build System
+
+* Update kotlin and ktor dependencies ([e8198f4](https://github.com/kevinah95/SpaceX/commit/e8198f445556e632461b553e094a00e1cef14402))
+
 ## [1.1.3](https://github.com/kevinah95/SpaceX/compare/v1.1.2...v1.1.3) (2025-10-28)
 
 
