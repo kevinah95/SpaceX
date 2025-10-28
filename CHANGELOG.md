@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5-alpha.4](https://github.com/kevinah95/SpaceX/compare/v1.1.5-alpha.3...v1.1.5-alpha.4) (2025-10-28)
+
+
+### 🐛 Bug Fixes
+
+* **alpha:** Update google-services.json secret reference ([d551c31](https://github.com/kevinah95/SpaceX/commit/d551c31607e6e14c327203e4f09788cf416bd6b1))
+
 ## [1.1.5-alpha.3](https://github.com/kevinah95/SpaceX/compare/v1.1.5-alpha.2...v1.1.5-alpha.3) (2025-10-28)
 
 
