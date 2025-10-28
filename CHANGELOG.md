@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0-alpha.7](https://github.com/kevinah95/SpaceX/compare/v1.2.0-alpha.6...v1.2.0-alpha.7) (2025-10-28)
+
+
+### ✨ Features
+
+* **android:** Set app name for alpha and prod flavors ([230e819](https://github.com/kevinah95/SpaceX/commit/230e819836e13518f12dcdbc6c4545d59c43576b))
+
 ## [1.2.0-alpha.6](https://github.com/kevinah95/SpaceX/compare/v1.2.0-alpha.5...v1.2.0-alpha.6) (2025-10-28)
 
 
