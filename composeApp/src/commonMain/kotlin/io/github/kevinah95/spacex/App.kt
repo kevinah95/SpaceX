@@ -48,7 +48,7 @@ fun App() {
     val coroutineScope = rememberCoroutineScope()
     var isRefreshing by remember { mutableStateOf(false) }
     val pullToRefreshState = rememberPullToRefreshState()
-    val versionName = "1.2.1" // x-release-please-version
+    val versionName = "1.2.2-alpha" // x-release-please-version
 
     AppTheme {
         Scaffold(
