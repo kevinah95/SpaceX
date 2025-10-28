@@ -31,7 +31,7 @@ jobs:
           manifest-file: .github/release-please/alpha/.release-please-manifest.json
       - name: Create google-services.json
         if: ${{ steps.release.outputs.release_created }}
-        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > ./composeApp/google-services.json
+        run: echo '${{ secrets.ALPHA_GOOGLE_SERVICES_JSON }}' > ./composeApp/google-services.json
       - name: Decode and setup keystore
         if: ${{ steps.release.outputs.release_created }}
         # Generate it locally: `base64 -i ~/.android/debug.keystore`
