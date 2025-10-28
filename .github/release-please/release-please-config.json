@@ -10,7 +10,8 @@
     }
   },
   "extra-files": [
-    "composeApp/build.gradle.kts"
+    "composeApp/build.gradle.kts",
+    "composeApp/src/commonMain/kotlin/io/github/kevinah95/spacex/App.kt"
   ],
   "changelog-sections": [
     {"type": "feat", "section": "✨ Features", "hidden": false},
