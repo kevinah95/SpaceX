@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5-alpha.3](https://github.com/kevinah95/SpaceX/compare/v1.1.5-alpha.2...v1.1.5-alpha.3) (2025-10-28)
+
+
+### 🐛 Bug Fixes
+
+* **alpha:** Update Firebase credentials for alpha release ([2edbe54](https://github.com/kevinah95/SpaceX/commit/2edbe54ee2c978170733ede3ee8ce8c74e1adea5))
+
 ## [1.1.5-alpha.2](https://github.com/kevinah95/SpaceX/compare/v1.1.5-alpha.1...v1.1.5-alpha.2) (2025-10-28)
 
 
