@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.1.5-alpha...v1.1.5-alpha.1) (2025-10-28)
+
+
+### 🐛 Bug Fixes
+
+* Update signing configuration for flavors ([011adf7](https://github.com/kevinah95/SpaceX/commit/011adf734f1af609611aead8d792e290887a927c))
+
 ## [1.1.5-alpha](https://github.com/kevinah95/SpaceX/compare/v1.1.4...v1.1.5-alpha) (2025-10-28)
 
 
