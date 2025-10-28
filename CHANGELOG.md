@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2-alpha.2](https://github.com/kevinah95/SpaceX/compare/v1.2.2-alpha.1...v1.2.2-alpha.2) (2025-10-28)
+
+
+### 🏗️ Build System
+
+* Enable parallel execution for Gradle builds ([1c44919](https://github.com/kevinah95/SpaceX/commit/1c44919a83498fa09a6156dea57e07fe64d07ade))
+
 ## [1.2.2-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.2.2-alpha...v1.2.2-alpha.1) (2025-10-28)
 
 
