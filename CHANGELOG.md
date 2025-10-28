@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.2.2-alpha...v1.2.2-alpha.1) (2025-10-28)
+
+
+### 💄 Styles
+
+* Update layout of top bar for better alignment ([8255ebb](https://github.com/kevinah95/SpaceX/commit/8255ebbc5a6f3436bc02c0a37952721560e49eac))
+
 ## [1.2.2-alpha](https://github.com/kevinah95/SpaceX/compare/v1.2.1...v1.2.2-alpha) (2025-10-28)
 
 
