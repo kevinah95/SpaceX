@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0-alpha.8](https://github.com/kevinah95/SpaceX/compare/v1.2.0-alpha.7...v1.2.0-alpha.8) (2025-10-28)
+
+
+### 📚 Documentation
+
+* Add comments to alpha explaining ([7bf57e4](https://github.com/kevinah95/SpaceX/commit/7bf57e47bb3298f2516458d99ced93fba7cb5eb4))
+
+
+### 🔧 Miscellaneous Chores
+
+* **main:** Release 1.2.0 ([#19](https://github.com/kevinah95/SpaceX/issues/19)) ([30f16ef](https://github.com/kevinah95/SpaceX/commit/30f16ef02b7e261d5d7fea94dac5a6ffbd035f02))
+
 ## [1.2.0](https://github.com/kevinah95/SpaceX/compare/v1.1.4...v1.2.0) (2025-10-28)
 
 

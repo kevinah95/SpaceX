@@ -127,7 +127,7 @@ android {
         applicationId = "io.github.kevinah95.spacex"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        val relVersionName = "1.2.0" // x-release-please-version
+        val relVersionName = "1.2.0-alpha.8" // x-release-please-version
         versionName = relVersionName
         versionCode = versionCodeFrom(relVersionName)
     }
