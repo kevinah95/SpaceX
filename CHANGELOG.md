@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.2.2](https://github.com/kevinah95/SpaceX/compare/v1.2.1...v1.2.2) (2025-10-28)
+
+
+### 📚 Documentation
+
+* Add comments to alpha explaining ([3924636](https://github.com/kevinah95/SpaceX/commit/39246364ea78a494a199c975a6059b885a62a007))
+
+
+### 💄 Styles
+
+* Update layout of top bar for better alignment ([8255ebb](https://github.com/kevinah95/SpaceX/commit/8255ebbc5a6f3436bc02c0a37952721560e49eac))
+
+
+### 🔧 Miscellaneous Chores
+
+* :bookmark: prerelease 1.2.2-alpha ([#22](https://github.com/kevinah95/SpaceX/issues/22)) ([a9ad4fd](https://github.com/kevinah95/SpaceX/commit/a9ad4fdb83884a526a54911563d3638695f651e7))
+* :bookmark: prerelease 1.2.2-alpha.1 ([#23](https://github.com/kevinah95/SpaceX/issues/23)) ([ea2900f](https://github.com/kevinah95/SpaceX/commit/ea2900f44a0aa7c6d2ffc256a89e1809716ae1df))
+* :bookmark: prerelease 1.2.2-alpha.2 ([#24](https://github.com/kevinah95/SpaceX/issues/24)) ([82503f9](https://github.com/kevinah95/SpaceX/commit/82503f9f5e4b6d2f8b4b55c0a54bbd3132cef388))
+
+
+### 🏗️ Build System
+
+* Enable parallel execution for Gradle builds ([1c44919](https://github.com/kevinah95/SpaceX/commit/1c44919a83498fa09a6156dea57e07fe64d07ade))
+
 ## [1.2.2-alpha.2](https://github.com/kevinah95/SpaceX/compare/v1.2.2-alpha.1...v1.2.2-alpha.2) (2025-10-28)
 
 
