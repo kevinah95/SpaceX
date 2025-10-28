@@ -25,6 +25,7 @@ kotlin {
         }
         commonMain.dependencies {
             implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(project.dependencies.platform(libs.ktor.bom))
             implementation(libs.koin.core)
             implementation(libs.koin.compose.viewmodel)
             implementation(libs.ktor.client.core)
