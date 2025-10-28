@@ -123,7 +123,7 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         // Keep versionName managed by release-please; versionCode is derived from it.
-        val relVersionName = "1.1.5-alpha.4" // x-release-please-version
+        val relVersionName = "1.1.5-alpha.5" // x-release-please-version
         versionName = relVersionName
         versionCode = versionCodeFrom(relVersionName)
     }

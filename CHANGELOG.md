@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5-alpha.5](https://github.com/kevinah95/SpaceX/compare/v1.1.5-alpha.4...v1.1.5-alpha.5) (2025-10-28)
+
+
+### 🐛 Bug Fixes
+
+* **alpha:** Remove unnecessary release keystore variables ([a4489b3](https://github.com/kevinah95/SpaceX/commit/a4489b36d0e44cf9ba5e1e77ac4151a0d7dd0cde))
+
 ## [1.1.5-alpha.4](https://github.com/kevinah95/SpaceX/compare/v1.1.5-alpha.3...v1.1.5-alpha.4) (2025-10-28)
 
 
