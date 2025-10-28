@@ -12,6 +12,10 @@
       "pull-request-title-pattern": "chore: :bookmark: prerelease${component} ${version}"
     }
   },
+  "extra-files": [
+    "composeApp/build.gradle.kts",
+    "composeApp/src/commonMain/kotlin/io/github/kevinah95/spacex/App.kt"
+  ],
   "changelog-sections": [
     {"type": "feat", "section": "✨ Features", "hidden": false},
     {"type": "fix", "section": "🐛 Bug Fixes", "hidden": false},
