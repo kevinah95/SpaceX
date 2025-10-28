@@ -33,9 +33,9 @@ jobs:
         run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > ./composeApp/google-services.json
       - name: Decode and setup keystore
         if: ${{ steps.release.outputs.release_created }}
-        # Generate it locally: `base64 -i ~/.android/debug.keystore`
+        # Generate it locally: `base64 -i ~/.keystores/spacex.prod.jks`
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/debug.keystore
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/spacex.prod.jks
       - name: Set up JDK
         if: ${{ steps.release.outputs.release_created }}
         uses: actions/setup-java@v4
@@ -46,16 +46,16 @@ jobs:
       - name: Build Android App
         if: ${{ steps.release.outputs.release_created }}
         env:
-          KEYSTORE_FILE: ${{ github.workspace }}/debug.keystore
-          KEYSTORE_PASSWORD: android
-          KEY_ALIAS: androiddebugkey
-          KEY_PASSWORD: android
-        run: ./gradlew :composeApp:assembleRelease
+          RELEASE_KEYSTORE_FILE: ${{ github.workspace }}/spacex.prod.jks
+          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        run: ./gradlew :composeApp:assembleProdRelease
       - name: Upload Release Artifact
         if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ steps.release.outputs.tag_name }} ./composeApp/build/outputs/apk/release/composeApp-release.apk
+        run: gh release upload ${{ steps.release.outputs.tag_name }} ./composeApp/build/outputs/apk/prod/release/composeApp-prod-release.apk
       - name: Firebase App Distribution
         if: ${{ steps.release.outputs.release_created }}
         uses: wzieba/Firebase-Distribution-Github-Action@v1
@@ -63,5 +63,5 @@ jobs:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_CREDENTIAL_FILE_CONTENT }}
           testers: "kevinah95@gmail.com"
-          file: ./composeApp/build/outputs/apk/release/composeApp-release.apk
+          file: ./composeApp/build/outputs/apk/prod/release/composeApp-prod-release.apk
           releaseNotes: ${{ steps.release.outputs.body }}
