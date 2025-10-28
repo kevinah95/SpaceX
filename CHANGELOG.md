@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2-alpha](https://github.com/kevinah95/SpaceX/compare/v1.2.1...v1.2.2-alpha) (2025-10-28)
+
+
+### 📚 Documentation
+
+* Add comments to alpha explaining ([3924636](https://github.com/kevinah95/SpaceX/commit/39246364ea78a494a199c975a6059b885a62a007))
+
 ## [1.2.1](https://github.com/kevinah95/SpaceX/compare/v1.2.0...v1.2.1) (2025-10-28)
 
 
