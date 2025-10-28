@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/kevinah95/SpaceX/compare/v1.2.0...v1.2.1) (2025-10-28)
+
+
+### 🐛 Bug Fixes
+
+* **release-please:** Add manifest file to extra-files ([47621d8](https://github.com/kevinah95/SpaceX/commit/47621d852d1ba76de8a71cb4254e30780fb5b0f1))
+
 ## [1.2.0](https://github.com/kevinah95/SpaceX/compare/v1.1.4...v1.2.0) (2025-10-28)
 
 
