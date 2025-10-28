@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/kevinah95/SpaceX/compare/v1.1.0...v1.1.1) (2025-10-28)
+
+
+### 🐛 Bug Fixes
+
+* **iosApp:** Rename bundle identifier and update architecture ([4738024](https://github.com/kevinah95/SpaceX/commit/4738024ddfe647b51d2e4ffc694fff88ed84ff0a))
+
 ## [1.1.0](https://github.com/kevinah95/SpaceX/compare/v1.0.2...v1.1.0) (2025-10-28)
 
 
