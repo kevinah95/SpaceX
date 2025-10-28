@@ -104,8 +104,11 @@ android {
     productFlavors {
         create("alpha") {
             dimension = "environment"
+            
+            // applicationId will be "io.github.kevinah95.spacex.alpha"
+            // comes from defaultConfig.applicationId + applicationIdSuffix
             applicationIdSuffix = ".alpha"
-            versionNameSuffix = "-alpha"
+            
             resValue("string", "app_name", "SpaceX alpha")
             // Alpha uses debug keystore for signing
             signingConfig = signingConfigs.getByName("debug")
@@ -141,7 +144,6 @@ android {
         
         getByName("release") {
             isMinifyEnabled = false
-            // Let flavors decide signing; do not override here
         }
     }
     
