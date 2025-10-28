@@ -65,8 +65,8 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          appId: ${{ secrets.FIREBASE_APP_ID }}
-          serviceCredentialsFileContent: ${{ secrets.FIREBASE_CREDENTIAL_FILE_CONTENT }}
+          appId: ${{ secrets.ALPHA_FIREBASE_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}
           testers: "kevinah95@gmail.com"
           file: ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk
           releaseNotes: ${{ steps.release.outputs.body }}
