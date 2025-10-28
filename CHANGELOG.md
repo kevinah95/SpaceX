@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/kevinah95/SpaceX/compare/v1.1.2...v1.1.3) (2025-10-28)
+
+
+### 🔧 Miscellaneous Chores
+
+* **server:** Remove unused server module and related files ([48e1ce0](https://github.com/kevinah95/SpaceX/commit/48e1ce06da147c5b218eff98aa140515db950491))
+
 ## [1.1.2](https://github.com/kevinah95/SpaceX/compare/v1.1.1...v1.1.2) (2025-10-28)
 
 
