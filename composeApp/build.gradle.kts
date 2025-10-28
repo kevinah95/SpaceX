@@ -106,14 +106,15 @@ android {
             dimension = "environment"
             applicationIdSuffix = ".alpha"
             versionNameSuffix = "-alpha"
-            // Example config you can use in code if you enable buildConfig
-            // buildConfigField("String", "ENVIRONMENT", "\"alpha\"")
+            // Alpha uses debug keystore for signing
+            signingConfig = signingConfigs.getByName("debug")
         }
         
         create("prod") {
             dimension = "environment"
             // Production has no suffixes
-            // buildConfigField("String", "ENVIRONMENT", "\"prod\"")
+            // Prod uses release keystore for signing
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 
@@ -138,7 +139,7 @@ android {
         
         getByName("release") {
             isMinifyEnabled = false
-            signingConfig = signingConfigs.getByName("release")
+            // Let flavors decide signing; do not override here
         }
     }
     

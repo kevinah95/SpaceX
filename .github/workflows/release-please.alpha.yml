@@ -50,6 +50,11 @@ jobs:
           KEYSTORE_PASSWORD: android
           KEY_ALIAS: androiddebugkey
           KEY_PASSWORD: android
+          # Provide release-* too, in case AGP picks release signing for any reason
+          RELEASE_KEYSTORE_FILE: ${{ github.workspace }}/debug.keystore
+          RELEASE_KEYSTORE_PASSWORD: android
+          RELEASE_KEY_ALIAS: androiddebugkey
+          RELEASE_KEY_PASSWORD: android
         run: ./gradlew :composeApp:assembleAlphaRelease
       - name: Upload Release Artifact
         if: ${{ steps.release.outputs.release_created }}
