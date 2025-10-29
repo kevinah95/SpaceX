@@ -70,12 +70,20 @@ jobs:
         uses: docker://pandoc/core:3.8
         with:
           args: "-f gfm -t plain --wrap=none release-notes.md -o release-notes.txt"
-      - name: Firebase App Distribution
+      - name: Install Firebase CLI (standalone)
         if: ${{ steps.release.outputs.release_created }}
-        uses: wzieba/Firebase-Distribution-Github-Action@v1
-        with:
-          appId: ${{ secrets.ALPHA_FIREBASE_APP_ID }}
-          serviceCredentialsFileContent: ${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}
-          testers: "kevinah95@gmail.com"
-          file: ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk
-          releaseNotesFile: release-notes.txt
+        run: curl -sL https://firebase.tools | bash
+
+      - name: Write Firebase service account
+        if: ${{ steps.release.outputs.release_created }}
+        run: echo '${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}' > "$RUNNER_TEMP/firebase-sa.json"
+
+      - name: Distribute to Firebase App Distribution (CLI)
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-sa.json
+        run: |
+          firebase appdistribution:distribute ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk \
+            --app "${{ secrets.ALPHA_FIREBASE_APP_ID }}" \
+            --testers "kevinah95@gmail.com" \
+            --release-notes-file release-notes.txt
