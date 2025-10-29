@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha...v1.2.3-alpha.1) (2025-10-29)
+
+
+### 🐛 Bug Fixes
+
+* Add pandoc docker as a step ([d49734b](https://github.com/kevinah95/SpaceX/commit/d49734b96dbadd4dcca8b900b1a3ac207db5bc08))
+
 ## [1.2.3-alpha](https://github.com/kevinah95/SpaceX/compare/v1.2.2...v1.2.3-alpha) (2025-10-29)
 
 
