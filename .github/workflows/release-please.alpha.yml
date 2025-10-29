@@ -61,6 +61,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh release upload ${{ steps.release.outputs.tag_name }} ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk
+      - name: Convert release notes to plain text
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          echo '${{ steps.release.outputs.body }}' > release-notes.md
+          pandoc -f gfm -t plain release-notes.md -o release-notes.txt
       - name: Firebase App Distribution
         if: ${{ steps.release.outputs.release_created }}
         uses: wzieba/Firebase-Distribution-Github-Action@v1
@@ -69,4 +74,4 @@ jobs:
           serviceCredentialsFileContent: ${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}
           testers: "kevinah95@gmail.com"
           file: ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk
-          releaseNotes: ${{ steps.release.outputs.body }}
+          releaseNotesFile: release-notes.txt
