@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3-alpha.2](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.1...v1.2.3-alpha.2) (2025-10-29)
+
+
+### 👷 Continuous Integration
+
+* **release:** Update firebase distribution process ([0d7f2e4](https://github.com/kevinah95/SpaceX/commit/0d7f2e42fdd5a63810ffc0098d835644d9f6df58))
+
 ## [1.2.3-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha...v1.2.3-alpha.1) (2025-10-29)
 
 
