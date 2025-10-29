@@ -36,7 +36,7 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         # Generate it locally: `base64 -i ~/.keystores/spacex.alpha.jks`
         run: |
-          echo "${{ secrets.ALPHA_KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/spacex.alpha.jks
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/spacex.alpha.jks
       - name: Set up JDK
         if: ${{ steps.release.outputs.release_created }}
         uses: actions/setup-java@v5
