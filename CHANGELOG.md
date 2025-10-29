@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3-alpha.4](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.3...v1.2.3-alpha.4) (2025-10-29)
+
+
+### 👷 Continuous Integration
+
+* Update Java and Gradle setup for release ([5cc6c78](https://github.com/kevinah95/SpaceX/commit/5cc6c78231193b98c2d0096c94c90d1e760d4377))
+
 ## [1.2.3-alpha.3](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.2...v1.2.3-alpha.3) (2025-10-29)
 
 
