@@ -1,5 +1,41 @@
 # Changelog
 
+## [1.2.3](https://github.com/kevinah95/SpaceX/compare/v1.2.2...v1.2.3) (2025-10-29)
+
+
+### 🐛 Bug Fixes
+
+* Add pandoc docker as a step ([d49734b](https://github.com/kevinah95/SpaceX/commit/d49734b96dbadd4dcca8b900b1a3ac207db5bc08))
+* **ci:** Correct keystore password reference ([eec4501](https://github.com/kevinah95/SpaceX/commit/eec4501ccd526acdfe1127c722a720e9ee07eae7))
+* **ci:** Update keystore secret reference ([5aa00a8](https://github.com/kevinah95/SpaceX/commit/5aa00a85546dbaf9984056a956b8a2c68b25daba))
+
+
+### 🔧 Miscellaneous Chores
+
+* :bookmark: prerelease 1.2.3-alpha ([#26](https://github.com/kevinah95/SpaceX/issues/26)) ([c8c3d42](https://github.com/kevinah95/SpaceX/commit/c8c3d428e580c47063e0a80bf45219e89248f922))
+* :bookmark: prerelease 1.2.3-alpha.1 ([#27](https://github.com/kevinah95/SpaceX/issues/27)) ([1ad9a7c](https://github.com/kevinah95/SpaceX/commit/1ad9a7c36dbf0fcb57be66b7828bf5472d8b81f4))
+* :bookmark: prerelease 1.2.3-alpha.2 ([#28](https://github.com/kevinah95/SpaceX/issues/28)) ([0439593](https://github.com/kevinah95/SpaceX/commit/0439593f959f2d01b18c147dc5545d0af8f155c4))
+* :bookmark: prerelease 1.2.3-alpha.3 ([#29](https://github.com/kevinah95/SpaceX/issues/29)) ([234596d](https://github.com/kevinah95/SpaceX/commit/234596d78f71089ed22b4609691923ac8276d441))
+* :bookmark: prerelease 1.2.3-alpha.4 ([#30](https://github.com/kevinah95/SpaceX/issues/30)) ([983f5b5](https://github.com/kevinah95/SpaceX/commit/983f5b5dabca261667b7ebd14231fccd3184b11a))
+* :bookmark: prerelease 1.2.3-alpha.5 ([#31](https://github.com/kevinah95/SpaceX/issues/31)) ([953116b](https://github.com/kevinah95/SpaceX/commit/953116bd6953cf62793d6807cc76994546ec4e8b))
+* :bookmark: prerelease 1.2.3-alpha.6 ([#32](https://github.com/kevinah95/SpaceX/issues/32)) ([7dc1d1e](https://github.com/kevinah95/SpaceX/commit/7dc1d1e24e4cb02749049aa2650b1b36c8bcf17d))
+* :bookmark: prerelease 1.2.3-alpha.7 ([#33](https://github.com/kevinah95/SpaceX/issues/33)) ([89b155c](https://github.com/kevinah95/SpaceX/commit/89b155cf13bbfb370af93e3726cf2c252c566773))
+* :bookmark: prerelease 1.2.3-alpha.8 ([#34](https://github.com/kevinah95/SpaceX/issues/34)) ([d15cb76](https://github.com/kevinah95/SpaceX/commit/d15cb764c93ff07f8265897bbef4839efba1bf17))
+
+
+### 🏗️ Build System
+
+* **android:** Update keystore configuration for alpha release ([e59aee1](https://github.com/kevinah95/SpaceX/commit/e59aee1fc53225e0648e1c87b2953f7399d987fd))
+* **gradle:** Enable Jetifier for improved build performance ([b86ff5a](https://github.com/kevinah95/SpaceX/commit/b86ff5a450da11edaae4172e5c2521fafc146895))
+
+
+### 👷 Continuous Integration
+
+* **release:** Add conversion of release notes to plain text ([4fe2453](https://github.com/kevinah95/SpaceX/commit/4fe2453526fe02fed0eea85d66832208ad01e304))
+* **release:** Update firebase distribution process ([0d7f2e4](https://github.com/kevinah95/SpaceX/commit/0d7f2e42fdd5a63810ffc0098d835644d9f6df58))
+* Update Java and Gradle setup for release ([5cc6c78](https://github.com/kevinah95/SpaceX/commit/5cc6c78231193b98c2d0096c94c90d1e760d4377))
+* Update release workflow for improved keystore handling ([8d39d39](https://github.com/kevinah95/SpaceX/commit/8d39d395ad9962bb0749c4d59fb274e95a085ab4))
+
 ## [1.2.3-alpha.8](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.7...v1.2.3-alpha.8) (2025-10-29)
 
 
