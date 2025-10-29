@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3-alpha.6](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.5...v1.2.3-alpha.6) (2025-10-29)
+
+
+### 🐛 Bug Fixes
+
+* **ci:** Correct keystore password reference ([eec4501](https://github.com/kevinah95/SpaceX/commit/eec4501ccd526acdfe1127c722a720e9ee07eae7))
+
 ## [1.2.3-alpha.5](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.4...v1.2.3-alpha.5) (2025-10-29)
 
 
