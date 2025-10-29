@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3-alpha.8](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.7...v1.2.3-alpha.8) (2025-10-29)
+
+
+### 👷 Continuous Integration
+
+* Update release workflow for improved keystore handling ([8d39d39](https://github.com/kevinah95/SpaceX/commit/8d39d395ad9962bb0749c4d59fb274e95a085ab4))
+
 ## [1.2.3-alpha.7](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.6...v1.2.3-alpha.7) (2025-10-29)
 
 
