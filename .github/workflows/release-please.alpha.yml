@@ -34,9 +34,9 @@ jobs:
         run: echo '${{ secrets.ALPHA_GOOGLE_SERVICES_JSON }}' > ./composeApp/google-services.json
       - name: Decode and setup keystore
         if: ${{ steps.release.outputs.release_created }}
-        # Generate it locally: `base64 -i ~/.android/debug.keystore`
+        # Generate it locally: `base64 -i ~/.keystores/spacex.alpha.jks`
         run: |
-          echo "${{ secrets.ALPHA_KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/debug.keystore
+          echo "${{ secrets.ALPHA_KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/spacex.alpha.jks
       - name: Set up JDK
         if: ${{ steps.release.outputs.release_created }}
         uses: actions/setup-java@v4
@@ -47,14 +47,10 @@ jobs:
       - name: Build Android App
         if: ${{ steps.release.outputs.release_created }}
         env:
-          KEYSTORE_FILE: ${{ github.workspace }}/debug.keystore
-          KEYSTORE_PASSWORD: android
-          KEY_ALIAS: androiddebugkey
-          KEY_PASSWORD: android
-          RELEASE_KEYSTORE_FILE: ${{ github.workspace }}/debug.keystore
-          RELEASE_KEYSTORE_PASSWORD: android
-          RELEASE_KEY_ALIAS: androiddebugkey
-          RELEASE_KEY_PASSWORD: android
+          RELEASE_KEYSTORE_FILE: ${{ github.workspace }}/spacex.alpha.jks
+          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: ./gradlew :composeApp:assembleAlphaRelease
       - name: Upload Release Artifact
         if: ${{ steps.release.outputs.release_created }}

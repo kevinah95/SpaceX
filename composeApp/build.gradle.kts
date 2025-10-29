@@ -73,18 +73,6 @@ android {
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     signingConfigs {
-        getByName("debug") {
-            // Use environment variables in CI, fallback to local debug keystore
-            storeFile = if (System.getenv("KEYSTORE_FILE") != null) {
-                file(System.getenv("KEYSTORE_FILE"))
-            } else {
-                file("${System.getProperty("user.home")}/.android/debug.keystore")
-            }
-            storePassword = System.getenv("KEYSTORE_PASSWORD") ?: "android"
-            keyAlias = System.getenv("KEY_ALIAS") ?: "androiddebugkey"
-            keyPassword = System.getenv("KEY_PASSWORD") ?: "android"
-        }
-
         create("release") {
             // Production keystore
             storeFile = if (System.getenv("RELEASE_KEYSTORE_FILE") != null) {
@@ -110,8 +98,8 @@ android {
             applicationIdSuffix = ".alpha"
             
             resValue("string", "app_name", "SpaceX alpha")
-            // Alpha uses debug keystore for signing
-            signingConfig = signingConfigs.getByName("debug")
+            // Alpha uses release keystore for signing
+            signingConfig = signingConfigs.getByName("release")
         }
         
         create("prod") {
@@ -138,10 +126,6 @@ android {
         }
     }
     buildTypes {
-        getByName("debug") {
-            signingConfig = signingConfigs.getByName("debug")
-        }
-        
         getByName("release") {
             isMinifyEnabled = false
         }
