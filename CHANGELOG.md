@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3-alpha.7](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.6...v1.2.3-alpha.7) (2025-10-29)
+
+
+### 🏗️ Build System
+
+* **gradle:** Enable Jetifier for improved build performance ([b86ff5a](https://github.com/kevinah95/SpaceX/commit/b86ff5a450da11edaae4172e5c2521fafc146895))
+
 ## [1.2.3-alpha.6](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.5...v1.2.3-alpha.6) (2025-10-29)
 
 
