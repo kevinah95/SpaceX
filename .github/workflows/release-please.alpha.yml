@@ -39,11 +39,15 @@ jobs:
           echo "${{ secrets.ALPHA_KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/spacex.alpha.jks
       - name: Set up JDK
         if: ${{ steps.release.outputs.release_created }}
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '21'
-          cache: 'gradle'
+      - name: Set up Gradle
+        if: ${{ steps.release.outputs.release_created }}
+        uses: gradle/actions/setup-gradle@v5
+        with:
+          gradle-version: '8.14.3'
       - name: Build Android App
         if: ${{ steps.release.outputs.release_created }}
         env:
@@ -51,7 +55,7 @@ jobs:
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           RELEASE_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: ./gradlew :composeApp:assembleAlphaRelease
+        run: gradle :composeApp:assembleAlphaRelease
       - name: Upload Release Artifact
         if: ${{ steps.release.outputs.release_created }}
         env:
