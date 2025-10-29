@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3-alpha](https://github.com/kevinah95/SpaceX/compare/v1.2.2...v1.2.3-alpha) (2025-10-29)
+
+
+### 👷 Continuous Integration
+
+* **release:** Add conversion of release notes to plain text ([4fe2453](https://github.com/kevinah95/SpaceX/commit/4fe2453526fe02fed0eea85d66832208ad01e304))
+
 ## [1.2.2](https://github.com/kevinah95/SpaceX/compare/v1.2.1...v1.2.2) (2025-10-28)
 
 
