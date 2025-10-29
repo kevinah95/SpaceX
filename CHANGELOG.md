@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3-alpha.3](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.2...v1.2.3-alpha.3) (2025-10-29)
+
+
+### 🏗️ Build System
+
+* **android:** Update keystore configuration for alpha release ([e59aee1](https://github.com/kevinah95/SpaceX/commit/e59aee1fc53225e0648e1c87b2953f7399d987fd))
+
 ## [1.2.3-alpha.2](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.1...v1.2.3-alpha.2) (2025-10-29)
 
 
