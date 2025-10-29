@@ -63,9 +63,13 @@ jobs:
         run: gh release upload ${{ steps.release.outputs.tag_name }} ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk
       - name: Convert release notes to plain text
         if: ${{ steps.release.outputs.release_created }}
-        run: |
-          echo '${{ steps.release.outputs.body }}' > release-notes.md
-          pandoc -f gfm -t plain release-notes.md -o release-notes.txt
+        run: echo '${{ steps.release.outputs.body }}' > release-notes.md
+        
+      - name: Convert Markdown to plain text with Pandoc
+        if: ${{ steps.release.outputs.release_created }}
+        uses: docker://pandoc/core:3.8
+        with:
+          args: "-f gfm -t plain --wrap=none release-notes.md -o release-notes.txt"
       - name: Firebase App Distribution
         if: ${{ steps.release.outputs.release_created }}
         uses: wzieba/Firebase-Distribution-Github-Action@v1
