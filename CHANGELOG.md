@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3-alpha.5](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.4...v1.2.3-alpha.5) (2025-10-29)
+
+
+### 🐛 Bug Fixes
+
+* **ci:** Update keystore secret reference ([5aa00a8](https://github.com/kevinah95/SpaceX/commit/5aa00a85546dbaf9984056a956b8a2c68b25daba))
+
 ## [1.2.3-alpha.4](https://github.com/kevinah95/SpaceX/compare/v1.2.3-alpha.3...v1.2.3-alpha.4) (2025-10-29)
 
 
