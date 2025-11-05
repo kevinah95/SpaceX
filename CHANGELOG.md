@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.5-alpha](https://github.com/kevinah95/SpaceX/compare/v1.2.4...v1.2.5-alpha) (2025-11-05)
+
+
+### 👷 Continuous Integration
+
+* **alpha-prod:** Optimize Gradle cache ([#41](https://github.com/kevinah95/SpaceX/issues/41)) ([3ee4cb0](https://github.com/kevinah95/SpaceX/commit/3ee4cb017f3a58044d27062f8bf33e65b0eecb53))
+
 ## [1.2.4](https://github.com/kevinah95/SpaceX/compare/v1.2.3...v1.2.4) (2025-11-05)
 
 
