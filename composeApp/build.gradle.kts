@@ -24,7 +24,7 @@ plugins {
 kotlin {
     androidTarget {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
     
@@ -68,10 +68,20 @@ kotlin {
     }
 }
 
+// To get more info: https://developer.android.com/build/build-variants
 android {
     namespace = "io.github.kevinah95.spacex"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
+    defaultConfig {
+        applicationId = "io.github.kevinah95.spacex"
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        // Keep versionName managed by release-please; versionCode is derived from it.
+        val relVersionName = "1.2.4-alpha" // x-release-please-version
+        versionName = relVersionName
+        versionCode = versionCodeFrom(relVersionName)
+    }
     signingConfigs {
         create("release") {
             // Production keystore
@@ -86,22 +96,30 @@ android {
             keyPassword = System.getenv("RELEASE_KEY_PASSWORD") ?: "android"
         }
     }
-
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = true
+            signingConfig = signingConfigs.getByName("release")
+        }
+        getByName("debug") {
+            applicationIdSuffix = ".debug"
+            isDebuggable = true
+        }
+    }
     // Define environments (flavors)
     flavorDimensions += "environment"
     productFlavors {
         create("alpha") {
             dimension = "environment"
-            
+
             // applicationId will be "io.github.kevinah95.spacex.alpha"
             // comes from defaultConfig.applicationId + applicationIdSuffix
             applicationIdSuffix = ".alpha"
-            
+
             resValue("string", "app_name", "SpaceX alpha")
             // Alpha uses release keystore for signing
             signingConfig = signingConfigs.getByName("release")
         }
-        
         create("prod") {
             dimension = "environment"
             resValue("string", "app_name", "SpaceX")
@@ -110,30 +128,14 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
     }
-
-    defaultConfig {
-        applicationId = "io.github.kevinah95.spacex"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
-        // Keep versionName managed by release-please; versionCode is derived from it.
-        val relVersionName = "1.2.4-alpha" // x-release-please-version
-        versionName = relVersionName
-        versionCode = versionCodeFrom(relVersionName)
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-    
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 }
 
