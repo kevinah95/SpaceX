@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.2.4-alpha...v1.2.4-alpha.1) (2025-11-05)
+
+
+### 🏗️ Build System
+
+* **android:** Update JVM target and compile options ([#38](https://github.com/kevinah95/SpaceX/issues/38)) ([85c9c4b](https://github.com/kevinah95/SpaceX/commit/85c9c4b6a78d0bf86e267228cd92cffa7654f2d7))
+
 ## [1.2.4-alpha](https://github.com/kevinah95/SpaceX/compare/v1.2.3...v1.2.4-alpha) (2025-11-05)
 
 
