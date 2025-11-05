@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.5-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.2.5-alpha...v1.2.5-alpha.1) (2025-11-05)
+
+
+### 👷 Continuous Integration
+
+* **alpha:** Update Gradle setup in release workflow ([4b5704e](https://github.com/kevinah95/SpaceX/commit/4b5704e8344fdcd19e2621bb7c076feebed2a316))
+
 ## [1.2.5-alpha](https://github.com/kevinah95/SpaceX/compare/v1.2.4...v1.2.5-alpha) (2025-11-05)
 
 
