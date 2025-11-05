@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.4](https://github.com/kevinah95/SpaceX/compare/v1.2.3...v1.2.4) (2025-11-05)
+
+
+### 🔧 Miscellaneous Chores
+
+* :bookmark: prerelease 1.2.4-alpha ([#36](https://github.com/kevinah95/SpaceX/issues/36)) ([b114c33](https://github.com/kevinah95/SpaceX/commit/b114c33960c5f225a6412ec7d2cbea05a9adaafa))
+* :bookmark: prerelease 1.2.4-alpha.1 ([#39](https://github.com/kevinah95/SpaceX/issues/39)) ([0faa276](https://github.com/kevinah95/SpaceX/commit/0faa276dd06907084a64fea0057991f905363568))
+
+
+### 🏗️ Build System
+
+* **android:** Update JVM target and compile options ([#38](https://github.com/kevinah95/SpaceX/issues/38)) ([85c9c4b](https://github.com/kevinah95/SpaceX/commit/85c9c4b6a78d0bf86e267228cd92cffa7654f2d7))
+
+
+### 👷 Continuous Integration
+
+* Change trigger branch from main to prod ([2ffb21b](https://github.com/kevinah95/SpaceX/commit/2ffb21b05baca8495eceea26445eb4b6b8e3df30))
+
 ## [1.2.4-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.2.4-alpha...v1.2.4-alpha.1) (2025-11-05)
 
 
