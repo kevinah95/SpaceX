@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.4-alpha](https://github.com/kevinah95/SpaceX/compare/v1.2.3...v1.2.4-alpha) (2025-11-05)
+
+
+### 👷 Continuous Integration
+
+* Change trigger branch from main to prod ([2ffb21b](https://github.com/kevinah95/SpaceX/commit/2ffb21b05baca8495eceea26445eb4b6b8e3df30))
+
 ## [1.2.3](https://github.com/kevinah95/SpaceX/compare/v1.2.2...v1.2.3) (2025-10-29)
 
 
