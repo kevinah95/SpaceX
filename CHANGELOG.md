@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.3.0-alpha...v1.3.0-alpha.1) (2025-11-06)
+
+
+### 👷 Continuous Integration
+
+* **alpha:** Remove cache options from Gradle setup ([c76ba4c](https://github.com/kevinah95/SpaceX/commit/c76ba4c4c20c17c4d5aab126fed520b65dadfbf0))
+
 ## [1.3.0-alpha](https://github.com/kevinah95/SpaceX/compare/v1.2.6...v1.3.0-alpha) (2025-11-06)
 
 
