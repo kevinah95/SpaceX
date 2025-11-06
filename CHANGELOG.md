@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.2.6](https://github.com/kevinah95/SpaceX/compare/v1.2.5...v1.2.6) (2025-11-06)
+
+
+### 🔧 Miscellaneous Chores
+
+* :bookmark: prerelease 1.2.5-alpha ([#42](https://github.com/kevinah95/SpaceX/issues/42)) ([7337624](https://github.com/kevinah95/SpaceX/commit/7337624f3807da2a1a54198e8b56500674747060))
+* :bookmark: prerelease 1.2.5-alpha.1 ([#43](https://github.com/kevinah95/SpaceX/issues/43)) ([795c491](https://github.com/kevinah95/SpaceX/commit/795c491db89f6638390134a367942cde2a8b0880))
+
+
+### 👷 Continuous Integration
+
+* **alpha-prod:** Optimize Gradle cache ([#41](https://github.com/kevinah95/SpaceX/issues/41)) ([c0e1076](https://github.com/kevinah95/SpaceX/commit/c0e107697bf5691944f581ccba9a7c881fe483aa))
+* **alpha:** Update Gradle setup in release workflow ([8a2f558](https://github.com/kevinah95/SpaceX/commit/8a2f5584c06d6f2d6a100f50f8c765cc0987ca1e))
+
 ## [1.2.5](https://github.com/kevinah95/SpaceX/compare/v1.2.4...v1.2.5) (2025-11-05)
 
 
