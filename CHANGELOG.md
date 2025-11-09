@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/kevinah95/SpaceX/compare/v1.2.4...v1.3.0) (2025-11-09)
+
+
+### Features
+
+* add semantic-release ([c54c446](https://github.com/kevinah95/SpaceX/commit/c54c4469f5748802c272968366215588ca455afe))
+* **composeApp:** pass app version from CI to Gradle ([663aa7e](https://github.com/kevinah95/SpaceX/commit/663aa7eb6885b3906aa418ccbbfe8b7cee5a0b34))
+* **workflow:** add build and distribute alpha workflow ([0aa6e96](https://github.com/kevinah95/SpaceX/commit/0aa6e96d57fa231adfc93016efa4b6861c92f72a))
+
 # [1.3.0-alpha.3](https://github.com/kevinah95/SpaceX/compare/v1.3.0-alpha.2...v1.3.0-alpha.3) (2025-11-09)
 
 
