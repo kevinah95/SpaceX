@@ -7,10 +7,10 @@ permissions:
   contents: write
   pull-requests: write
 
-name: release-please-alpha
+name: semantic-release-alpha
 
 jobs:
-  release-please:
+  semantic-release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,8 +23,6 @@ jobs:
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
         id: semantic
-        with:
-          branch: alpha
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create google-services.json
