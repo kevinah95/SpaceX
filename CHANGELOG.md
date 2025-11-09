@@ -1,3 +1,10 @@
+# [1.3.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v1.3.0-alpha.1...v1.3.0-alpha.2) (2025-11-09)
+
+
+### Features
+
+* **workflow:** add build and distribute alpha workflow ([0aa6e96](https://github.com/kevinah95/SpaceX/commit/0aa6e96d57fa231adfc93016efa4b6861c92f72a))
+
 # Changelog
 
 ## [1.3.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.2.4...v1.3.0-alpha.1) (2025-11-09)
