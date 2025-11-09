@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/kevinah95/SpaceX/compare/v1.3.0...v1.4.0) (2025-11-09)
+
+
+### Features
+
+* add conditional steps for release publishing ([3a3e549](https://github.com/kevinah95/SpaceX/commit/3a3e549481e071b958887600a9585c6b50e42d93))
+
 # [1.3.0](https://github.com/kevinah95/SpaceX/compare/v1.2.4...v1.3.0) (2025-11-09)
 
 
