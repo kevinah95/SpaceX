@@ -51,6 +51,7 @@ jobs:
         if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
         run: echo '${{ steps.semantic.outputs.new_release_notes }}' > release-notes.md
       - name: Convert Markdown to plain text with Pandoc
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
         uses: docker://pandoc/core:3.8
         with:
           args: "-f gfm -t plain --wrap=none release-notes.md -o release-notes.txt"
