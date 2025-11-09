@@ -47,7 +47,7 @@ jobs:
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           RELEASE_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-        run: gradle :composeApp:assembleAlphaRelease
+        run: gradle :composeApp:assembleAlphaRelease -PappVersion=${{ github.event.release.tag_name }}
 
       - name: Upload Release Artifact
         env:
