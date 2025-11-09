@@ -48,19 +48,22 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create release notes file
-        if: steps.semantic.outputs.new_release_published == 'true'
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
         run: echo '${{ steps.semantic.outputs.new_release_notes }}' > release-notes.md
       - name: Convert Markdown to plain text with Pandoc
         uses: docker://pandoc/core:3.8
         with:
           args: "-f gfm -t plain --wrap=none release-notes.md -o release-notes.txt"
       - name: Install Firebase CLI (standalone)
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
         run: curl -sL https://firebase.tools | bash
 
       - name: Write Firebase service account
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
         run: echo '${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}' > "$RUNNER_TEMP/firebase-sa.json"
 
       - name: Distribute to Firebase App Distribution (CLI)
+        if: ${{ steps.semantic.outputs.new_release_published == 'true' }}
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-sa.json
         run: |
