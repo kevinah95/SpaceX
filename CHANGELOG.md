@@ -1,3 +1,10 @@
+# [1.5.0-alpha.8](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.7...v1.5.0-alpha.8) (2025-11-10)
+
+
+### Features
+
+* implement build and distribute workflow ([367d639](https://github.com/kevinah95/SpaceX/commit/367d6391ce88462f5eda9cbf751d8bb480b7440d))
+
 # [1.5.0-alpha.7](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.6...v1.5.0-alpha.7) (2025-11-10)
 
 
