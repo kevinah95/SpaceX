@@ -1,3 +1,10 @@
+# [1.5.0-alpha.10](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.9...v1.5.0-alpha.10) (2025-11-10)
+
+
+### Bug Fixes
+
+* standardize secret names in build workflow ([da65b12](https://github.com/kevinah95/SpaceX/commit/da65b129e19a6f2b0d5bb27110eb9818c339251b))
+
 # [1.5.0-alpha.9](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.8...v1.5.0-alpha.9) (2025-11-10)
 
 
