@@ -40,6 +40,8 @@ jobs:
     with:
       release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}
       release_notes: ${{ needs.semantic-release.outputs.new_release_notes }}
+      build_task: :composeApp:assembleProdRelease
+      artifact_path: ./composeApp/build/outputs/apk/prod/release/composeApp-prod-release.apk
     secrets:
       google-services-json: ${{ secrets.GOOGLE_SERVICES_JSON }}
       keystore-base64: ${{ secrets.KEYSTORE_BASE64 }}

@@ -7,6 +7,12 @@ on:
       release_notes:
         required: true
         type: string
+      build_task:
+        required: true
+        type: string
+      artifact_path:
+        required: true
+        type: string
     secrets:
       google-services-json:
         required: true
@@ -50,11 +56,11 @@ jobs:
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.keystore-password }}
           RELEASE_KEY_ALIAS: ${{ secrets.key-alias }}
           RELEASE_KEY_PASSWORD: ${{ secrets.keystore-password }}
-        run: gradle :composeApp:assembleAlphaRelease
+        run: gradle ${{ inputs.build_task }}
       - name: Upload Release Artifact
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ inputs.release_tag }} ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk
+        run: gh release upload ${{ inputs.release_tag }} ${{ inputs.artifact_path }}
       - name: Create release notes file
         run: echo '${{ inputs.release_notes }}' > release-notes.md
       - name: Convert Markdown to plain text with Pandoc
@@ -69,7 +75,7 @@ jobs:
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-sa.json
         run: |
-          firebase appdistribution:distribute ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk \
+          firebase appdistribution:distribute ${{ inputs.artifact_path }} \
             --app "${{ secrets.firebase-app-id }}" \
             --testers "kevinah95@gmail.com" \
             --release-notes-file release-notes.txt
