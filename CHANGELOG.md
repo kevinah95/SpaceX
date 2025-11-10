@@ -1,3 +1,10 @@
+# [1.5.0-alpha.7](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.6...v1.5.0-alpha.7) (2025-11-10)
+
+
+### Features
+
+* update outputs and conditions for build steps ([5c03295](https://github.com/kevinah95/SpaceX/commit/5c03295ba73f704ec3126e47b6313a8c778baf7e))
+
 # [1.5.0-alpha.6](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.5...v1.5.0-alpha.6) (2025-11-10)
 
 
