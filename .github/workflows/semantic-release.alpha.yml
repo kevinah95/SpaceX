@@ -12,6 +12,11 @@ name: semantic-release-alpha
 jobs:
   semantic-release:
     runs-on: ubuntu-latest
+    outputs:
+      new_release_published: ${{ steps.semantic.outputs.new_release_published }}
+      new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+      new_release_git_tag: ${{ steps.semantic.outputs.new_release_git_tag }}
+      new_release_notes: ${{ steps.semantic.outputs.new_release_notes }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -28,26 +33,30 @@ jobs:
             @semantic-release/exec
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-and-distribute:
+    runs-on: ubuntu-latest
+    needs: semantic-release
+    if: needs.semantic-release.outputs.new_release_published == 'true'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.semantic-release.outputs.new_release_git_tag }}
       - name: Create google-services.json
-        if: steps.semantic.outputs.new_release_published == 'true'
         run: echo '${{ secrets.ALPHA_GOOGLE_SERVICES_JSON }}' > ./composeApp/google-services.json
       - name: Decode and setup keystore
-        if: steps.semantic.outputs.new_release_published == 'true'
         run: |
           echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/spacex-release-keystore.jks
       - name: Set up JDK
-        if: steps.semantic.outputs.new_release_published == 'true'
         uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
           java-version: '21'
       - name: Set up Gradle
-        if: steps.semantic.outputs.new_release_published == 'true'
         uses: gradle/actions/setup-gradle@v5
         with:
           gradle-version: '8.14.3'
       - name: Build Android App
-        if: steps.semantic.outputs.new_release_published == 'true'
         env:
           RELEASE_KEYSTORE_FILE: ${{ github.workspace }}/spacex-release-keystore.jks
           RELEASE_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -55,26 +64,20 @@ jobs:
           RELEASE_KEY_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         run: gradle :composeApp:assembleAlphaRelease
       - name: Upload Release Artifact
-        if: steps.semantic.outputs.new_release_published == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ steps.semantic.outputs.new_release_git_tag }} ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk
+        run: gh release upload ${{ needs.semantic-release.outputs.new_release_git_tag }} ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk
       - name: Create release notes file
-        if: steps.semantic.outputs.new_release_published == 'true'
-        run: echo '${{ steps.semantic.outputs.new_release_notes }}' > release-notes.md
+        run: echo '${{ needs.semantic-release.outputs.new_release_notes }}' > release-notes.md
       - name: Convert Markdown to plain text with Pandoc
-        if: steps.semantic.outputs.new_release_published == 'true'
         uses: docker://pandoc/core:3.8
         with:
           args: "-f gfm -t plain --wrap=none release-notes.md -o release-notes.txt"
       - name: Install Firebase CLI (standalone)
-        if: steps.semantic.outputs.new_release_published == 'true'
         run: curl -sL https://firebase.tools | bash
       - name: Write Firebase service account
-        if: steps.semantic.outputs.new_release_published == 'true'
         run: echo '${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}' > "$RUNNER_TEMP/firebase-sa.json"
       - name: Distribute to Firebase App Distribution (CLI)
-        if: steps.semantic.outputs.new_release_published == 'true'
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-sa.json
         run: |
