@@ -1,3 +1,10 @@
+# [1.5.0-alpha.12](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.11...v1.5.0-alpha.12) (2025-11-10)
+
+
+### Bug Fixes
+
+* correct version name display in UI ([b16c5ec](https://github.com/kevinah95/SpaceX/commit/b16c5ec205f971ad0dac3a7790e4cef04dee369f))
+
 # [1.5.0-alpha.11](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.10...v1.5.0-alpha.11) (2025-11-10)
 
 
