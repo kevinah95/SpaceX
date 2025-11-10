@@ -1,3 +1,10 @@
+# [1.5.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.1...v1.5.0-alpha.2) (2025-11-10)
+
+
+### Bug Fixes
+
+* remove CI release signing documentation ([bbf6795](https://github.com/kevinah95/SpaceX/commit/bbf6795f8cfb0247ab45ba2ffbeca131cad8617c))
+
 # [1.5.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.4.0...v1.5.0-alpha.1) (2025-11-09)
 
 
