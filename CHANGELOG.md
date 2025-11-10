@@ -1,3 +1,11 @@
+# [1.5.0-alpha.11](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.10...v1.5.0-alpha.11) (2025-11-10)
+
+
+### Features
+
+* implement build and distribute workflow for prod ([5c5231d](https://github.com/kevinah95/SpaceX/commit/5c5231dd31754efd32443c3e563c3b40c4005070))
+* require build task and artifact path inputs ([16f0053](https://github.com/kevinah95/SpaceX/commit/16f0053f381976c20950dbffe1d78b8c3821d3f0))
+
 # [1.5.0-alpha.10](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.9...v1.5.0-alpha.10) (2025-11-10)
 
 
