@@ -68,7 +68,7 @@ fun App() {
                                     .padding(start = 2.dp)
                             ) {
                                 Text(
-                                    text = "v${versionName}",
+                                    text = "${versionName}",
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
                                         alpha = 0.5f
