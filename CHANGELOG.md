@@ -1,3 +1,10 @@
+# [1.5.0-alpha.6](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.5...v1.5.0-alpha.6) (2025-11-10)
+
+
+### Bug Fixes
+
+* update version with semantic-release ([65f780e](https://github.com/kevinah95/SpaceX/commit/65f780e9e1a5a2f1ae3ed159fd28e8adcd6b050b))
+
 # [1.5.0-alpha.5](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.4...v1.5.0-alpha.5) (2025-11-10)
 
 
