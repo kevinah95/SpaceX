@@ -77,10 +77,10 @@ android {
         applicationId = "io.github.kevinah95.spacex"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        // Keep versionName managed by release-please; versionCode is derived from it.
-        val relVersionName = "1.3.0" // x-release-please-version
-        versionName = relVersionName
-        versionCode = versionCodeFrom(relVersionName)
+        
+        val appVersion = "v1.5.0-alpha.12"
+        versionName = appVersion
+        versionCode = versionCodeFrom(appVersion)
     }
     signingConfigs {
         create("release") {

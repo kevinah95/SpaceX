@@ -48,7 +48,7 @@ fun App() {
     val coroutineScope = rememberCoroutineScope()
     var isRefreshing by remember { mutableStateOf(false) }
     val pullToRefreshState = rememberPullToRefreshState()
-    val versionName = "1.3.0" // x-release-please-version
+    val versionName = "v1.5.0-alpha.12"
 
     AppTheme {
         Scaffold(
@@ -68,7 +68,7 @@ fun App() {
                                     .padding(start = 2.dp)
                             ) {
                                 Text(
-                                    text = "v${versionName}",
+                                    text = "${versionName}",
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
                                         alpha = 0.5f

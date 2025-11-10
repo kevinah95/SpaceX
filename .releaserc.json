@@ -1,0 +1,35 @@
+{
+
+  "branches": ["prod", {"name": "alpha", "prerelease": true}],
+
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "sed -i -E 's/val versionName = (\".*\")/val versionName = \"v${nextRelease.version}\"/' composeApp/src/commonMain/kotlin/io/github/kevinah95/spacex/App.kt && sed -i -E 's/val appVersion = (\".*\")/val appVersion = \"v${nextRelease.version}\"/' composeApp/build.gradle.kts"
+      }
+    ],
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "CHANGELOG.md",
+          "composeApp/build.gradle.kts",
+          "composeApp/src/commonMain/kotlin/io/github/kevinah95/spacex/App.kt"
+        ],
+        "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
+      }
+    ],
+    [
+      "@semantic-release/github"
+    ]
+  ]
+}
