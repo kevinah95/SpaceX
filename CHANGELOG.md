@@ -1,3 +1,10 @@
+# [1.5.0-alpha.3](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.2...v1.5.0-alpha.3) (2025-11-10)
+
+
+### Bug Fixes
+
+* swap changelog and exec plugin positions ([8b9d96c](https://github.com/kevinah95/SpaceX/commit/8b9d96cc28f6ee5718af10d2a016e6a2e84ec369))
+
 # [1.5.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.1...v1.5.0-alpha.2) (2025-11-10)
 
 
