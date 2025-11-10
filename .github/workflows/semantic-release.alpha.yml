@@ -40,4 +40,10 @@ jobs:
     with:
       release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}
       release_notes: ${{ needs.semantic-release.outputs.new_release_notes }}
-    secrets: inherit
+    secrets: 
+      google-services-json: ${{ secrets.ALPHA_GOOGLE_SERVICES_JSON }}
+      keystore-base64: ${{ secrets.KEYSTORE_BASE64 }}
+      keystore-password: ${{ secrets.KEYSTORE_PASSWORD }}
+      key-alias: ${{ secrets.KEY_ALIAS }}
+      firebase-credential-file-content: ${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}
+      firebase-app-id: ${{ secrets.ALPHA_FIREBASE_APP_ID }}

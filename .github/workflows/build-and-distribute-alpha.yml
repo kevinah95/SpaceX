@@ -8,17 +8,17 @@ on:
         required: true
         type: string
     secrets:
-      ALPHA_GOOGLE_SERVICES_JSON:
+      google-services-json:
         required: true
-      KEYSTORE_BASE64:
+      keystore-base64:
         required: true
-      KEYSTORE_PASSWORD:
+      keystore-password:
         required: true
-      KEY_ALIAS:
+      key-alias:
         required: true
-      ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT:
+      firebase-credential-file-content:
         required: true
-      ALPHA_FIREBASE_APP_ID:
+      firebase-app-id:
         required: true
 
 name: build-and-distribute-alpha
@@ -31,10 +31,10 @@ jobs:
         with:
           ref: ${{ inputs.release_tag }}
       - name: Create google-services.json
-        run: echo '${{ secrets.ALPHA_GOOGLE_SERVICES_JSON }}' > ./composeApp/google-services.json
+        run: echo '${{ secrets.google-services-json }}' > ./composeApp/google-services.json
       - name: Decode and setup keystore
         run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/spacex-release-keystore.jks
+          echo "${{ secrets.keystore-base64 }}" | base64 -d > ${{ github.workspace }}/spacex-release-keystore.jks
       - name: Set up JDK
         uses: actions/setup-java@v5
         with:
@@ -47,9 +47,9 @@ jobs:
       - name: Build Android App
         env:
           RELEASE_KEYSTORE_FILE: ${{ github.workspace }}/spacex-release-keystore.jks
-          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          RELEASE_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          RELEASE_KEY_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.keystore-password }}
+          RELEASE_KEY_ALIAS: ${{ secrets.key-alias }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.keystore-password }}
         run: gradle :composeApp:assembleAlphaRelease
       - name: Upload Release Artifact
         env:
@@ -64,12 +64,12 @@ jobs:
       - name: Install Firebase CLI (standalone)
         run: curl -sL https://firebase.tools | bash
       - name: Write Firebase service account
-        run: echo '${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}' > "$RUNNER_TEMP/firebase-sa.json"
+        run: echo '${{ secrets.firebase-credential-file-content }}' > "$RUNNER_TEMP/firebase-sa.json"
       - name: Distribute to Firebase App Distribution (CLI)
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-sa.json
         run: |
           firebase appdistribution:distribute ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk \
-            --app "${{ secrets.ALPHA_FIREBASE_APP_ID }}" \
+            --app "${{ secrets.firebase-app-id }}" \
             --testers "kevinah95@gmail.com" \
             --release-notes-file release-notes.txt
