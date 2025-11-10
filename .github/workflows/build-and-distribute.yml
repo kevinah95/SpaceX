@@ -21,7 +21,7 @@ on:
       firebase-app-id:
         required: true
 
-name: build-and-distribute-alpha
+name: build-and-distribute
 
 jobs:
   build-and-distribute:
