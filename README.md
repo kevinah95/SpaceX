@@ -52,9 +52,3 @@ in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and r
 ---
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
-
-### CI release signing and Firebase distribution
-
-For how release APKs are signed in CI (using the debug keystore for alpha) and distributed to Firebase, see:
-
-- [docs/release-signing-ci.md](./docs/release-signing-ci.md)
