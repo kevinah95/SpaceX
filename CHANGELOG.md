@@ -1,3 +1,10 @@
+# [1.5.0-alpha.9](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.8...v1.5.0-alpha.9) (2025-11-10)
+
+
+### Bug Fixes
+
+* correct release key password reference ([34f37a4](https://github.com/kevinah95/SpaceX/commit/34f37a4bb89681b9ddfcb60d404b51473a925e85))
+
 # [1.5.0-alpha.8](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.7...v1.5.0-alpha.8) (2025-11-10)
 
 
