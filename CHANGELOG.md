@@ -1,3 +1,10 @@
+# [1.5.0-alpha.4](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.3...v1.5.0-alpha.4) (2025-11-10)
+
+
+### Bug Fixes
+
+* include App.kt in git assets to commit version change ([588659d](https://github.com/kevinah95/SpaceX/commit/588659d72f87a2030e5d305e6f87516e2ef0bb26))
+
 # [1.5.0-alpha.3](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.2...v1.5.0-alpha.3) (2025-11-10)
 
 
