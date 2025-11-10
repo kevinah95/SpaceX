@@ -1,3 +1,26 @@
+# [1.5.0](https://github.com/kevinah95/SpaceX/compare/v1.4.0...v1.5.0) (2025-11-10)
+
+
+### Bug Fixes
+
+* correct release key password reference ([34f37a4](https://github.com/kevinah95/SpaceX/commit/34f37a4bb89681b9ddfcb60d404b51473a925e85))
+* correct version format ([eb5c958](https://github.com/kevinah95/SpaceX/commit/eb5c958f61e9ebf82397613d1e6092b168066ad2))
+* correct version name display in UI ([b16c5ec](https://github.com/kevinah95/SpaceX/commit/b16c5ec205f971ad0dac3a7790e4cef04dee369f))
+* include App.kt in git assets to commit version change ([588659d](https://github.com/kevinah95/SpaceX/commit/588659d72f87a2030e5d305e6f87516e2ef0bb26))
+* remove CI release signing documentation ([bbf6795](https://github.com/kevinah95/SpaceX/commit/bbf6795f8cfb0247ab45ba2ffbeca131cad8617c))
+* standardize secret names in build workflow ([da65b12](https://github.com/kevinah95/SpaceX/commit/da65b129e19a6f2b0d5bb27110eb9818c339251b))
+* swap changelog and exec plugin positions ([8b9d96c](https://github.com/kevinah95/SpaceX/commit/8b9d96cc28f6ee5718af10d2a016e6a2e84ec369))
+* update version with semantic-release ([65f780e](https://github.com/kevinah95/SpaceX/commit/65f780e9e1a5a2f1ae3ed159fd28e8adcd6b050b))
+
+
+### Features
+
+* implement build and distribute workflow ([367d639](https://github.com/kevinah95/SpaceX/commit/367d6391ce88462f5eda9cbf751d8bb480b7440d))
+* implement build and distribute workflow for prod ([5c5231d](https://github.com/kevinah95/SpaceX/commit/5c5231dd31754efd32443c3e563c3b40c4005070))
+* rename job and update workflow name ([78b8c40](https://github.com/kevinah95/SpaceX/commit/78b8c409c25068fbbad1d13d6b94efb03e646105))
+* require build task and artifact path inputs ([16f0053](https://github.com/kevinah95/SpaceX/commit/16f0053f381976c20950dbffe1d78b8c3821d3f0))
+* update outputs and conditions for build steps ([5c03295](https://github.com/kevinah95/SpaceX/commit/5c03295ba73f704ec3126e47b6313a8c778baf7e))
+
 # [1.5.0-alpha.12](https://github.com/kevinah95/SpaceX/compare/v1.5.0-alpha.11...v1.5.0-alpha.12) (2025-11-10)
 
 
