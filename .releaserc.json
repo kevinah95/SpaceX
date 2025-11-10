@@ -12,6 +12,12 @@
       }
     ],
     [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "sed -i -E 's/val versionName = (\".*\")/val versionName = \"${nextRelease.version}\"/' composeApp/src/commonMain/kotlin/io/github/kevinah95/spacex/App.kt"
+      }
+    ],
+    [
       "@semantic-release/git",
       {
         "assets": ["CHANGELOG.md"],
