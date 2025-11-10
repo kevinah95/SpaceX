@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       new_release_published: ${{ steps.semantic.outputs.new_release_published }}
-      new_release_version: ${{ steps.semantic.outputs.new_release_version }}
       new_release_git_tag: ${{ steps.semantic.outputs.new_release_git_tag }}
       new_release_notes: ${{ steps.semantic.outputs.new_release_notes }}
     steps:
@@ -34,54 +33,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  build-and-distribute:
-    runs-on: ubuntu-latest
+  call-build-workflow:
     needs: semantic-release
     if: needs.semantic-release.outputs.new_release_published == 'true'
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ needs.semantic-release.outputs.new_release_git_tag }}
-      - name: Create google-services.json
-        run: echo '${{ secrets.ALPHA_GOOGLE_SERVICES_JSON }}' > ./composeApp/google-services.json
-      - name: Decode and setup keystore
-        run: |
-          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/spacex-release-keystore.jks
-      - name: Set up JDK
-        uses: actions/setup-java@v5
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v5
-        with:
-          gradle-version: '8.14.3'
-      - name: Build Android App
-        env:
-          RELEASE_KEYSTORE_FILE: ${{ github.workspace }}/spacex-release-keystore.jks
-          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-          RELEASE_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
-          RELEASE_KEY_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-        run: gradle :composeApp:assembleAlphaRelease
-      - name: Upload Release Artifact
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ needs.semantic-release.outputs.new_release_git_tag }} ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk
-      - name: Create release notes file
-        run: echo '${{ needs.semantic-release.outputs.new_release_notes }}' > release-notes.md
-      - name: Convert Markdown to plain text with Pandoc
-        uses: docker://pandoc/core:3.8
-        with:
-          args: "-f gfm -t plain --wrap=none release-notes.md -o release-notes.txt"
-      - name: Install Firebase CLI (standalone)
-        run: curl -sL https://firebase.tools | bash
-      - name: Write Firebase service account
-        run: echo '${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}' > "$RUNNER_TEMP/firebase-sa.json"
-      - name: Distribute to Firebase App Distribution (CLI)
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-sa.json
-        run: |
-          firebase appdistribution:distribute ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk \
-            --app "${{ secrets.ALPHA_FIREBASE_APP_ID }}" \
-            --testers "kevinah95@gmail.com" \
-            --release-notes-file release-notes.txt
+    uses: ./.github/workflows/build-and-distribute-alpha.yml
+    with:
+      release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}
+      release_notes: ${{ needs.semantic-release.outputs.new_release_notes }}
+    secrets: inherit

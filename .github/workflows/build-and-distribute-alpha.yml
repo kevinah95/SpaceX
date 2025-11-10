@@ -1,0 +1,77 @@
+on:
+  workflow_call:
+    inputs:
+      release_tag:
+        required: true
+        type: string
+      release_notes:
+        required: true
+        type: string
+    secrets:
+      ALPHA_GOOGLE_SERVICES_JSON:
+        required: true
+      KEYSTORE_BASE64:
+        required: true
+      KEYSTORE_PASSWORD:
+        required: true
+      KEY_ALIAS:
+        required: true
+      KEY_PASSWORD:
+        required: true
+      ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT:
+        required: true
+      ALPHA_FIREBASE_APP_ID:
+        required: true
+
+name: build-and-distribute-alpha
+
+jobs:
+  build-and-distribute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.release_tag }}
+      - name: Create google-services.json
+        run: echo '${{ secrets.ALPHA_GOOGLE_SERVICES_JSON }}' > ./composeApp/google-services.json
+      - name: Decode and setup keystore
+        run: |
+          echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > ${{ github.workspace }}/spacex-release-keystore.jks
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5
+        with:
+          gradle-version: '8.14.3'
+      - name: Build Android App
+        env:
+          RELEASE_KEYSTORE_FILE: ${{ github.workspace }}/spacex-release-keystore.jks
+          RELEASE_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          RELEASE_KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          RELEASE_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: gradle :composeApp:assembleAlphaRelease
+      - name: Upload Release Artifact
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ inputs.release_tag }} ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk
+      - name: Create release notes file
+        run: echo '${{ inputs.release_notes }}' > release-notes.md
+      - name: Convert Markdown to plain text with Pandoc
+        uses: docker://pandoc/core:3.8
+        with:
+          args: "-f gfm -t plain --wrap=none release-notes.md -o release-notes.txt"
+      - name: Install Firebase CLI (standalone)
+        run: curl -sL https://firebase.tools | bash
+      - name: Write Firebase service account
+        run: echo '${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}' > "$RUNNER_TEMP/firebase-sa.json"
+      - name: Distribute to Firebase App Distribution (CLI)
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-sa.json
+        run: |
+          firebase appdistribution:distribute ./composeApp/build/outputs/apk/alpha/release/composeApp-alpha-release.apk \
+            --app "${{ secrets.ALPHA_FIREBASE_APP_ID }}" \
+            --testers "kevinah95@gmail.com" \
+            --release-notes-file release-notes.txt
