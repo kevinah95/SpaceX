@@ -1,3 +1,10 @@
+# [1.6.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.5.0...v1.6.0-alpha.1) (2025-11-11)
+
+
+### Features
+
+* update agp version to 8.13.1 ([43ca74a](https://github.com/kevinah95/SpaceX/commit/43ca74a65dd011d66d2389fb1808cbff8c6cb681))
+
 # [1.5.0](https://github.com/kevinah95/SpaceX/compare/v1.4.0...v1.5.0) (2025-11-10)
 
 
