@@ -1,3 +1,10 @@
+# [1.7.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v1.7.0-alpha.1...v1.7.0-alpha.2) (2025-11-26)
+
+
+### Bug Fixes
+
+* **build:** add buildSrc settings for project configuration ([fbbca4e](https://github.com/kevinah95/SpaceX/commit/fbbca4e653084322f1809b0e08ea674072ecd386))
+
 # [1.7.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.6.2-alpha.1...v1.7.0-alpha.1) (2025-11-26)
 
 
