@@ -1,3 +1,10 @@
+# [1.7.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.6.2-alpha.1...v1.7.0-alpha.1) (2025-11-26)
+
+
+### Features
+
+* **develocity:** add develocity plugin configuration ([1ace9a3](https://github.com/kevinah95/SpaceX/commit/1ace9a3cf1b511f4233293c9a21b94b70a176541))
+
 ## [1.6.2-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.6.1...v1.6.2-alpha.1) (2025-11-26)
 
 
