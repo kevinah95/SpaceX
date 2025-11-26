@@ -19,7 +19,7 @@ data class RocketLaunch(
     @SerialName("links")
     val links: Links
 ) {
-    var launchYear = 2025
+    var launchYear = 2025 // TODO: Default value, should be parsed from launchDateUTC
 }
 
 @Serializable
