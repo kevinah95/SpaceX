@@ -1,3 +1,10 @@
+## [1.6.2-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.6.1...v1.6.2-alpha.1) (2025-11-26)
+
+
+### Bug Fixes
+
+* clarify default value for launchYear ([8f7862f](https://github.com/kevinah95/SpaceX/commit/8f7862f54c5d3ac85c19c6e96851145a9d72744b))
+
 ## [1.6.1](https://github.com/kevinah95/SpaceX/compare/v1.6.0...v1.6.1) (2025-11-26)
 
 
