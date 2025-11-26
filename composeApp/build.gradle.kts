@@ -3,8 +3,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 // Compute an integer versionCode from a semantic versionName like "1.2.3-alpha.12".
 fun versionCodeFrom(versionName: String): Int {
-    val strippedVersionName = versionName.removePrefix("v")
-    val parts = strippedVersionName.split("-", limit = 2)
+    val parts = versionName.split("-", limit = 2)
 
     val versionNumbers = parts[0].split(".").map { it.toInt() }
     val major = versionNumbers.getOrElse(0) { 0 }
@@ -110,7 +109,7 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         
-        val appVersion = "v1.6.0-alpha.1"
+        val appVersion = "1.6.0-alpha.1"
         versionName = appVersion
         versionCode = versionCodeFrom(appVersion)
     }
