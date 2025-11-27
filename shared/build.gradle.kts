@@ -20,6 +20,7 @@ plugins {
   alias(libs.plugins.androidLibrary)
   alias(libs.plugins.kotlinxSerialization)
   alias(libs.plugins.sqlDelight)
+  id("spotless-conventions")
 }
 
 kotlin {
