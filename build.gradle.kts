@@ -23,6 +23,7 @@ subprojects {
         kotlinGradle {
             target("*.gradle.kts") // default target for kotlinGradle
             ktfmt() // or ktlint() or prettier()
+            licenseHeaderFile(rootProject.file("spotless/spotless.license.kt"), "(^(?![\\/ ]\\*).*$)")
         }
     }
 }
