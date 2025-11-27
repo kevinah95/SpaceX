@@ -18,6 +18,7 @@ rootProject.name = "SpaceX"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
+  includeBuild("build-logic")
   repositories {
     google {
       mavenContent {
@@ -31,6 +32,10 @@ pluginManagement {
   }
 }
 
+plugins {
+  id("develocity")
+}
+
 dependencyResolutionManagement {
   repositories {
     google {
@@ -41,17 +46,6 @@ dependencyResolutionManagement {
       }
     }
     mavenCentral()
-  }
-}
-
-plugins { id("com.gradle.develocity") version ("4.2.2") }
-
-// Ref: https://docs.gradle.com/develocity/gradle/current/gradle-plugin/
-develocity {
-  buildScan {
-    publishing.onlyIf { !System.getenv("CI").isNullOrEmpty() }
-    termsOfUseUrl.set("https://gradle.com/help/legal-terms-of-use")
-    termsOfUseAgree.set("yes")
   }
 }
 

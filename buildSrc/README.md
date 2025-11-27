@@ -1,6 +1,10 @@
 # Sharing Build Logic using `buildSrc`
 
-For more information [here](https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html#sec:sharing_logic_via_convention_plugins).
+For more information:
+
+- [Sharing Build Logic using `buildSrc`](https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html#sec:sharing_logic_via_convention_plugins). 
+- [Pre-compiled Script Plugins](https://docs.gradle.org/current/userguide/implementing_gradle_plugins_precompiled.html).
+
 
 ## Convention plugin
 

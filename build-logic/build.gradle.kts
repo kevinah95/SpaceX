@@ -18,4 +18,11 @@ plugins { `kotlin-dsl` }
 
 repositories {
   gradlePluginPortal()
+  mavenCentral()
+}
+
+// This dependency makes the Spotless plugin API available to your convention plugins
+dependencies {
+  implementation("com.diffplug.spotless:spotless-plugin-gradle:8.1.0")
+  implementation("com.gradle:develocity-gradle-plugin:4.2.2")
 }

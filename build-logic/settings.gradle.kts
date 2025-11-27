@@ -13,9 +13,4 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// Ref: https://docs.gradle.org/current/userguide/sharing_build_logic_between_subprojects.html
-plugins { `kotlin-dsl` }
-
-repositories {
-  gradlePluginPortal()
-}
+rootProject.name = "build-logic"
