@@ -21,7 +21,7 @@ plugins {
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
-  id("spotless-conventions")
+  alias(libs.plugins.spotlessConventions)
 }
 
 kotlin {
