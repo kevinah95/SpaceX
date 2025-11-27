@@ -32,9 +32,7 @@ pluginManagement {
   }
 }
 
-plugins {
-  id("develocity")
-}
+plugins { id("develocity") }
 
 dependencyResolutionManagement {
   repositories {
