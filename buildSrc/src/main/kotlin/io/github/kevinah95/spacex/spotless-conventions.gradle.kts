@@ -23,13 +23,12 @@ apply(plugin = "com.diffplug.spotless")
 // Configure the Spotless extension
 configure<SpotlessExtension> {
   // Format all Kotlin files in the project
-  //    kotlin {
-  //        target("src/**/*.kt")
-  //        targetExclude("**/build/**", "**/generated/**")
-  //        ktlint()
-  //        licenseHeaderFile(rootProject.file("spotless/spotless.license.kt"), "(^(?![\\/
-  // ]\\*).*$)")
-  //    }
+  kotlin {
+    target("src/**/*.kt")
+    targetExclude("**/build/**", "**/generated/**")
+    ktfmt()
+    licenseHeaderFile(rootProject.file("spotless/spotless.license.kt"), "(^(?![\\/ ]\\*).*$)")
+  }
   // Format all Gradle Kotlin DSL files in the project
   kotlinGradle {
     target("*.gradle.kts", "**/*.gradle.kts")

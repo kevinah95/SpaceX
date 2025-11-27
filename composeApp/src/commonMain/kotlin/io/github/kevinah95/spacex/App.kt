@@ -1,3 +1,18 @@
+/*
+ * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package io.github.kevinah95.spacex
 
 import androidx.compose.foundation.layout.Arrangement
@@ -37,95 +52,82 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
-@OptIn(
-    ExperimentalMaterial3Api::class
-)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
 fun App() {
-    val viewModel = koinViewModel<RocketLaunchViewModel>()
-    val state by viewModel.uiState.collectAsState()
-    val coroutineScope = rememberCoroutineScope()
-    var isRefreshing by remember { mutableStateOf(false) }
-    val pullToRefreshState = rememberPullToRefreshState()
-    val versionName = "v1.7.0"
+  val viewModel = koinViewModel<RocketLaunchViewModel>()
+  val state by viewModel.uiState.collectAsState()
+  val coroutineScope = rememberCoroutineScope()
+  var isRefreshing by remember { mutableStateOf(false) }
+  val pullToRefreshState = rememberPullToRefreshState()
+  val versionName = "v1.7.0"
 
-    AppTheme {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            Text(
-                                "SpaceX Launches",
-                                style = MaterialTheme.typography.headlineLarge
-                            )
-                            Row(
-                                modifier = Modifier
-                                    .padding(start = 2.dp)
-                            ) {
-                                Text(
-                                    text = "${versionName}",
-                                    style = MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant.copy(
-                                        alpha = 0.5f
-                                    )
-                                )
-                            }
-                        }
-                    }
-                )
-            }
-        ) { padding ->
-            PullToRefreshBox(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding),
-                state = pullToRefreshState,
-                isRefreshing = isRefreshing,
-                onRefresh = {
-                    isRefreshing = true
-                    coroutineScope.launch {
-                        viewModel.loadLaunches()
-                        isRefreshing = false
-                    }
+  AppTheme {
+    Scaffold(
+        topBar = {
+          TopAppBar(
+              title = {
+                Column(modifier = Modifier.fillMaxWidth()) {
+                  Text("SpaceX Launches", style = MaterialTheme.typography.headlineLarge)
+                  Row(modifier = Modifier.padding(start = 2.dp)) {
+                    Text(
+                        text = "${versionName}",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
+                    )
+                  }
                 }
-            ) {
-                if (state.isLoading && !isRefreshing) {
-                    Column(
-                        verticalArrangement = Arrangement.Center,
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        Text("Loading...", style = MaterialTheme.typography.bodyLarge)
-                    }
-                } else {
-                    LazyColumn {
-                        items(state.launches) { launch: RocketLaunch ->
-                            Column(modifier = Modifier.padding(16.dp)) {
-                                Text(
-                                    text = "${launch.missionName} - ${launch.launchYear}",
-                                    style = MaterialTheme.typography.headlineSmall
-                                )
-                                Spacer(Modifier.height(8.dp))
-                                Text(
-                                    text = if (launch.launchSuccess == true) "Successful" else "Unsuccessful",
-                                    color = if (launch.launchSuccess == true) app_theme_successful else app_theme_unsuccessful
-                                )
-                                Spacer(Modifier.height(8.dp))
-                                val details = launch.details
-                                if (details != null && details.isNotBlank()) {
-                                    Text(details)
-                                }
-                            }
-                            HorizontalDivider()
-                        }
-                    }
-                }
-            }
+              }
+          )
         }
+    ) { padding ->
+      PullToRefreshBox(
+          modifier = Modifier.fillMaxSize().padding(padding),
+          state = pullToRefreshState,
+          isRefreshing = isRefreshing,
+          onRefresh = {
+            isRefreshing = true
+            coroutineScope.launch {
+              viewModel.loadLaunches()
+              isRefreshing = false
+            }
+          },
+      ) {
+        if (state.isLoading && !isRefreshing) {
+          Column(
+              verticalArrangement = Arrangement.Center,
+              horizontalAlignment = Alignment.CenterHorizontally,
+              modifier = Modifier.fillMaxSize(),
+          ) {
+            Text("Loading...", style = MaterialTheme.typography.bodyLarge)
+          }
+        } else {
+          LazyColumn {
+            items(state.launches) { launch: RocketLaunch ->
+              Column(modifier = Modifier.padding(16.dp)) {
+                Text(
+                    text = "${launch.missionName} - ${launch.launchYear}",
+                    style = MaterialTheme.typography.headlineSmall,
+                )
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    text = if (launch.launchSuccess == true) "Successful" else "Unsuccessful",
+                    color =
+                        if (launch.launchSuccess == true) app_theme_successful
+                        else app_theme_unsuccessful,
+                )
+                Spacer(Modifier.height(8.dp))
+                val details = launch.details
+                if (details != null && details.isNotBlank()) {
+                  Text(details)
+                }
+              }
+              HorizontalDivider()
+            }
+          }
+        }
+      }
     }
+  }
 }
