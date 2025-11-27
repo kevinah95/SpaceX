@@ -17,6 +17,7 @@ dateTimeVersion = "0.7.1"
 ktor = "3.3.1"
 koin-bom = "4.1.1"
 sqldelight = "2.1.0"
+spotless = "7.2.1"
 
 [libraries]
 # Test
@@ -65,3 +66,5 @@ kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 # SQLDelight
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+# Spotless
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
