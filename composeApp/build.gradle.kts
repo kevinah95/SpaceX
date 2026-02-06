@@ -18,7 +18,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
   alias(libs.plugins.kotlinMultiplatform)
-  alias(libs.plugins.androidApplication)
+  alias(libs.plugins.androidLibrary)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
   alias(libs.plugins.spotlessConventions)
@@ -37,11 +37,6 @@ kotlin {
   }
 
   sourceSets {
-    androidMain.dependencies {
-      implementation(compose.preview)
-      implementation(libs.androidx.activity.compose)
-      implementation(libs.kotlinx.coroutines.android)
-    }
     commonMain.dependencies {
       implementation(compose.runtime)
       implementation(compose.foundation)
@@ -61,30 +56,23 @@ kotlin {
   }
 }
 
-// To get more info: https://developer.android.com/build/build-variants
 android {
   namespace = "io.github.kevinah95.spacex"
   compileSdk = libs.versions.android.compileSdk.get().toInt()
 
   defaultConfig {
-    applicationId = "io.github.kevinah95.spacex"
     minSdk = libs.versions.android.minSdk.get().toInt()
-    targetSdk = libs.versions.android.targetSdk.get().toInt()
-
-    val appVersion = "1.7.0"
-    versionName = appVersion
-    versionCode = versionCodeFrom(appVersion)
   }
   signingConfigs {
     create("release") {
       // Production keystore
       storeFile =
-          if (System.getenv("RELEASE_KEYSTORE_FILE") != null) {
-            file(System.getenv("RELEASE_KEYSTORE_FILE"))
-          } else {
-            // Fallback temporal al debug keystore
-            file("${System.getProperty("user.home")}/.android/debug.keystore")
-          }
+        if (System.getenv("RELEASE_KEYSTORE_FILE") != null) {
+          file(System.getenv("RELEASE_KEYSTORE_FILE"))
+        } else {
+          // Fallback temporal al debug keystore
+          file("${System.getProperty("user.home")}/.android/debug.keystore")
+        }
       storePassword = System.getenv("RELEASE_KEYSTORE_PASSWORD") ?: "android"
       keyAlias = System.getenv("RELEASE_KEY_ALIAS") ?: "androiddebugkey"
       keyPassword = System.getenv("RELEASE_KEY_PASSWORD") ?: "android"
@@ -95,20 +83,13 @@ android {
       isMinifyEnabled = true
       signingConfig = signingConfigs.getByName("release")
     }
-    getByName("debug") {
-      applicationIdSuffix = ".debug"
-      isDebuggable = true
-    }
+
   }
   // Define environments (flavors)
   flavorDimensions += "environment"
   productFlavors {
     create("alpha") {
       dimension = "environment"
-
-      // applicationId will be "io.github.kevinah95.spacex.alpha"
-      // comes from defaultConfig.applicationId + applicationIdSuffix
-      applicationIdSuffix = ".alpha"
 
       resValue("string", "app_name", "SpaceX alpha")
       // Alpha uses release keystore for signing
