@@ -13,19 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import io.github.kevinah95.spacex.Utils.versionCodeFrom
+import com.android.build.api.dsl.androidLibrary
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
   alias(libs.plugins.kotlinMultiplatform)
-  alias(libs.plugins.androidLibrary)
+  alias(libs.plugins.androidMultiplatformLibrary)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
   alias(libs.plugins.spotlessConventions)
 }
 
 kotlin {
-  androidTarget { compilerOptions { jvmTarget.set(JvmTarget.JVM_21) } }
+  androidLibrary {
+    namespace = "io.github.kevinah95.spacex"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+
+    compilerOptions {
+      jvmTarget.set(JvmTarget.JVM_21)
+    }
+
+    androidResources {
+      enable = true
+    }
+  }
 
   listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->
     iosTarget.binaries.framework {
@@ -56,58 +67,4 @@ kotlin {
   }
 }
 
-android {
-  namespace = "io.github.kevinah95.spacex"
-  compileSdk = libs.versions.android.compileSdk.get().toInt()
-
-  defaultConfig {
-    minSdk = libs.versions.android.minSdk.get().toInt()
-  }
-  signingConfigs {
-    create("release") {
-      // Production keystore
-      storeFile =
-        if (System.getenv("RELEASE_KEYSTORE_FILE") != null) {
-          file(System.getenv("RELEASE_KEYSTORE_FILE"))
-        } else {
-          // Fallback temporal al debug keystore
-          file("${System.getProperty("user.home")}/.android/debug.keystore")
-        }
-      storePassword = System.getenv("RELEASE_KEYSTORE_PASSWORD") ?: "android"
-      keyAlias = System.getenv("RELEASE_KEY_ALIAS") ?: "androiddebugkey"
-      keyPassword = System.getenv("RELEASE_KEY_PASSWORD") ?: "android"
-    }
-  }
-  buildTypes {
-    getByName("release") {
-      isMinifyEnabled = true
-      signingConfig = signingConfigs.getByName("release")
-    }
-
-  }
-  // Define environments (flavors)
-  flavorDimensions += "environment"
-  productFlavors {
-    create("alpha") {
-      dimension = "environment"
-
-      resValue("string", "app_name", "SpaceX alpha")
-      // Alpha uses release keystore for signing
-      signingConfig = signingConfigs.getByName("release")
-    }
-    create("prod") {
-      dimension = "environment"
-      resValue("string", "app_name", "SpaceX")
-      // Production has no suffixes
-      // Prod uses release keystore for signing
-      signingConfig = signingConfigs.getByName("release")
-    }
-  }
-  packaging { resources { excludes += "/META-INF/{AL2.0,LGPL2.1}" } }
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-  }
-}
-
-dependencies { debugImplementation(compose.uiTooling) }
+dependencies { androidRuntimeClasspath(compose.uiTooling) }
