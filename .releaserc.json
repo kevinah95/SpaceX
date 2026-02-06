@@ -8,7 +8,7 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "sed -i -E 's/val versionName = (\".*\")/val versionName = \"v${nextRelease.version}\"/' composeApp/src/commonMain/kotlin/io/github/kevinah95/spacex/App.kt && sed -i -E 's/val appVersion = (\".*\")/val appVersion = \"${nextRelease.version}\"/' composeApp/build.gradle.kts"
+        "prepareCmd": "sed -i -E 's/val versionName = (\".*\")/val versionName = \"v${nextRelease.version}\"/' composeApp/src/commonMain/kotlin/io/github/kevinah95/spacex/App.kt && sed -i -E 's/val appVersion = (\".*\")/val appVersion = \"${nextRelease.version}\"/' androidApp/build.gradle.kts"
       }
     ],
     [
@@ -22,7 +22,7 @@
       {
         "assets": [
           "CHANGELOG.md",
-          "composeApp/build.gradle.kts",
+          "androidApp/build.gradle.kts",
           "composeApp/src/commonMain/kotlin/io/github/kevinah95/spacex/App.kt"
         ],
         "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}"
