@@ -2,7 +2,6 @@ import io.github.kevinah95.spacex.Utils.versionCodeFrom
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-  alias(libs.plugins.kotlinAndroid)
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
@@ -14,7 +13,7 @@ kotlin {
   dependencies {
     implementation(projects.composeApp)
     implementation(projects.shared)
-    implementation(compose.components.uiToolingPreview)
+    implementation(libs.compose.uiToolingPreview)
     implementation(libs.androidx.activity.compose)
     implementation(libs.kotlinx.coroutines.android)
     implementation(project.dependencies.platform(libs.koin.bom))
@@ -63,6 +62,9 @@ android {
       applicationIdSuffix = ".debug"
       isDebuggable = true
     }
+  }
+  buildFeatures {
+    resValues = true
   }
   // Define environments (flavors)
   flavorDimensions += "environment"

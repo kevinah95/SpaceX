@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 /*
  * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
  *
@@ -13,18 +15,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
   alias(libs.plugins.kotlinMultiplatform)
-  alias(libs.plugins.androidLibrary)
+  alias(libs.plugins.androidMultiplatformLibrary)
   alias(libs.plugins.kotlinxSerialization)
   alias(libs.plugins.sqlDelight)
   alias(libs.plugins.spotlessConventions)
 }
 
 kotlin {
-  androidTarget { compilerOptions { jvmTarget.set(JvmTarget.JVM_21) } }
+  androidLibrary {
+    namespace = "io.github.kevinah95.spacex.shared"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+
+    compilerOptions {
+      jvmTarget.set(JvmTarget.JVM_21)
+    }
+
+    androidResources {
+      enable = true
+    }
+  }
 
   iosX64()
   iosArm64()
@@ -52,16 +64,6 @@ kotlin {
       implementation(libs.sqldelight.driver.native)
     }
   }
-}
-
-android {
-  namespace = "io.github.kevinah95.spacex.shared"
-  compileSdk = libs.versions.android.compileSdk.get().toInt()
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
-  }
-  defaultConfig { minSdk = libs.versions.android.minSdk.get().toInt() }
 }
 
 sqldelight {
