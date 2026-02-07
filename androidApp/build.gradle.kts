@@ -1,3 +1,18 @@
+/*
+ * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import io.github.kevinah95.spacex.Utils.versionCodeFrom
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -42,12 +57,12 @@ android {
     create("release") {
       // Production keystore
       storeFile =
-        if (System.getenv("RELEASE_KEYSTORE_FILE") != null) {
-          file(System.getenv("RELEASE_KEYSTORE_FILE"))
-        } else {
-          // Fallback temporal al debug keystore
-          file("${System.getProperty("user.home")}/.android/debug.keystore")
-        }
+          if (System.getenv("RELEASE_KEYSTORE_FILE") != null) {
+            file(System.getenv("RELEASE_KEYSTORE_FILE"))
+          } else {
+            // Fallback temporal al debug keystore
+            file("${System.getProperty("user.home")}/.android/debug.keystore")
+          }
       storePassword = System.getenv("RELEASE_KEYSTORE_PASSWORD") ?: "android"
       keyAlias = System.getenv("RELEASE_KEY_ALIAS") ?: "androiddebugkey"
       keyPassword = System.getenv("RELEASE_KEY_PASSWORD") ?: "android"
@@ -63,9 +78,7 @@ android {
       isDebuggable = true
     }
   }
-  buildFeatures {
-    resValues = true
-  }
+  buildFeatures { resValues = true }
   // Define environments (flavors)
   flavorDimensions += "environment"
   productFlavors {

@@ -28,13 +28,9 @@ kotlin {
     namespace = "io.github.kevinah95.spacex.library"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
-    compilerOptions {
-      jvmTarget.set(JvmTarget.JVM_21)
-    }
+    compilerOptions { jvmTarget.set(JvmTarget.JVM_21) }
 
-    androidResources {
-      enable = true
-    }
+    androidResources { enable = true }
   }
 
   listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach { iosTarget ->

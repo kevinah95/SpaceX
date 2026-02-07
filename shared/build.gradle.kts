@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-
 /*
  * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
  *
@@ -15,6 +13,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
   alias(libs.plugins.kotlinMultiplatform)
@@ -29,13 +28,9 @@ kotlin {
     namespace = "io.github.kevinah95.spacex.shared"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
-    compilerOptions {
-      jvmTarget.set(JvmTarget.JVM_21)
-    }
+    compilerOptions { jvmTarget.set(JvmTarget.JVM_21) }
 
-    androidResources {
-      enable = true
-    }
+    androidResources { enable = true }
   }
 
   iosX64()
