@@ -15,7 +15,6 @@
  */
 package io.github.kevinah95.spacex.data.repository
 
-import io.github.kevinah95.spacex.data.local.DriverFactory
 import io.github.kevinah95.spacex.data.local.LocalRocketLaunchesDataSource
 import io.github.kevinah95.spacex.data.remote.RemoteRocketLaunchesDataSource
 import io.github.kevinah95.spacex.domain.entity.RocketLaunch
@@ -26,11 +25,10 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onEach
 
 class RocketLaunchesRepository(
-    private val databaseDriverFactory: DriverFactory,
+    private val localRocketLaunchesDataSource: LocalRocketLaunchesDataSource,
     private val remoteRocketLaunchesDataSource: RemoteRocketLaunchesDataSource,
     private val defaultDispatcher: CoroutineDispatcher,
 ) {
-  private val localRocketLaunchesDataSource = LocalRocketLaunchesDataSource(databaseDriverFactory)
 
   val latestLaunches: Flow<List<RocketLaunch>> =
       remoteRocketLaunchesDataSource.latestLaunches

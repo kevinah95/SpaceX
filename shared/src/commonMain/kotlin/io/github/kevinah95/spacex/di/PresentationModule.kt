@@ -15,19 +15,11 @@
  */
 package io.github.kevinah95.spacex.di
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.KoinAppDeclaration
-import org.koin.dsl.includes
+import androidx.lifecycle.viewmodel.compose.viewModel
+import io.github.kevinah95.spacex.ui.rocketLaunch.RocketLaunchViewModel
+import org.koin.core.module.dsl.viewModel
+import org.koin.dsl.module
 
-fun initKoin(config: KoinAppDeclaration? = null) {
-  startKoin {
-    includes(config)
-
-    modules(
-        dataModule,
-        // domainModule if exists
-        presentationModule,
-        platformModule(),
-    )
-  }
+val presentationModule = module {
+  viewModel { RocketLaunchViewModel(rocketLaunchesRepository = get()) }
 }

@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex.data.local
+package io.github.kevinah95.spacex.local
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
-import org.koin.core.scope.Scope
+import io.github.kevinah95.spacex.data.local.AppDatabase
+import io.github.kevinah95.spacex.data.local.DatabaseDriverFactory
 
-actual class DriverFactory actual constructor(scope: Scope) {
-  actual fun createDriver(): SqlDriver {
+class iOSDriverFactory : DatabaseDriverFactory {
+  override fun createDriver(): SqlDriver {
     return NativeSqliteDriver(AppDatabase.Schema, "launch.db")
   }
 }

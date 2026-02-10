@@ -15,19 +15,6 @@
  */
 package io.github.kevinah95.spacex.di
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.KoinAppDeclaration
-import org.koin.dsl.includes
+import org.koin.core.module.Module
 
-fun initKoin(config: KoinAppDeclaration? = null) {
-  startKoin {
-    includes(config)
-
-    modules(
-        dataModule,
-        // domainModule if exists
-        presentationModule,
-        platformModule(),
-    )
-  }
-}
+expect fun platformModule(): Module

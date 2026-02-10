@@ -15,19 +15,10 @@
  */
 package io.github.kevinah95.spacex.di
 
-import org.koin.core.context.startKoin
-import org.koin.dsl.KoinAppDeclaration
-import org.koin.dsl.includes
+import io.github.kevinah95.spacex.data.local.AndroidDriverFactory
+import io.github.kevinah95.spacex.data.local.DatabaseDriverFactory
+import org.koin.dsl.module
 
-fun initKoin(config: KoinAppDeclaration? = null) {
-  startKoin {
-    includes(config)
-
-    modules(
-        dataModule,
-        // domainModule if exists
-        presentationModule,
-        platformModule(),
-    )
-  }
+actual fun platformModule() = module {
+  single<DatabaseDriverFactory> { AndroidDriverFactory(get()) }
 }
