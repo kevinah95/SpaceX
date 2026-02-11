@@ -1,3 +1,16 @@
+# [2.0.0](https://github.com/kevinah95/SpaceX/compare/v1.7.0...v2.0.0) (2026-02-11)
+
+
+### Features
+
+* **androidApp:** add initial Android app structure ([01af040](https://github.com/kevinah95/SpaceX/commit/01af0408174e10765f42aae4a0344ffa66de8094))
+* **androidApp:** add support for multiplatform library ([916670b](https://github.com/kevinah95/SpaceX/commit/916670be08c1561c515c6cebfaf0f7cf886a5edb))
+
+
+### BREAKING CHANGES
+
+* **androidApp:** Move to AGP 9
+
 # [2.0.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.7.0...v2.0.0-alpha.1) (2026-02-06)
 
 
