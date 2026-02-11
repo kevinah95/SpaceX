@@ -10,6 +10,12 @@
 ### BREAKING CHANGES
 
 * **androidApp:** Move to AGP 9
+# [2.0.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v2.0.0-alpha.1...v2.0.0-alpha.2) (2026-02-11)
+
+
+### Bug Fixes
+
+* **ci:** update build tasks and artifact paths for androidApp ([fbd0229](https://github.com/kevinah95/SpaceX/commit/fbd0229a9ad9dedbe4ab2a861430a62f4894f625))
 
 # [2.0.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v1.7.0...v2.0.0-alpha.1) (2026-02-06)
 
