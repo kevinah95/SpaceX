@@ -1,3 +1,10 @@
+## [2.0.1-alpha.1](https://github.com/kevinah95/SpaceX/compare/v2.0.0...v2.0.1-alpha.1) (2026-02-11)
+
+
+### Bug Fixes
+
+* **ci:** update build tasks and artifact paths for androidApp ([3ebd1f9](https://github.com/kevinah95/SpaceX/commit/3ebd1f955ee588f3d241a4131538ec792b27ee00))
+
 # [2.0.0](https://github.com/kevinah95/SpaceX/compare/v1.7.0...v2.0.0) (2026-02-11)
 
 
