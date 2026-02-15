@@ -13,17 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex.di
+package io.github.kevinah95.spacex.di.modules
 
-import io.github.kevinah95.spacex.di.modules.sharedModule
-import org.koin.core.context.startKoin
-import org.koin.dsl.KoinAppDeclaration
-import org.koin.dsl.includes
+import org.koin.dsl.module
 
-fun initKoin(config: KoinAppDeclaration? = null) {
-  startKoin {
-    includes(config)
-
-    modules(sharedModule)
-  }
-}
+val sharedModule = module { includes(dataModule, presentationModule, platformModule()) }

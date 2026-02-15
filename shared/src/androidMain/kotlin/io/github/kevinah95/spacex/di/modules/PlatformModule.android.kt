@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex.di
+package io.github.kevinah95.spacex.di.modules
 
+import io.github.kevinah95.spacex.data.local.AndroidDriverFactory
 import io.github.kevinah95.spacex.data.local.DatabaseDriverFactory
-import io.github.kevinah95.spacex.local.iOSDriverFactory
 import org.koin.dsl.module
 
-actual fun platformModule() = module { single<DatabaseDriverFactory> { iOSDriverFactory() } }
+actual fun platformModule() = module {
+  single<DatabaseDriverFactory> { AndroidDriverFactory(get()) }
+}

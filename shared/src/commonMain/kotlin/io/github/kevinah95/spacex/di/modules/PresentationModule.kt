@@ -13,9 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex.di
+package io.github.kevinah95.spacex.di.modules
 
-import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.kevinah95.spacex.ui.rocketLaunch.RocketLaunchViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module

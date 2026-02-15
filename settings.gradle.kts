@@ -32,7 +32,7 @@ pluginManagement {
   }
 }
 
-plugins { 
+plugins {
   id("develocity")
   id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }

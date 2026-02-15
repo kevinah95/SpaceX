@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex.di
+package io.github.kevinah95.spacex.di.modules
 
 import app.cash.sqldelight.db.SqlDriver
 import io.github.kevinah95.spacex.data.local.AppDatabase
