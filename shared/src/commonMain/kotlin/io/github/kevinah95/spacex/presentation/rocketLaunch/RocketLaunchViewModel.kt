@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex.ui.rocketLaunch
+package io.github.kevinah95.spacex.presentation.rocketLaunch
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

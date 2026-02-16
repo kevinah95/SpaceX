@@ -48,7 +48,7 @@ import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 import io.github.kevinah95.spacex.theme.AppTheme
 import io.github.kevinah95.spacex.theme.app_theme_successful
 import io.github.kevinah95.spacex.theme.app_theme_unsuccessful
-import io.github.kevinah95.spacex.ui.rocketLaunch.RocketLaunchViewModel
+import io.github.kevinah95.spacex.presentation.rocketLaunch.RocketLaunchViewModel
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 

@@ -15,7 +15,7 @@
  */
 package io.github.kevinah95.spacex.di.modules
 
-import io.github.kevinah95.spacex.ui.rocketLaunch.RocketLaunchViewModel
+import io.github.kevinah95.spacex.presentation.rocketLaunch.RocketLaunchViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
