@@ -31,7 +31,8 @@ class RocketLaunchesRepository(
 ) : IRocketLaunchesRepository {
 
   override val latestLaunches: Flow<List<RocketLaunch>> =
-      remoteRocketLaunchesDataSource.latestLaunches
+      remoteRocketLaunchesDataSource
+          .latestLaunches()
           .onEach { launches -> // Executes on the default dispatcher
             localRocketLaunchesDataSource.clearAndCreateLaunches(launches)
           }

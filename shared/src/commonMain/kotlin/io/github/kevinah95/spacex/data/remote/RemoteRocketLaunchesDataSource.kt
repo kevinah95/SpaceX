@@ -28,7 +28,7 @@ class RemoteRocketLaunchesDataSource(
     private val httpClient: HttpClient,
     private val ioDispatcher: CoroutineDispatcher,
 ) : IRemoteRocketLaunchesDataSource {
-  override val latestLaunches: Flow<List<RocketLaunch>> =
+  override fun latestLaunches(): Flow<List<RocketLaunch>> =
       flow {
             val latestLaunches =
                 httpClient.get("https://api.spacexdata.com/v5/launches").body<List<RocketLaunch>>()

@@ -19,5 +19,5 @@ import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 import kotlinx.coroutines.flow.Flow
 
 interface IRemoteRocketLaunchesDataSource {
-  val latestLaunches: Flow<List<RocketLaunch>>
+  fun latestLaunches(): Flow<List<RocketLaunch>>
 }
