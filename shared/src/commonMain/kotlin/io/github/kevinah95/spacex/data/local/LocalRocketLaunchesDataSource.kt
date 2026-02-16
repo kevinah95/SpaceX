@@ -19,10 +19,10 @@ import io.github.kevinah95.spacex.domain.entity.Links
 import io.github.kevinah95.spacex.domain.entity.Patch
 import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 
-class LocalRocketLaunchesDataSource(database: AppDatabase) {
+class LocalRocketLaunchesDataSource(database: AppDatabase) : ILocalRocketLaunchesDataSource {
   private val dbQuery = database.appDatabaseQueries
 
-  internal fun getAllLaunches(): List<RocketLaunch> {
+  override fun getAllLaunches(): List<RocketLaunch> {
     return dbQuery.selectAllLaunchesInfo(::mapLaunchSelecting).executeAsList()
   }
 
@@ -50,7 +50,7 @@ class LocalRocketLaunchesDataSource(database: AppDatabase) {
     )
   }
 
-  internal fun clearAndCreateLaunches(launches: List<RocketLaunch>) {
+  override fun clearAndCreateLaunches(launches: List<RocketLaunch>) {
     dbQuery.transaction {
       dbQuery.removeAllLaunches()
       launches.forEach { launch ->

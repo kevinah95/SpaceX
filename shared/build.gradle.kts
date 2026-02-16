@@ -20,6 +20,7 @@ plugins {
   alias(libs.plugins.androidMultiplatformLibrary)
   alias(libs.plugins.kotlinxSerialization)
   alias(libs.plugins.sqlDelight)
+  alias(libs.plugins.mokkery)
   alias(libs.plugins.spotlessConventions)
 }
 
@@ -42,6 +43,7 @@ kotlin {
       implementation(libs.ktor.client.okhttp)
       implementation(libs.sqldelight.driver.android)
     }
+
     commonMain.dependencies {
       implementation(project.dependencies.platform(libs.koin.bom))
       implementation(project.dependencies.platform(libs.ktor.bom))
@@ -53,7 +55,10 @@ kotlin {
       implementation(libs.kotlinx.coroutines.core)
       implementation(libs.kotlinx.datetime)
     }
-    commonTest.dependencies { implementation(libs.kotlin.test) }
+    commonTest.dependencies {
+      implementation(libs.kotlin.test)
+      implementation(libs.koin.test)
+    }
     iosMain.dependencies {
       implementation(libs.ktor.client.darwin)
       implementation(libs.sqldelight.driver.native)

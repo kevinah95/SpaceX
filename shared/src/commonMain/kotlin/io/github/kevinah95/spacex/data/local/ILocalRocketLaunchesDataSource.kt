@@ -13,10 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex.di.modules
+package io.github.kevinah95.spacex.data.local
 
-import org.koin.dsl.module
+import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 
-val sharedModule = module {
-  includes(networkModule, dataModule, presentationModule, platformModule())
+interface ILocalRocketLaunchesDataSource {
+  fun getAllLaunches(): List<RocketLaunch>
+
+  fun clearAndCreateLaunches(launches: List<RocketLaunch>)
 }

@@ -15,8 +15,8 @@
  */
 package io.github.kevinah95.spacex.data.repository
 
-import io.github.kevinah95.spacex.data.local.LocalRocketLaunchesDataSource
-import io.github.kevinah95.spacex.data.remote.RemoteRocketLaunchesDataSource
+import io.github.kevinah95.spacex.data.local.ILocalRocketLaunchesDataSource
+import io.github.kevinah95.spacex.data.remote.IRemoteRocketLaunchesDataSource
 import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -25,12 +25,12 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onEach
 
 class RocketLaunchesRepository(
-    private val localRocketLaunchesDataSource: LocalRocketLaunchesDataSource,
-    private val remoteRocketLaunchesDataSource: RemoteRocketLaunchesDataSource,
+    private val localRocketLaunchesDataSource: ILocalRocketLaunchesDataSource,
+    private val remoteRocketLaunchesDataSource: IRemoteRocketLaunchesDataSource,
     private val defaultDispatcher: CoroutineDispatcher,
-) {
+) : IRocketLaunchesRepository {
 
-  val latestLaunches: Flow<List<RocketLaunch>> =
+  override val latestLaunches: Flow<List<RocketLaunch>> =
       remoteRocketLaunchesDataSource.latestLaunches
           .onEach { launches -> // Executes on the default dispatcher
             localRocketLaunchesDataSource.clearAndCreateLaunches(launches)

@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex.di.modules
+package io.github.kevinah95.spacex.data.repository
 
-import org.koin.dsl.module
+import io.github.kevinah95.spacex.domain.entity.RocketLaunch
+import kotlinx.coroutines.flow.Flow
 
-val sharedModule = module {
-  includes(networkModule, dataModule, presentationModule, platformModule())
+interface IRocketLaunchesRepository {
+  val latestLaunches: Flow<List<RocketLaunch>>
 }

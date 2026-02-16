@@ -18,8 +18,11 @@ package io.github.kevinah95.spacex.di.modules
 import app.cash.sqldelight.db.SqlDriver
 import io.github.kevinah95.spacex.data.local.AppDatabase
 import io.github.kevinah95.spacex.data.local.DatabaseDriverFactory
+import io.github.kevinah95.spacex.data.local.ILocalRocketLaunchesDataSource
 import io.github.kevinah95.spacex.data.local.LocalRocketLaunchesDataSource
+import io.github.kevinah95.spacex.data.remote.IRemoteRocketLaunchesDataSource
 import io.github.kevinah95.spacex.data.remote.RemoteRocketLaunchesDataSource
+import io.github.kevinah95.spacex.data.repository.IRocketLaunchesRepository
 import io.github.kevinah95.spacex.data.repository.RocketLaunchesRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -28,7 +31,8 @@ import org.koin.dsl.module
 val dataModule = module {
   single<SqlDriver> { get<DatabaseDriverFactory>().createDriver() }
   single { AppDatabase(get()) }
-  single<LocalRocketLaunchesDataSource> { LocalRocketLaunchesDataSource(get()) }
-  single<RemoteRocketLaunchesDataSource> { RemoteRocketLaunchesDataSource(Dispatchers.IO) }
-  single<RocketLaunchesRepository> { RocketLaunchesRepository(get(), get(), Dispatchers.Default) }
+  single { get<AppDatabase>().appDatabaseQueries }
+  single<ILocalRocketLaunchesDataSource> { LocalRocketLaunchesDataSource(get()) }
+  single<IRemoteRocketLaunchesDataSource> { RemoteRocketLaunchesDataSource(get(), Dispatchers.IO) }
+  single<IRocketLaunchesRepository> { RocketLaunchesRepository(get(), get(), Dispatchers.Default) }
 }
