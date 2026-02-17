@@ -1,5 +1,5 @@
 [versions]
-agp = "9.0.0"
+agp = "9.0.1"
 android-compileSdk = "36"
 android-minSdk = "24"
 android-targetSdk = "36"
@@ -77,8 +77,6 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 # Mock
 mokkery = { id = "dev.mokkery", version.ref = "mokkery" }
-# Ktor
-ktor = { id = "io.ktor.plugin", version.ref = "ktor" }
 # SQLDelight
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 # Plugin Conventions
