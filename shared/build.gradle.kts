@@ -45,20 +45,23 @@ kotlin {
     }
 
     commonMain.dependencies {
+      implementation(libs.kotlinx.coroutines.core)
+      implementation(libs.kotlinx.datetime)
+      // Koin
       implementation(project.dependencies.platform(libs.koin.bom))
-      implementation(project.dependencies.platform(libs.ktor.bom))
       implementation(libs.koin.core)
       implementation(libs.koin.compose.viewmodel)
+      // Ktor
+      implementation(project.dependencies.platform(libs.ktor.bom))
       implementation(libs.ktor.client.core)
       implementation(libs.ktor.client.content.negotiation)
       implementation(libs.ktor.serialization.kotlinx.json)
-      implementation(libs.kotlinx.coroutines.core)
-      implementation(libs.kotlinx.datetime)
     }
     commonTest.dependencies {
       implementation(libs.kotlin.test)
-      implementation(libs.koin.test)
       implementation(libs.kotlinx.coroutines.test)
+      implementation(libs.koin.test)
+      implementation(libs.ktor.client.mock)
     }
     iosMain.dependencies {
       implementation(libs.ktor.client.darwin)
