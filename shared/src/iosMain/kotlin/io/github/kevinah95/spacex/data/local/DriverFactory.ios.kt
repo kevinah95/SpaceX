@@ -13,15 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex.local
+package io.github.kevinah95.spacex.data.local
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
-import io.github.kevinah95.spacex.data.local.AppDatabase
-import io.github.kevinah95.spacex.data.local.DatabaseDriverFactory
 
-class iOSDriverFactory : DatabaseDriverFactory {
-  override fun createDriver(): SqlDriver {
+actual class DriverFactory {
+  actual fun createDriver(): SqlDriver {
     return NativeSqliteDriver(AppDatabase.Schema, "launch.db")
   }
 }

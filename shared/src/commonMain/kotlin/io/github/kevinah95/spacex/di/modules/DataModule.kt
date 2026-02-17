@@ -15,9 +15,8 @@
  */
 package io.github.kevinah95.spacex.di.modules
 
-import app.cash.sqldelight.db.SqlDriver
 import io.github.kevinah95.spacex.data.local.AppDatabase
-import io.github.kevinah95.spacex.data.local.DatabaseDriverFactory
+import io.github.kevinah95.spacex.data.local.DriverFactory
 import io.github.kevinah95.spacex.data.local.ILocalRocketLaunchesDataSource
 import io.github.kevinah95.spacex.data.local.LocalRocketLaunchesDataSource
 import io.github.kevinah95.spacex.data.remote.IRemoteRocketLaunchesDataSource
@@ -29,7 +28,7 @@ import kotlinx.coroutines.IO
 import org.koin.dsl.module
 
 val dataModule = module {
-  single<SqlDriver> { get<DatabaseDriverFactory>().createDriver() }
+  single { get<DriverFactory>().createDriver() }
   single { AppDatabase(get()) }
   single { get<AppDatabase>().appDatabaseQueries }
   single<ILocalRocketLaunchesDataSource> { LocalRocketLaunchesDataSource(get()) }

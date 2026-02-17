@@ -15,10 +15,7 @@
  */
 package io.github.kevinah95.spacex.di.modules
 
-import io.github.kevinah95.spacex.data.local.AndroidDriverFactory
-import io.github.kevinah95.spacex.data.local.DatabaseDriverFactory
+import io.github.kevinah95.spacex.data.local.DriverFactory
 import org.koin.dsl.module
 
-actual fun platformModule() = module {
-  single<DatabaseDriverFactory> { AndroidDriverFactory(get()) }
-}
+actual fun platformModule() = module { single { DriverFactory(get()) } }

@@ -45,10 +45,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.kevinah95.spacex.domain.entity.RocketLaunch
+import io.github.kevinah95.spacex.presentation.rocketLaunch.RocketLaunchViewModel
 import io.github.kevinah95.spacex.theme.AppTheme
 import io.github.kevinah95.spacex.theme.app_theme_successful
 import io.github.kevinah95.spacex.theme.app_theme_unsuccessful
-import io.github.kevinah95.spacex.presentation.rocketLaunch.RocketLaunchViewModel
 import kotlinx.coroutines.launch
 import org.koin.compose.viewmodel.koinViewModel
 

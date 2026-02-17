@@ -15,8 +15,7 @@
  */
 package io.github.kevinah95.spacex.di.modules
 
-import io.github.kevinah95.spacex.data.local.DatabaseDriverFactory
-import io.github.kevinah95.spacex.local.iOSDriverFactory
+import io.github.kevinah95.spacex.data.local.DriverFactory
 import org.koin.dsl.module
 
-actual fun platformModule() = module { single<DatabaseDriverFactory> { iOSDriverFactory() } }
+actual fun platformModule() = module { single { DriverFactory() } }
