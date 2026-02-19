@@ -3,6 +3,9 @@
 version: '3'
 
 tasks:
+  setup:spotless:
+    cmds:
+      - ./gradlew spotlessInstallGitPrePushHook
   spotless:
     cmds:
       - ./gradlew spotlessApply
