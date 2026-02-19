@@ -6,3 +6,6 @@ tasks:
   spotless:
     cmds:
       - ./gradlew spotlessApply
+  tasks:
+    cmds:
+      - ./gradlew tasks
