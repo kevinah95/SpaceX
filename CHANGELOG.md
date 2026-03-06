@@ -1,3 +1,10 @@
+# [2.1.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v2.0.1...v2.1.0-alpha.1) (2026-03-06)
+
+
+### Features
+
+* **navigation:** implement launch detail and list screens ([fa731c8](https://github.com/kevinah95/SpaceX/commit/fa731c8b2b119805d83bf008e2920649b1d8e6bc))
+
 ## [2.0.1](https://github.com/kevinah95/SpaceX/compare/v2.0.0...v2.0.1) (2026-02-11)
 
 

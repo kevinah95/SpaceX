@@ -31,7 +31,7 @@ import io.github.kevinah95.spacex.theme.AppTheme
 @Preview
 fun App() {
   val navController = rememberNavController()
-  val versionName = "v2.0.1"
+  val versionName = "v2.1.0-alpha.1"
 
   AppTheme {
     NavHost(navController = navController, startDestination = LaunchList) {
