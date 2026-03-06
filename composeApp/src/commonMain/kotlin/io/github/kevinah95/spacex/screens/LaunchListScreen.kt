@@ -106,9 +106,7 @@ fun LaunchListScreen(
           items(state.launches) { launch: RocketLaunch ->
             Column(
                 modifier =
-                    Modifier.fillMaxWidth()
-                        .clickable { onLaunchClick(launch) }
-                        .padding(16.dp)
+                    Modifier.fillMaxWidth().clickable { onLaunchClick(launch) }.padding(16.dp)
             ) {
               Text(
                   text = "${launch.missionName} - ${launch.launchYear}",

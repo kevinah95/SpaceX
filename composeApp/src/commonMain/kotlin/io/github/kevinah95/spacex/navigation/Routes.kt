@@ -17,8 +17,6 @@ package io.github.kevinah95.spacex.navigation
 
 import kotlinx.serialization.Serializable
 
-@Serializable
-object LaunchList
+@Serializable object LaunchList
 
-@Serializable
-data class LaunchDetail(val flightNumber: Int)
+@Serializable data class LaunchDetail(val flightNumber: Int)
