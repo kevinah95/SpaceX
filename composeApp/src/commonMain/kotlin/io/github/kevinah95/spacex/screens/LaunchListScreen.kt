@@ -87,7 +87,7 @@ fun LaunchListScreen(
               modifier = Modifier.fillMaxWidth().clickable { onLaunchClick(launch) }.padding(16.dp)
           ) {
             Text(
-                text = "${launch.missionName} - ${launch.launchYear}",
+                text = "${launch.missionName} — ${launch.launchYear}",
                 style = MaterialTheme.typography.headlineSmall,
             )
             Spacer(Modifier.height(8.dp))
