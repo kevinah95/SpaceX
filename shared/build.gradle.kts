@@ -25,7 +25,7 @@ plugins {
 }
 
 kotlin {
-  androidLibrary {
+  android {
     namespace = "io.github.kevinah95.spacex.shared"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 

@@ -24,7 +24,7 @@ plugins {
 }
 
 kotlin {
-  androidLibrary {
+  android {
     namespace = "io.github.kevinah95.spacex.library"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
 
@@ -57,6 +57,8 @@ kotlin {
       implementation(libs.koin.compose)
       implementation(libs.koin.compose.viewmodel)
       implementation(libs.koin.compose.viewmodel.navigation)
+      implementation(libs.compose.navigation)
+      implementation(libs.kotlinx.serialization.json)
     }
     commonTest.dependencies { implementation(libs.kotlin.test) }
   }
