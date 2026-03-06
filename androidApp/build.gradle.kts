@@ -47,7 +47,7 @@ android {
     minSdk = libs.versions.android.minSdk.get().toInt()
     targetSdk = libs.versions.android.targetSdk.get().toInt()
 
-    val appVersion = "2.1.0-alpha.2"
+    val appVersion = "2.1.0"
     versionName = appVersion
     versionCode = versionCodeFrom(appVersion)
   }

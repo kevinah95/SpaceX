@@ -51,7 +51,7 @@ import org.koin.compose.viewmodel.koinViewModel
 @Preview
 fun App(viewModel: RocketLaunchViewModel = koinViewModel()) {
   val navController = rememberNavController()
-  val versionName = "v2.1.0-alpha.2"
+  val versionName = "v2.1.0"
   val navBackStackEntry by navController.currentBackStackEntryAsState()
   val currentDestination = navBackStackEntry?.destination
 
