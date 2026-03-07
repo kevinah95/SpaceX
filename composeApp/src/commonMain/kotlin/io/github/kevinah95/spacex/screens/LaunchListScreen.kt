@@ -99,7 +99,7 @@ fun LaunchListScreen(
             )
             Spacer(Modifier.height(8.dp))
             val details = launch.details
-            if (details != null && details.isNotBlank()) {
+            if (!details.isNullOrBlank()) {
               Text(
                   text = details,
                   style = MaterialTheme.typography.bodyMedium,

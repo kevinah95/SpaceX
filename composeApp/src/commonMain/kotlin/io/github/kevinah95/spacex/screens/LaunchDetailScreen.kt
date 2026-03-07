@@ -83,7 +83,7 @@ fun LaunchDetailScreen(
         )
       }
       val article = launch.links.article
-      if (article != null && article.isNotBlank()) {
+      if (!article.isNullOrBlank()) {
         Spacer(Modifier.height(16.dp))
         Text(
             text = "Article",
