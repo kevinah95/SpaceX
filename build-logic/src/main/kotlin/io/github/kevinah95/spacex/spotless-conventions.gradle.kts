@@ -32,6 +32,7 @@ configure<SpotlessExtension> {
   // Format all Gradle Kotlin DSL files in the project
   kotlinGradle {
     target("*.gradle.kts", "**/*.gradle.kts")
+    targetExclude("**/build/**")
     ktfmt()
     licenseHeaderFile(rootProject.file("spotless/spotless.license.kt"), "(^(?![\\/ ]\\*).*$)")
   }
