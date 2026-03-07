@@ -1,3 +1,4 @@
+plugins { id("com.gradle.develocity") }
 /*
  * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
  *
@@ -13,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-plugins { id("com.gradle.develocity") }
 
 // Ref: https://docs.gradle.com/develocity/gradle/current/gradle-plugin/
 develocity {
