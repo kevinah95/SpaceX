@@ -70,7 +70,7 @@ fun LaunchDetailScreen(
               if (launch.launchSuccess == true) app_theme_successful else app_theme_unsuccessful,
       )
       val details = launch.details
-      if (details != null && details.isNotBlank()) {
+      if (!details.isNullOrBlank()) {
         Spacer(Modifier.height(16.dp))
         Text(
             text = "Details",
