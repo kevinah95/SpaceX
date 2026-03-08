@@ -23,16 +23,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
 class MainActivity : ComponentActivity() {
+
+  private fun appVersionName(): String {
+    return runCatching { packageManager.getPackageInfo(packageName, 0).versionName }
+        .getOrNull()
+        ?.takeIf { it.isNotBlank() }
+        ?: "0.0.0"
+  }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
     super.onCreate(savedInstanceState)
 
-    setContent { App() }
+    setContent { App(versionName = "v${appVersionName()}") }
   }
 }
 
 @Preview
 @Composable
 fun AppAndroidPreview() {
-  App()
+  App(versionName = "v0.0.0")
 }

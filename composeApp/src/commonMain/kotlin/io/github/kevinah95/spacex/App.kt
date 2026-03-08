@@ -48,10 +48,8 @@ import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-@Preview
-fun App(viewModel: RocketLaunchViewModel = koinViewModel()) {
+fun App(versionName: String, viewModel: RocketLaunchViewModel = koinViewModel()) {
   val navController = rememberNavController()
-  val versionName = "v2.2.0"
   val navBackStackEntry by navController.currentBackStackEntryAsState()
   val currentDestination = navBackStackEntry?.destination
 
@@ -120,4 +118,10 @@ fun App(viewModel: RocketLaunchViewModel = koinViewModel()) {
       }
     }
   }
+}
+
+@Preview
+@Composable
+fun AppPreview() {
+  App(versionName = "v0.0.0")
 }

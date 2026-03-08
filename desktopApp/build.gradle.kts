@@ -22,6 +22,8 @@ plugins {
   alias(libs.plugins.spotlessConventions)
 }
 
+val appVersion = providers.gradleProperty("app.version").get()
+
 kotlin {
   dependencies {
     implementation(projects.composeApp)
@@ -35,11 +37,12 @@ kotlin {
 compose.desktop {
   application {
     mainClass = "io.github.kevinah95.spacex.MainKt"
+    jvmArgs += "-Dapp.version=$appVersion"
 
     nativeDistributions {
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
       packageName = "io.github.kevinah95.spacex"
-      packageVersion = "1.0.0"
+      packageVersion = appVersion
     }
   }
 }

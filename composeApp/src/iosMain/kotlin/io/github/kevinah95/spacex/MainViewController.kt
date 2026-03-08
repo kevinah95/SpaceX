@@ -17,5 +17,13 @@ package io.github.kevinah95.spacex
 
 import androidx.compose.ui.window.ComposeUIViewController
 import io.github.kevinah95.spacex.di.initKoin
+import platform.Foundation.NSBundle
 
-fun MainViewController() = ComposeUIViewController(configure = { initKoin() }) { App() }
+private fun iosVersionName(): String {
+	val bundleVersion =
+			NSBundle.mainBundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as? String
+	return "v${bundleVersion ?: "0.0.0"}"
+}
+
+fun MainViewController() =
+		ComposeUIViewController(configure = { initKoin() }) { App(versionName = iosVersionName()) }

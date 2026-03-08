@@ -25,6 +25,7 @@ import io.github.kevinah95.spacex.di.initKoin
 
 fun main() {
   initKoin()
+  val versionName = "v${System.getProperty("app.version") ?: "0.0.0"}"
 
   application {
     val state =
@@ -38,7 +39,7 @@ fun main() {
         state = state,
         alwaysOnTop = true,
     ) {
-      App()
+      App(versionName = versionName)
     }
   }
 }
