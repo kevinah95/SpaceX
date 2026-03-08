@@ -13,21 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+
 plugins {
-  // this is necessary to avoid the plugins to be loaded multiple times
-  // in each subproject's classloader
-  alias(libs.plugins.androidApplication) apply false
-  alias(libs.plugins.androidMultiplatformLibrary) apply false
-  alias(libs.plugins.composeMultiplatform) apply false
-  alias(libs.plugins.composeCompiler) apply false
-  alias(libs.plugins.kotlinMultiplatform) apply false
-  alias(libs.plugins.mokkery) apply false
-  alias(libs.plugins.kotlinJvm) apply false
+  alias(libs.plugins.kotlinJvm)
+  alias(libs.plugins.composeMultiplatform)
+  alias(libs.plugins.composeCompiler)
   alias(libs.plugins.spotlessConventions)
 }
 
-subprojects {
-  tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    compilerOptions { freeCompilerArgs.add("-Xexpect-actual-classes") }
+kotlin {
+  dependencies {
+    implementation(projects.composeApp)
+    implementation(projects.shared)
+
+    implementation(compose.desktop.currentOs)
+    implementation(libs.kotlinx.coroutines.swing)
+  }
+}
+
+compose.desktop {
+  application {
+    mainClass = "io.github.kevinah95.spacex.MainKt"
+
+    nativeDistributions {
+      targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+      packageName = "io.github.kevinah95.spacex"
+      packageVersion = "1.0.0"
+    }
   }
 }
