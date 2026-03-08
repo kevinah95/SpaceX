@@ -27,8 +27,7 @@ class MainActivity : ComponentActivity() {
   private fun appVersionName(): String {
     return runCatching { packageManager.getPackageInfo(packageName, 0).versionName }
         .getOrNull()
-        ?.takeIf { it.isNotBlank() }
-        ?: "0.0.0"
+        ?.takeIf { it.isNotBlank() } ?: "0.0.0"
   }
 
   override fun onCreate(savedInstanceState: Bundle?) {

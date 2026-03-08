@@ -20,10 +20,10 @@ import io.github.kevinah95.spacex.di.initKoin
 import platform.Foundation.NSBundle
 
 private fun iosVersionName(): String {
-	val bundleVersion =
-			NSBundle.mainBundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as? String
-	return "v${bundleVersion ?: "0.0.0"}"
+  val bundleVersion =
+      NSBundle.mainBundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as? String
+  return "v${bundleVersion ?: "0.0.0"}"
 }
 
 fun MainViewController() =
-		ComposeUIViewController(configure = { initKoin() }) { App(versionName = iosVersionName()) }
+    ComposeUIViewController(configure = { initKoin() }) { App(versionName = iosVersionName()) }
