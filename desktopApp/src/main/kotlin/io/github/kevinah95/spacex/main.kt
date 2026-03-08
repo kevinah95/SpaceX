@@ -27,15 +27,18 @@ fun main() {
   initKoin()
 
   application {
-  val state =
-      rememberWindowState(size = DpSize(400.dp, 350.dp), position = WindowPosition(300.dp, 300.dp))
-  Window(
-      title = "SpaceX App",
-      onCloseRequest = ::exitApplication,
-      state = state,
-      alwaysOnTop = true,
-  ) {
-    App()
-  }
+    val state =
+        rememberWindowState(
+            size = DpSize(400.dp, 350.dp),
+            position = WindowPosition(300.dp, 300.dp),
+        )
+    Window(
+        title = "SpaceX App",
+        onCloseRequest = ::exitApplication,
+        state = state,
+        alwaysOnTop = true,
+    ) {
+      App()
+    }
   }
 }
