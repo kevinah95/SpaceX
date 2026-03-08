@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/kevinah95/SpaceX/compare/v2.1.0...v2.2.0) (2026-03-08)
+
+
+### Features
+
+* add desktop platform ([#50](https://github.com/kevinah95/SpaceX/issues/50)) ([0be9e6e](https://github.com/kevinah95/SpaceX/commit/0be9e6e498c20e4f1e026757da768ce95891de19))
+
 # [2.2.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v2.1.0...v2.2.0-alpha.1) (2026-03-08)
 
 
