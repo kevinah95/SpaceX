@@ -38,6 +38,8 @@ kotlin {
   iosArm64()
   iosSimulatorArm64()
 
+  jvm()
+
   sourceSets {
     androidMain.dependencies {
       implementation(libs.ktor.client.okhttp)
@@ -66,6 +68,10 @@ kotlin {
     iosMain.dependencies {
       implementation(libs.ktor.client.darwin)
       implementation(libs.sqldelight.driver.native)
+    }
+    jvmMain.dependencies {
+      implementation(libs.ktor.client.okhttp)
+      implementation(libs.sqldelight.driver.sqlite)
     }
   }
 }

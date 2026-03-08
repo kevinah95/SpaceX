@@ -43,6 +43,8 @@ kotlin {
     }
   }
 
+  jvm()
+
   sourceSets {
     commonMain.dependencies {
       implementation(libs.compose.runtime)
