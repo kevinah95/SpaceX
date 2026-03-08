@@ -19,3 +19,4 @@ captures
 **/xcshareddata/WorkspaceSettings.xcsettings
 node_modules/
 */google-services.json
+/desktopApp/launch.db

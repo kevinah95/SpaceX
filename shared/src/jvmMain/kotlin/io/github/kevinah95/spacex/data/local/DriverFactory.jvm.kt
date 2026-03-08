@@ -21,6 +21,8 @@ import java.util.Properties
 
 actual class DriverFactory {
   actual fun createDriver(): SqlDriver {
+    // On-Disk: JdbcSqliteDriver("jdbc:sqlite:launch.db", Properties(), AppDatabase.Schema)
+    // In-Memory: JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY, Properties(), AppDatabase.Schema)
     val driver: SqlDriver =
         JdbcSqliteDriver("jdbc:sqlite:launch.db", Properties(), AppDatabase.Schema)
     return driver
