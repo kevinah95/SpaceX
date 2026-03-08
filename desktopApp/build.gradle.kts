@@ -28,7 +28,7 @@ kotlin {
     implementation(projects.shared)
 
     implementation(compose.desktop.currentOs)
-    implementation(libs.kotlinx.coroutinesSwing)
+    implementation(libs.kotlinx.coroutines.swing)
   }
 }
 
