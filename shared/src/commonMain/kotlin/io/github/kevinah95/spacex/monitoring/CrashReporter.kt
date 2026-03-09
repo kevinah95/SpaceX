@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025 kevinah95 (Kevin A. Hernandez Rostran)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,25 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex
+package io.github.kevinah95.spacex.monitoring
 
-import android.app.Application
-import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.initialize
-import io.github.kevinah95.spacex.di.initKoin
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-
-class MainApplication : Application() {
-
-  override fun onCreate() {
-    super.onCreate()
-
-    Firebase.initialize(this)
-
-    initKoin {
-      androidContext(this@MainApplication)
-      androidLogger()
-    }
-  }
+expect object CrashReporter {
+  fun recordException(throwable: Throwable, message: String? = null)
 }

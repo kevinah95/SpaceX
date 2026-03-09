@@ -18,6 +18,7 @@ package io.github.kevinah95.spacex.data.repository
 import io.github.kevinah95.spacex.data.local.ILocalRocketLaunchesDataSource
 import io.github.kevinah95.spacex.data.remote.IRemoteRocketLaunchesDataSource
 import io.github.kevinah95.spacex.domain.entity.RocketLaunch
+import io.github.kevinah95.spacex.monitoring.CrashReporter
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -41,6 +42,10 @@ class RocketLaunchesRepository(
           // the downstream flow ↓ is not affected
           // If an error happens, emit the last cached values
           .catch { exception -> // Executes in the consumer's context
+            CrashReporter.recordException(
+                exception,
+                "Failed fetching launches from network. Falling back to local cache.",
+            )
             val cachedLaunches = localRocketLaunchesDataSource.getAllLaunches()
             if (cachedLaunches.isNotEmpty()) {
               emit(cachedLaunches)

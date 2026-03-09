@@ -16,6 +16,14 @@
 package io.github.kevinah95.spacex
 
 import androidx.compose.ui.window.ComposeUIViewController
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.initialize
 import io.github.kevinah95.spacex.di.initKoin
 
-fun MainViewController() = ComposeUIViewController(configure = { initKoin() }) { App() }
+fun MainViewController() =
+    ComposeUIViewController(
+        configure = {
+          initKoin()
+          Firebase.initialize()
+        }
+    ) { App() }

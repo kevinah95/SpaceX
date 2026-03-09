@@ -18,6 +18,7 @@ package io.github.kevinah95.spacex.presentation.rocketLaunch
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.kevinah95.spacex.data.repository.IRocketLaunchesRepository
+import io.github.kevinah95.spacex.monitoring.CrashReporter
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -40,6 +41,7 @@ class RocketLaunchViewModel(private val rocketLaunchesRepository: IRocketLaunche
           _uiState.value = _uiState.value.copy(isLoading = false, launches = launches)
         }
       } catch (e: Exception) {
+        CrashReporter.recordException(e, "Failed loading launches in RocketLaunchViewModel")
         _uiState.value = _uiState.value.copy(isLoading = false, launches = emptyList())
       }
     }
