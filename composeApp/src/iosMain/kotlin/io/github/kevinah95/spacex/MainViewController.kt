@@ -26,4 +26,6 @@ fun MainViewController() =
           initKoin()
           Firebase.initialize()
         }
-    ) { App() }
+    ) {
+      App()
+    }

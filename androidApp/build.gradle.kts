@@ -76,9 +76,7 @@ android {
       isMinifyEnabled = true
       signingConfig = signingConfigs.getByName("release")
     }
-    getByName("debug") {
-      isDebuggable = true
-    }
+    getByName("debug") { isDebuggable = true }
   }
   buildFeatures { resValues = true }
   // Define environments (flavors)

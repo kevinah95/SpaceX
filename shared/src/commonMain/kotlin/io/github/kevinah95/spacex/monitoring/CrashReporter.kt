@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernandez Rostran)
+ * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
