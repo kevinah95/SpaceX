@@ -13,19 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex
+package io.github.kevinah95.spacex.auth
 
-import androidx.compose.ui.window.ComposeUIViewController
-import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.initialize
-import io.github.kevinah95.spacex.di.initKoin
+expect object AuthClient {
+  fun currentUserId(): String?
 
-fun MainViewController() =
-    ComposeUIViewController(
-        configure = {
-          initKoin()
-          Firebase.initialize()
-        }
-    ) {
-      App()
-    }
+  fun isAnonymousUser(): Boolean
+
+  suspend fun signInAnonymously(): String
+
+  suspend fun signOut()
+}

@@ -13,19 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex
+package io.github.kevinah95.spacex.presentation.auth
 
-import androidx.compose.ui.window.ComposeUIViewController
-import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.initialize
-import io.github.kevinah95.spacex.di.initKoin
-
-fun MainViewController() =
-    ComposeUIViewController(
-        configure = {
-          initKoin()
-          Firebase.initialize()
-        }
-    ) {
-      App()
-    }
+data class AuthUiState(
+    val isLoading: Boolean = false,
+    val isAuthenticated: Boolean = false,
+    val isAnonymousUser: Boolean = false,
+    val userId: String? = null,
+    val errorMessage: String? = null,
+)

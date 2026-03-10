@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex
+package io.github.kevinah95.spacex.notifications
 
-import androidx.compose.ui.window.ComposeUIViewController
 import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.initialize
-import io.github.kevinah95.spacex.di.initKoin
+import dev.gitlive.firebase.messaging.messaging
 
-fun MainViewController() =
-    ComposeUIViewController(
-        configure = {
-          initKoin()
-          Firebase.initialize()
-        }
-    ) {
-      App()
-    }
+actual object PushMessagingReporter {
+  actual suspend fun getToken(): String = Firebase.messaging.getToken()
+
+  actual fun subscribeToTopic(topic: String) {
+    Firebase.messaging.subscribeToTopic(topic)
+  }
+
+  actual fun unsubscribeFromTopic(topic: String) {
+    Firebase.messaging.unsubscribeFromTopic(topic)
+  }
+}

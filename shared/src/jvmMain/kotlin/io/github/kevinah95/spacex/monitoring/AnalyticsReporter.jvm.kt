@@ -13,19 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex
+package io.github.kevinah95.spacex.monitoring
 
-import androidx.compose.ui.window.ComposeUIViewController
-import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.initialize
-import io.github.kevinah95.spacex.di.initKoin
+actual object AnalyticsReporter {
+  actual fun logEvent(name: String, params: Map<String, Any?>) {
+    // Desktop/JVM target does not use Firebase Analytics.
+  }
 
-fun MainViewController() =
-    ComposeUIViewController(
-        configure = {
-          initKoin()
-          Firebase.initialize()
-        }
-    ) {
-      App()
-    }
+  actual fun setUserId(userId: String?) {
+    // Desktop/JVM target does not use Firebase Analytics.
+  }
+
+  actual fun setUserProperty(name: String, value: String?) {
+    // Desktop/JVM target does not use Firebase Analytics.
+  }
+}

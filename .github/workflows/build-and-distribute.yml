@@ -37,7 +37,7 @@ jobs:
         with:
           ref: ${{ inputs.release_tag }}
       - name: Create google-services.json
-        run: echo '${{ secrets.google-services-json }}' > ./composeApp/google-services.json
+        run: echo '${{ secrets.google-services-json }}' > ./androidApp/google-services.json
       - name: Decode and setup keystore
         run: |
           echo "${{ secrets.keystore-base64 }}" | base64 -d > ${{ github.workspace }}/spacex-release-keystore.jks

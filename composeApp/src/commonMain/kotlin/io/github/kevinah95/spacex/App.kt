@@ -15,21 +15,24 @@
  */
 package io.github.kevinah95.spacex
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hasRoute
@@ -38,68 +41,150 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import io.github.kevinah95.spacex.navigation.AuthStart
 import io.github.kevinah95.spacex.navigation.LaunchDetail
 import io.github.kevinah95.spacex.navigation.LaunchList
+import io.github.kevinah95.spacex.navigation.Profile
+import io.github.kevinah95.spacex.presentation.auth.AuthViewModel
 import io.github.kevinah95.spacex.presentation.rocketLaunch.RocketLaunchViewModel
+import io.github.kevinah95.spacex.screens.AuthStartScreen
 import io.github.kevinah95.spacex.screens.LaunchDetailScreen
 import io.github.kevinah95.spacex.screens.LaunchListScreen
+import io.github.kevinah95.spacex.screens.ProfileScreen
 import io.github.kevinah95.spacex.theme.AppTheme
 import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @Preview
-fun App(viewModel: RocketLaunchViewModel = koinViewModel()) {
+fun App(
+    authViewModel: AuthViewModel = koinViewModel(),
+    viewModel: RocketLaunchViewModel = koinViewModel(),
+) {
   val navController = rememberNavController()
   val versionName = "v2.2.0"
   val navBackStackEntry by navController.currentBackStackEntryAsState()
   val currentDestination = navBackStackEntry?.destination
 
+  val authState by authViewModel.uiState.collectAsState()
   val state by viewModel.uiState.collectAsState()
+  val isOnAuth = currentDestination?.hasRoute<AuthStart>() == true
+  val isOnLaunchList = currentDestination?.hasRoute<LaunchList>() == true
+  val isOnProfile = currentDestination?.hasRoute<Profile>() == true
+  val isOnDetail = currentDestination?.hasRoute<LaunchDetail>() == true
+  val shouldShowBottomBar = isOnLaunchList || isOnProfile
+
+  LaunchedEffect(authState.isAuthenticated, currentDestination) {
+    if (authState.isAuthenticated && isOnAuth) {
+      navController.navigate(LaunchList) { popUpTo(AuthStart) { inclusive = true } }
+    } else if (!authState.isAuthenticated && !isOnAuth) {
+      navController.navigate(AuthStart) { popUpTo(AuthStart) { inclusive = true } }
+    }
+  }
 
   AppTheme {
     Scaffold(
         topBar = {
-          val isDetail = currentDestination?.hasRoute<LaunchDetail>() == true
           val launch =
-              if (isDetail) {
+              if (isOnDetail) {
                 val flightNumber = navBackStackEntry?.toRoute<LaunchDetail>()?.flightNumber
                 state.launches.find { it.flightNumber == flightNumber }
               } else null
 
-          TopAppBar(
-              title = {
-                if (isDetail) {
-                  Text(
-                      text = launch?.missionName ?: "Launch Detail",
-                      style = MaterialTheme.typography.headlineMedium,
-                  )
-                } else {
-                  Column {
-                    Text("SpaceX Launches", style = MaterialTheme.typography.headlineLarge)
+          if (!isOnAuth) {
+            TopAppBar(
+                title = {
+                  if (isOnDetail) {
                     Text(
-                        text = versionName,
-                        style = MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
-                        modifier = Modifier.padding(start = 2.dp),
+                        text = launch?.missionName ?: "Launch Detail",
+                        style = MaterialTheme.typography.headlineMedium,
                     )
+                  } else if (isOnProfile) {
+                    Text(
+                        text = "Profile",
+                        style = MaterialTheme.typography.headlineMedium,
+                    )
+                  } else {
+                    Text("SpaceX Launches", style = MaterialTheme.typography.headlineLarge)
                   }
-                }
-              },
-              navigationIcon = {
-                if (isDetail) {
-                  IconButton(onClick = { navController.popBackStack() }) {
+                },
+                navigationIcon = {
+                  if (isOnDetail) {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                      Icon(
+                          imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                          contentDescription = "Back",
+                      )
+                    }
+                  }
+                },
+            )
+          }
+        },
+        bottomBar = {
+          if (shouldShowBottomBar) {
+            val navigationItemColors =
+                NavigationBarItemDefaults.colors(
+                    MaterialTheme.colorScheme.onSurface,
+                    MaterialTheme.colorScheme.onSurface,
+                    MaterialTheme.colorScheme.surfaceVariant,
+                    MaterialTheme.colorScheme.onSurfaceVariant,
+                    MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+
+            NavigationBar(
+                containerColor = MaterialTheme.colorScheme.surface,
+                tonalElevation = 0.dp,
+            ) {
+              NavigationBarItem(
+                  selected = isOnLaunchList,
+                  onClick = {
+                    navController.navigate(LaunchList) {
+                      popUpTo(LaunchList) { saveState = true }
+                      launchSingleTop = true
+                      restoreState = true
+                    }
+                  },
+                  icon = {
                     Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Back",
+                        imageVector = Icons.Filled.Home,
+                        contentDescription = "Home",
                     )
-                  }
-                }
-              },
+                  },
+                  colors = navigationItemColors,
+                  label = { Text("Home") },
+              )
+              NavigationBarItem(
+                  selected = isOnProfile,
+                  onClick = {
+                    navController.navigate(Profile) {
+                      popUpTo(LaunchList) { saveState = true }
+                      launchSingleTop = true
+                      restoreState = true
+                    }
+                  },
+                  icon = {
+                    Icon(
+                        imageVector = Icons.Filled.Person,
+                        contentDescription = "Profile",
+                    )
+                  },
+                  colors = navigationItemColors,
+                  label = { Text("Profile") },
+              )
+            }
+          }
+        },
+    ) { paddingValues ->
+      NavHost(navController = navController, startDestination = AuthStart) {
+        composable<AuthStart> {
+          AuthStartScreen(
+              paddingValues = paddingValues,
+              state = authState,
+              versionName = versionName,
+              onAnonymousSignIn = { authViewModel.signInAnonymously() },
           )
         }
-    ) { paddingValues ->
-      NavHost(navController = navController, startDestination = LaunchList) {
         composable<LaunchList> {
           LaunchListScreen(
               paddingValues = paddingValues,
@@ -115,6 +200,14 @@ fun App(viewModel: RocketLaunchViewModel = koinViewModel()) {
               paddingValues = paddingValues,
               flightNumber = route.flightNumber,
               viewModel = viewModel,
+          )
+        }
+        composable<Profile> {
+          ProfileScreen(
+              paddingValues = paddingValues,
+              state = authState,
+              versionName = versionName,
+              onSignOut = { authViewModel.signOut() },
           )
         }
       }

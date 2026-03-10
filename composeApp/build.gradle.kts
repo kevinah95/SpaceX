@@ -46,6 +46,12 @@ kotlin {
   jvm()
 
   sourceSets {
+    androidMain.dependencies {
+      implementation(project.dependencies.platform(libs.firebase.bom))
+      implementation(libs.gitlive.firebase.common)
+      implementation(libs.gitlive.firebase.analytics)
+      implementation(libs.gitlive.firebase.crashlytics)
+    }
     commonMain.dependencies {
       implementation(libs.compose.runtime)
       implementation(libs.compose.foundation)
@@ -65,6 +71,11 @@ kotlin {
       implementation(libs.kotlinx.serialization.json)
     }
     commonTest.dependencies { implementation(libs.kotlin.test) }
+    iosMain.dependencies {
+      implementation(libs.gitlive.firebase.common)
+      implementation(libs.gitlive.firebase.analytics)
+      implementation(libs.gitlive.firebase.crashlytics)
+    }
   }
 }
 

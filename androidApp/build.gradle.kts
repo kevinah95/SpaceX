@@ -20,6 +20,8 @@ plugins {
   alias(libs.plugins.androidApplication)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
+  alias(libs.plugins.googleServices)
+  alias(libs.plugins.firebaseCrashlytics)
   alias(libs.plugins.spotlessConventions)
 }
 
@@ -31,6 +33,10 @@ kotlin {
     implementation(projects.shared)
     implementation(libs.compose.uiToolingPreview)
     implementation(libs.androidx.activity.compose)
+    implementation(project.dependencies.platform(libs.firebase.bom))
+    implementation(libs.gitlive.firebase.common)
+    implementation(libs.gitlive.firebase.analytics)
+    implementation(libs.gitlive.firebase.crashlytics)
     implementation(libs.kotlinx.coroutines.android)
     implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.koin.android)
@@ -71,10 +77,7 @@ android {
       isMinifyEnabled = true
       signingConfig = signingConfigs.getByName("release")
     }
-    getByName("debug") {
-      applicationIdSuffix = ".debug"
-      isDebuggable = true
-    }
+    getByName("debug") { isDebuggable = true }
   }
   buildFeatures { resValues = true }
   // Define environments (flavors)
