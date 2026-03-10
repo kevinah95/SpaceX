@@ -65,7 +65,7 @@ class AuthViewModel : ViewModel() {
                 _uiState.value.copy(
                     isLoading = false,
                     isAuthenticated = false,
-                errorMessage = error.message ?: "Could not authenticate",
+                    errorMessage = error.message ?: "Could not authenticate",
                 )
           }
     }
@@ -92,7 +92,7 @@ class AuthViewModel : ViewModel() {
             _uiState.value =
                 _uiState.value.copy(
                     isLoading = false,
-                errorMessage = error.message ?: "Could not sign out",
+                    errorMessage = error.message ?: "Could not sign out",
                 )
           }
     }

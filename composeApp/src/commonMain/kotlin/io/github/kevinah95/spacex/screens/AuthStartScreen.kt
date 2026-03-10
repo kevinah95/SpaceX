@@ -59,9 +59,7 @@ fun AuthStartScreen(
           modifier = Modifier.padding(top = 12.dp, bottom = 24.dp),
       )
 
-      Button(onClick = onAnonymousSignIn, enabled = !state.isLoading) {
-        Text("Continue as guest")
-      }
+      Button(onClick = onAnonymousSignIn, enabled = !state.isLoading) { Text("Continue as guest") }
 
       if (state.isLoading) {
         CircularProgressIndicator(modifier = Modifier.padding(top = 20.dp))

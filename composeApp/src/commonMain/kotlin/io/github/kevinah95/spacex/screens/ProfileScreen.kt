@@ -44,18 +44,18 @@ fun ProfileScreen(
       horizontalAlignment = Alignment.CenterHorizontally,
   ) {
     Text(
-      text = "Profile",
+        text = "Profile",
         style = MaterialTheme.typography.headlineLarge,
         textAlign = TextAlign.Center,
     )
     Text(
-      text = if (state.isAnonymousUser) "Active session: Guest" else "Active session",
+        text = if (state.isAnonymousUser) "Active session: Guest" else "Active session",
         style = MaterialTheme.typography.bodyLarge,
         textAlign = TextAlign.Center,
         modifier = Modifier.padding(top = 12.dp),
     )
     Text(
-      text = "User: ${state.userId ?: "No identifier"}",
+        text = "User: ${state.userId ?: "No identifier"}",
         style = MaterialTheme.typography.bodyMedium,
         textAlign = TextAlign.Center,
         modifier = Modifier.padding(top = 8.dp),
