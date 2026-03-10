@@ -48,6 +48,7 @@ kotlin {
       implementation(libs.gitlive.firebase.common)
       implementation(libs.gitlive.firebase.analytics)
       implementation(libs.gitlive.firebase.crashlytics)
+      implementation(libs.gitlive.firebase.messaging)
     }
 
     commonMain.dependencies {
@@ -75,6 +76,7 @@ kotlin {
       implementation(libs.gitlive.firebase.common)
       implementation(libs.gitlive.firebase.analytics)
       implementation(libs.gitlive.firebase.crashlytics)
+      implementation(libs.gitlive.firebase.messaging)
     }
     jvmMain.dependencies {
       implementation(libs.ktor.client.okhttp)
