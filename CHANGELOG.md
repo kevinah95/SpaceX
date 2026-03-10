@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/kevinah95/SpaceX/compare/v3.0.0...v3.1.0) (2026-03-10)
+
+
+### Features
+
+* add pre-commit hook for spotless checks ([77c42ff](https://github.com/kevinah95/SpaceX/commit/77c42ffbbdf729f921aa55eab21a07a9590babeb))
+
 # [3.1.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.0.0...v3.1.0-alpha.1) (2026-03-10)
 
 
