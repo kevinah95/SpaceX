@@ -75,6 +75,8 @@ fun App(
   val shouldShowBottomBar = isOnLaunchList || isOnProfile
 
   LaunchedEffect(authState.isAuthenticated, currentDestination) {
+    if (currentDestination == null) return@LaunchedEffect
+
     if (authState.isAuthenticated && isOnAuth) {
       navController.navigate(LaunchList) { popUpTo(AuthStart) { inclusive = true } }
     } else if (!authState.isAuthenticated && !isOnAuth) {
