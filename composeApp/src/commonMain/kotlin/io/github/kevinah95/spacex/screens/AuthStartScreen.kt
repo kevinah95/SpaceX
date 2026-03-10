@@ -35,39 +35,55 @@ import io.github.kevinah95.spacex.presentation.auth.AuthUiState
 fun AuthStartScreen(
     paddingValues: PaddingValues,
     state: AuthUiState,
+    versionName: String,
     onAnonymousSignIn: () -> Unit,
 ) {
   Column(
       modifier = Modifier.fillMaxSize().padding(paddingValues).padding(horizontal = 24.dp),
-      verticalArrangement = Arrangement.Center,
       horizontalAlignment = Alignment.CenterHorizontally,
   ) {
-    Text(
-        text = "Bienvenido",
-        style = MaterialTheme.typography.headlineLarge,
-        textAlign = TextAlign.Center,
-    )
-    Text(
-        text = "Inicia sesion anonima para ver los lanzamientos.",
-        style = MaterialTheme.typography.bodyLarge,
-        textAlign = TextAlign.Center,
-        modifier = Modifier.padding(top = 12.dp, bottom = 24.dp),
-    )
-
-    Button(onClick = onAnonymousSignIn, enabled = !state.isLoading) { Text("Entrar como invitado") }
-
-    if (state.isLoading) {
-      CircularProgressIndicator(modifier = Modifier.padding(top = 20.dp))
-    }
-
-    state.errorMessage?.let { message ->
+    Column(
+        modifier = Modifier.weight(1f),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
       Text(
-          text = message,
-          color = MaterialTheme.colorScheme.error,
-          style = MaterialTheme.typography.bodyMedium,
+          text = "Welcome",
+          style = MaterialTheme.typography.headlineLarge,
           textAlign = TextAlign.Center,
-          modifier = Modifier.padding(top = 16.dp),
       )
+      Text(
+          text = "Sign in anonymously to view launches.",
+          style = MaterialTheme.typography.bodyLarge,
+          textAlign = TextAlign.Center,
+          modifier = Modifier.padding(top = 12.dp, bottom = 24.dp),
+      )
+
+      Button(onClick = onAnonymousSignIn, enabled = !state.isLoading) {
+        Text("Continue as guest")
+      }
+
+      if (state.isLoading) {
+        CircularProgressIndicator(modifier = Modifier.padding(top = 20.dp))
+      }
+
+      state.errorMessage?.let { message ->
+        Text(
+            text = message,
+            color = MaterialTheme.colorScheme.error,
+            style = MaterialTheme.typography.bodyMedium,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.padding(top = 16.dp),
+        )
+      }
     }
+
+    Text(
+        text = "Version: $versionName",
+        style = MaterialTheme.typography.labelMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.padding(bottom = 12.dp),
+    )
   }
 }

@@ -35,6 +35,7 @@ import io.github.kevinah95.spacex.presentation.auth.AuthUiState
 fun ProfileScreen(
     paddingValues: PaddingValues,
     state: AuthUiState,
+    versionName: String,
     onSignOut: () -> Unit,
 ) {
   Column(
@@ -43,24 +44,31 @@ fun ProfileScreen(
       horizontalAlignment = Alignment.CenterHorizontally,
   ) {
     Text(
-        text = "Perfil",
+      text = "Profile",
         style = MaterialTheme.typography.headlineLarge,
         textAlign = TextAlign.Center,
     )
     Text(
-        text = if (state.isAnonymousUser) "Sesion activa: Invitado" else "Sesion activa",
+      text = if (state.isAnonymousUser) "Active session: Guest" else "Active session",
         style = MaterialTheme.typography.bodyLarge,
         textAlign = TextAlign.Center,
         modifier = Modifier.padding(top = 12.dp),
     )
     Text(
-        text = "Usuario: ${state.userId ?: "Sin identificador"}",
+      text = "User: ${state.userId ?: "No identifier"}",
         style = MaterialTheme.typography.bodyMedium,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.padding(top = 8.dp),
+    )
+    Text(
+        text = "Version: $versionName",
+        style = MaterialTheme.typography.labelMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
         textAlign = TextAlign.Center,
         modifier = Modifier.padding(top = 8.dp, bottom = 24.dp),
     )
 
-    Button(onClick = onSignOut, enabled = !state.isLoading) { Text("Cerrar sesion") }
+    Button(onClick = onSignOut, enabled = !state.isLoading) { Text("Sign out") }
 
     if (state.isLoading) {
       CircularProgressIndicator(modifier = Modifier.padding(top = 20.dp))
