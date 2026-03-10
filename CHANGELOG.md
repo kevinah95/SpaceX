@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/kevinah95/SpaceX/compare/v2.2.0...v3.0.0) (2026-03-10)
+
+
+### Features
+
+* integrate firebase features ([#51](https://github.com/kevinah95/SpaceX/issues/51)) ([1f9a49b](https://github.com/kevinah95/SpaceX/commit/1f9a49bdd3e287e00e2b077f884b21aeee272490))
+
+
+### BREAKING CHANGES
+
+* refactor ui and add firebase features like auth, messaging, crashlytics, etc.
+
 # [3.0.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v2.2.0...v3.0.0-alpha.1) (2026-03-10)
 
 
