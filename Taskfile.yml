@@ -1,11 +1,18 @@
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
 
-version: '3'
+version: "3"
 
 tasks:
   setup:spotless:
     cmds:
-      - ./gradlew spotlessInstallGitPrePushHook
+      - git config core.hooksPath .githooks
+      - chmod +x .githooks/pre-commit
+      - echo "Installed Spotless pre-commit hook (.githooks/pre-commit)"
+  setup:prettier:
+    cmds:
+      - node --version
+      - npm --version
+      - ./gradlew spotlessCheck
   spotless:
     cmds:
       - ./gradlew spotlessApply

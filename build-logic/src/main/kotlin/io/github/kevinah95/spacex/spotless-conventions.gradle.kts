@@ -36,4 +36,17 @@ configure<SpotlessExtension> {
     ktfmt()
     licenseHeaderFile(rootProject.file("spotless/spotless.license.kt"), "(^(?![\\/ ]\\*).*$)")
   }
+  // Format miscellaneous files (YAML, JSON) in the project
+  format("misc") {
+    target("**/*.yaml", "**/*.yml", "**/*.json")
+    targetExclude("**/build/**", "**/.gradle/**")
+
+    trimTrailingWhitespace()
+    leadingTabsToSpaces(2)
+    endWithNewline()
+    // Use a pinned Prettier version for reproducible formatting across machines/CI.
+    prettier(mapOf("prettier" to "3.3.3"))
+        .configFile(rootProject.file(".prettierrc.json"))
+        .npmInstallCache("${rootProject.rootDir}/.gradle/spotless-npm-cache")
+  }
 }
