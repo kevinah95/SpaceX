@@ -13,14 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex.di.modules
+package io.github.kevinah95.spacex.auth
 
-import io.github.kevinah95.spacex.presentation.auth.AuthViewModel
-import io.github.kevinah95.spacex.presentation.rocketLaunch.RocketLaunchViewModel
-import org.koin.core.module.dsl.viewModel
-import org.koin.dsl.module
+actual object AuthClient {
+  private var userId: String? = null
 
-val presentationModule = module {
-  viewModel { AuthViewModel() }
-  viewModel { RocketLaunchViewModel(get()) }
+  actual fun currentUserId(): String? = userId
+
+  actual fun isAnonymousUser(): Boolean = userId != null
+
+  actual suspend fun signInAnonymously(): String {
+    val generatedId = userId ?: "desktop-anon-${System.currentTimeMillis()}"
+    userId = generatedId
+    return generatedId
+  }
+
+  actual suspend fun signOut() {
+    userId = null
+  }
 }

@@ -13,14 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex.di.modules
+package io.github.kevinah95.spacex.auth
 
-import io.github.kevinah95.spacex.presentation.auth.AuthViewModel
-import io.github.kevinah95.spacex.presentation.rocketLaunch.RocketLaunchViewModel
-import org.koin.core.module.dsl.viewModel
-import org.koin.dsl.module
+import dev.gitlive.firebase.Firebase
+import dev.gitlive.firebase.auth.auth
 
-val presentationModule = module {
-  viewModel { AuthViewModel() }
-  viewModel { RocketLaunchViewModel(get()) }
+actual object AuthClient {
+  actual fun currentUserId(): String? = Firebase.auth.currentUser?.uid
+
+  actual fun isAnonymousUser(): Boolean = Firebase.auth.currentUser?.isAnonymous == true
+
+  actual suspend fun signInAnonymously(): String {
+    Firebase.auth.signInAnonymously()
+    return requireNotNull(Firebase.auth.currentUser?.uid) { "No authenticated user returned" }
+  }
+
+  actual suspend fun signOut() {
+    Firebase.auth.signOut()
+  }
 }

@@ -13,14 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.kevinah95.spacex.di.modules
+package io.github.kevinah95.spacex.presentation.auth
 
-import io.github.kevinah95.spacex.presentation.auth.AuthViewModel
-import io.github.kevinah95.spacex.presentation.rocketLaunch.RocketLaunchViewModel
-import org.koin.core.module.dsl.viewModel
-import org.koin.dsl.module
-
-val presentationModule = module {
-  viewModel { AuthViewModel() }
-  viewModel { RocketLaunchViewModel(get()) }
-}
+data class AuthUiState(
+    val isLoading: Boolean = false,
+    val isAuthenticated: Boolean = false,
+    val isAnonymousUser: Boolean = false,
+    val userId: String? = null,
+    val errorMessage: String? = null,
+)
