@@ -1,3 +1,10 @@
+## [3.1.1](https://github.com/kevinah95/SpaceX/compare/v3.1.0...v3.1.1) (2026-03-10)
+
+
+### Bug Fixes
+
+* **desktopApp:** handle null currentDestination in navigation ([5626216](https://github.com/kevinah95/SpaceX/commit/5626216dadc0cccd9d5b60924a3240680a705b17))
+
 ## [3.1.1-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.1.0...v3.1.1-alpha.1) (2026-03-10)
 
 
