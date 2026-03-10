@@ -35,6 +35,7 @@ kotlin {
     implementation(libs.androidx.activity.compose)
     implementation(project.dependencies.platform(libs.firebase.bom))
     implementation(libs.gitlive.firebase.common)
+    implementation(libs.gitlive.firebase.analytics)
     implementation(libs.gitlive.firebase.crashlytics)
     implementation(libs.kotlinx.coroutines.android)
     implementation(project.dependencies.platform(libs.koin.bom))
