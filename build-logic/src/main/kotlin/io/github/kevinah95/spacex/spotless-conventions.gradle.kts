@@ -45,7 +45,7 @@ configure<SpotlessExtension> {
     leadingTabsToSpaces(2)
     endWithNewline()
     // Use a pinned Prettier version for reproducible formatting across machines/CI.
-    prettier(mapOf("prettier" to "3.3.3"))
+    prettier(mapOf("prettier" to "3.8.1"))
         .configFile(rootProject.file(".prettierrc.json"))
         .npmInstallCache("${rootProject.rootDir}/.gradle/spotless-npm-cache")
   }
