@@ -19,3 +19,28 @@ tasks:
   tasks:
     cmds:
       - ./gradlew tasks
+  ios:framework:debug:simulator:
+    cmds:
+      - ./gradlew :composeApp:linkDebugFrameworkIosSimulatorArm64
+      - 'echo "Output: composeApp/build/bin/iosSimulatorArm64/debugFramework/ComposeApp.framework"'
+  ios:framework:release:device:
+    cmds:
+      - ./gradlew :composeApp:linkReleaseFrameworkIosArm64
+      - 'echo "Output: composeApp/build/bin/iosArm64/releaseFramework/ComposeApp.framework"'
+  ios:framework:debug:xcode:
+    cmds:
+      - ./gradlew :composeApp:embedAndSignAppleFrameworkForXcode
+      - 'echo "Output: composeApp/build/xcode-frameworks/Debug/<sdk>/ComposeApp.framework"'
+  ios:frameworks:
+    cmds:
+      - task ios:framework:debug:simulator
+      - task ios:framework:release:device
+  ios:archive:
+    cmds:
+      - xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -configuration Release -archivePath build/ios/iosApp.xcarchive archive
+      - 'echo "Output: build/ios/iosApp.xcarchive"'
+  ios:ipa:
+    cmds:
+      - task ios:archive
+      - xcodebuild -exportArchive -archivePath build/ios/iosApp.xcarchive -exportOptionsPlist iosApp/exportOptions.plist -exportPath build/ios
+      - 'echo "Output: build/ios/<app>.ipa"'
