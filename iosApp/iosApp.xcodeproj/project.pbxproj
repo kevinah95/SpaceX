@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D7F7DEF02F61320A00B038C8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D7F7DEEF2F61320A00B038C8 /* FirebaseAnalytics */; };
+		D7F7DEF22F61320A00B038C8 /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = D7F7DEF12F61320A00B038C8 /* FirebaseAnalyticsCore */; };
+		D7F7DEF42F61320A00B038C8 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = D7F7DEF32F61320A00B038C8 /* FirebaseCore */; };
+		D7F7DEF62F61320A00B038C8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D7F7DEF52F61320A00B038C8 /* FirebaseCrashlytics */; };
+		D7F7DEF82F61320A00B038C8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D7F7DEF72F61320A00B038C8 /* FirebaseAuth */; };
+		D7F7DEFA2F61320A00B038C8 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = D7F7DEF92F61320A00B038C8 /* FirebaseMessaging */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		1F6E69666C26B0CA2DF420D4 /* SpaceX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -41,6 +50,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7F7DEFA2F61320A00B038C8 /* FirebaseMessaging in Frameworks */,
+				D7F7DEF82F61320A00B038C8 /* FirebaseAuth in Frameworks */,
+				D7F7DEF02F61320A00B038C8 /* FirebaseAnalytics in Frameworks */,
+				D7F7DEF62F61320A00B038C8 /* FirebaseCrashlytics in Frameworks */,
+				D7F7DEF42F61320A00B038C8 /* FirebaseCore in Frameworks */,
+				D7F7DEF22F61320A00B038C8 /* FirebaseAnalyticsCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +90,7 @@
 				2365F4FAEA16274098239AB5 /* Sources */,
 				826F1AC8B8F593D71E0BDF0E /* Frameworks */,
 				1EB22E1B8C8CFE0B60D96460 /* Resources */,
+				D7F7DEFC2F61320A00B038C8 /* Upload Crashlytics Symbols */,
 			);
 			buildRules = (
 			);
@@ -85,6 +101,12 @@
 			);
 			name = iosApp;
 			packageProductDependencies = (
+				D7F7DEF72F61320A00B038C8 /* FirebaseAuth */,
+				D7F7DEF92F61320A00B038C8 /* FirebaseMessaging */,
+				D7F7DEEF2F61320A00B038C8 /* FirebaseAnalytics */,
+				D7F7DEF12F61320A00B038C8 /* FirebaseAnalyticsCore */,
+				D7F7DEF32F61320A00B038C8 /* FirebaseCore */,
+				D7F7DEF52F61320A00B038C8 /* FirebaseCrashlytics */,
 			);
 			productName = iosApp;
 			productReference = 1F6E69666C26B0CA2DF420D4 /* SpaceX.app */;
@@ -114,6 +136,9 @@
 			);
 			mainGroup = 2ED7D330BC267B7E277ED256;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5DCC440750C9D80BBFB176B1 /* Products */;
 			projectDirPath = "";
@@ -153,6 +178,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :composeApp:embedAndSignAppleFrameworkForXcode\n";
+		};
+		D7F7DEFC2F61320A00B038C8 /* Upload Crashlytics Symbols */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Upload Crashlytics Symbols";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$CONFIGURATION\" != \"Release\" ]; then\n  exit 0\nfi\nCRASHLYTICS_RUN=\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\nif [ ! -f \"$CRASHLYTICS_RUN\" ]; then\n  echo \"warning: Firebase Crashlytics run script not found. Resolve Swift packages first.\"\n  exit 0\nfi\nif [ ! -f \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/GoogleService-Info.plist\" ]; then\n  echo \"warning: GoogleService-Info.plist not found in app bundle. Skipping Crashlytics dSYM upload.\"\n  exit 0\nfi\n\"$CRASHLYTICS_RUN\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -355,15 +399,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		48455FAE0E42E7B2B98AE3B7 /* Build configuration list for PBXProject "iosApp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				61482D18BDD37B4589BE8761 /* Debug */,
-				BB26EADE47EA1C1123CA3410 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		0BCD527A0CA3CD35FE615B86 /* Build configuration list for PBXNativeTarget "iosApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -373,7 +408,60 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		48455FAE0E42E7B2B98AE3B7 /* Build configuration list for PBXProject "iosApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				61482D18BDD37B4589BE8761 /* Debug */,
+				BB26EADE47EA1C1123CA3410 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D7F7DEEF2F61320A00B038C8 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		D7F7DEF12F61320A00B038C8 /* FirebaseAnalyticsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsCore;
+		};
+		D7F7DEF32F61320A00B038C8 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		D7F7DEF52F61320A00B038C8 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		D7F7DEF72F61320A00B038C8 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		D7F7DEF92F61320A00B038C8 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 964FDC0A6E46ED5E14C07F83 /* Project object */;
 }
