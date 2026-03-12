@@ -25,7 +25,6 @@ tasks:
     prompt: This will clean all modules. Do you want to continue?
     cmds:
       - ./gradlew build-logic:clean
-      - ./gradlew buildSrc:clean
       - ./gradlew clean
 
   setup:spotless:
