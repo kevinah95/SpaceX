@@ -25,6 +25,8 @@ plugins {
   alias(libs.plugins.spotlessConventions)
 }
 
+val appVersion = providers.gradleProperty("app.version").get()
+
 kotlin {
   compilerOptions { jvmTarget.set(JvmTarget.JVM_21) }
 
@@ -53,7 +55,6 @@ android {
     minSdk = libs.versions.android.minSdk.get().toInt()
     targetSdk = libs.versions.android.targetSdk.get().toInt()
 
-    val appVersion = "3.1.2-alpha.1"
     versionName = appVersion
     versionCode = versionCodeFrom(appVersion)
   }

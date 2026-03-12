@@ -98,6 +98,14 @@ To run the Desktop app:
   .\gradlew.bat :desktopApp:run
   ```
 
+## 🔢 Versioning
+
+- `app.version` in [gradle.properties](./gradle.properties) is the canonical semantic version for the app.
+- Android `versionName`, Android `versionCode`, desktop runtime display version, and desktop native package version are derived from that single value during the Gradle build.
+- iOS keeps Apple-specific metadata in [iosApp/Configuration/Config.xcconfig](./iosApp/Configuration/Config.xcconfig), but it is synchronized automatically by [scripts/sync-version.mjs](./scripts/sync-version.mjs).
+- To update release metadata locally, run `task version:sync -- 3.1.3-alpha.1`.
+- In CI or any plain Node environment, you can still run `node ./scripts/sync-version.mjs 3.1.3-alpha.1` directly.
+
 ---
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
