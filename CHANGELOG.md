@@ -1,3 +1,10 @@
+## [3.1.2-alpha.2](https://github.com/kevinah95/SpaceX/compare/v3.1.2-alpha.1...v3.1.2-alpha.2) (2026-03-12)
+
+
+### Bug Fixes
+
+* **release:** centralize semantic versioning process ([#52](https://github.com/kevinah95/SpaceX/issues/52)) ([9cbf5a2](https://github.com/kevinah95/SpaceX/commit/9cbf5a274aa11b267c3872e5e37475291097036a))
+
 ## [3.1.2-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.1.1...v3.1.2-alpha.1) (2026-03-11)
 
 
