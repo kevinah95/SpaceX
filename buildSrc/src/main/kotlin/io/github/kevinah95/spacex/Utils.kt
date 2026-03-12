@@ -3,6 +3,8 @@ package io.github.kevinah95.spacex
 import org.gradle.api.GradleException
 
 object Utils {
+    fun marketingVersionFrom(versionName: String): String = versionName.substringBefore("-")
+
     // Compute an integer versionCode from a semantic versionName like "1.2.3-alpha.12".
     fun versionCodeFrom(versionName: String): Int {
         val parts = versionName.split("-", limit = 2)

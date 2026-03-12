@@ -4,7 +4,13 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>NSApplicationCrashOnExceptions</key>
 	<true/>
+	<key>SpaceXReleaseVersion</key>
+	<string>$(APP_RELEASE_VERSION)</string>
 </dict>
 </plist>
