@@ -2,7 +2,34 @@
 
 version: "3"
 
+includes:
+  desktop:
+    taskfile: ./desktopApp
+    flatten: true
+  ios:
+    taskfile: ./iosApp
+    flatten: true
+  android:
+    taskfile: ./androidApp
+    flatten: true
+
 tasks:
+  invalidate-cache:
+    cmds:
+      - rm -rf .gradle
+      - rm -rf .idea
+      - task: clean:all
+      - rm -rf .kotlin
+  clean:
+    cmds:
+      - rm -rf build
+  clean:all:
+    cmds:
+      - task: clean
+      - task: desktop:clean
+      - task: ios:clean
+      - task: android:clean
+
   setup:spotless:
     cmds:
       - git config core.hooksPath .githooks
@@ -16,31 +43,3 @@ tasks:
   spotless:
     cmds:
       - ./gradlew spotlessApply
-  tasks:
-    cmds:
-      - ./gradlew tasks
-  ios:framework:debug:simulator:
-    cmds:
-      - ./gradlew :composeApp:linkDebugFrameworkIosSimulatorArm64
-      - 'echo "Output: composeApp/build/bin/iosSimulatorArm64/debugFramework/ComposeApp.framework"'
-  ios:framework:release:device:
-    cmds:
-      - ./gradlew :composeApp:linkReleaseFrameworkIosArm64
-      - 'echo "Output: composeApp/build/bin/iosArm64/releaseFramework/ComposeApp.framework"'
-  ios:framework:debug:xcode:
-    cmds:
-      - ./gradlew :composeApp:embedAndSignAppleFrameworkForXcode
-      - 'echo "Output: composeApp/build/xcode-frameworks/Debug/<sdk>/ComposeApp.framework"'
-  ios:frameworks:
-    cmds:
-      - task ios:framework:debug:simulator
-      - task ios:framework:release:device
-  ios:archive:
-    cmds:
-      - xcodebuild -project iosApp/iosApp.xcodeproj -scheme iosApp -configuration Release -archivePath build/ios/iosApp.xcarchive archive
-      - 'echo "Output: build/ios/iosApp.xcarchive"'
-  ios:ipa:
-    cmds:
-      - task ios:archive
-      - xcodebuild -exportArchive -archivePath build/ios/iosApp.xcarchive -exportOptionsPlist iosApp/exportOptions.plist -exportPath build/ios
-      - 'echo "Output: build/ios/<app>.ipa"'

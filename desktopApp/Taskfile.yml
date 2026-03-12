@@ -1,0 +1,35 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+tasks:
+  desktop:clean:
+    dir: '{{.TASKFILE_DIR}}'
+    cmds:
+      - rm -rf build
+  desktop:darwin:
+    cmds:
+      - ./gradlew :desktopApp:packageDmg --console=plain
+      - 'echo "Output folder: desktopApp/build/compose/binaries/main/dmg"'
+      - find desktopApp/build -type f -name "*.dmg"
+  desktop:darwin:release:
+    cmds:
+      - ./gradlew :desktopApp:packageReleaseDmg --console=plain
+      - 'echo "Output folder: desktopApp/build/compose/binaries/main-release/dmg"'
+      - find desktopApp/build -type f -name "*.dmg"
+  desktop:darwin:distribute:
+    cmds:
+      - |
+        if [ -z "${RELEASE_TAG:-}" ]; then
+          echo "RELEASE_TAG is required. Example: task desktop:dmg:distribute RELEASE_TAG=v1.2.3"
+          exit 1
+        fi
+      - |
+        DMG_PATH="$(find desktopApp/build -type f -name "*.dmg" -print0 | xargs -0 ls -t | head -n 1)"
+        if [ -z "$DMG_PATH" ]; then
+          echo "No DMG found. Run: task desktop:dmg"
+          exit 1
+        fi
+        gh release upload "$RELEASE_TAG" "$DMG_PATH"
+        echo "Uploaded: $DMG_PATH to release $RELEASE_TAG"
+
