@@ -15,20 +15,18 @@ includes:
 
 tasks:
   invalidate-cache:
+    prompt: This will clean all modules and remove cached files including .gradle, .idea, and .kotlin. Do you want to continue?
     cmds:
       - rm -rf .gradle
       - rm -rf .idea
-      - task: clean:all
+      - ./gradlew clean
       - rm -rf .kotlin
-  clean:
-    cmds:
-      - rm -rf build
   clean:all:
+    prompt: This will clean all modules. Do you want to continue?
     cmds:
-      - task: clean
-      - task: desktop:clean
-      - task: ios:clean
-      - task: android:clean
+      - ./gradlew build-logic:clean
+      - ./gradlew buildSrc:clean
+      - ./gradlew clean
 
   setup:spotless:
     cmds:

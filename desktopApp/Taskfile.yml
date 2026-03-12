@@ -6,7 +6,7 @@ tasks:
   desktop:clean:
     dir: '{{.TASKFILE_DIR}}'
     cmds:
-      - rm -rf build
+      - ./gradlew clean
   desktop:darwin:
     cmds:
       - ./gradlew :desktopApp:packageDmg --console=plain

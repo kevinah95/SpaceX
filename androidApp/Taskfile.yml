@@ -9,7 +9,7 @@ tasks:
   android:clean:
     dir: '{{.TASKFILE_DIR}}'
     cmds:
-      - rm -rf build
+      - ./gradlew clean
   android:alpha:release:
     cmds:
       - ./gradlew :androidApp:assembleAlphaRelease
