@@ -1,0 +1,143 @@
+on:
+  workflow_call:
+    inputs:
+      release_tag:
+        required: true
+        type: string
+      release_notes:
+        required: true
+        type: string
+      project_path:
+        required: false
+        type: string
+        default: iosApp/iosApp.xcodeproj
+      scheme:
+        required: false
+        type: string
+        default: iosApp
+      configuration:
+        required: false
+        type: string
+        default: Release
+      archive_path:
+        required: false
+        type: string
+        default: ./build/ios/iosApp.xcarchive
+      export_options_plist_path:
+        required: false
+        type: string
+        default: iosApp/exportOptions.plist
+      artifact_path:
+        required: false
+        type: string
+        default: ./build/ios/SpaceX.ipa
+    secrets:
+      google-service-info-plist:
+        required: true
+      ios-certificate-p12-base64:
+        required: true
+      ios-certificate-p12-password:
+        required: true
+      ios-provisioning-profile-base64:
+        required: true
+      keychain-password:
+        required: true
+      firebase-credential-file-content:
+        required: true
+      firebase-app-id:
+        required: true
+
+name: build-and-distribute-ios
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-distribute-ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.release_tag }}
+
+      - name: Create GoogleService-Info.plist
+        run: echo '${{ secrets.google-service-info-plist }}' > ./iosApp/iosApp/GoogleService-Info.plist
+
+      - name: Set up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: "temurin"
+          java-version: "21"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5
+        with:
+          gradle-version: wrapper
+
+      - name: Set up keychain and import signing certificate
+        run: |
+          security create-keychain -p "${{ secrets.keychain-password }}" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "${{ secrets.keychain-password }}" build.keychain
+          security set-keychain-settings -t 3600 -u build.keychain
+
+          echo "${{ secrets.ios-certificate-p12-base64 }}" | base64 --decode > certificate.p12
+          security import certificate.p12 -k build.keychain -P "${{ secrets.ios-certificate-p12-password }}" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "${{ secrets.keychain-password }}" build.keychain
+
+      - name: Install provisioning profile
+        run: |
+          mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
+          echo "${{ secrets.ios-provisioning-profile-base64 }}" | base64 --decode > "$HOME/Library/MobileDevice/Provisioning Profiles/SpaceX.mobileprovision"
+
+      - name: Archive iOS app
+        run: |
+          xcodebuild -project "${{ inputs.project_path }}" \
+            -scheme "${{ inputs.scheme }}" \
+            -configuration "${{ inputs.configuration }}" \
+            -archivePath "${{ inputs.archive_path }}" \
+            -allowProvisioningUpdates \
+            archive
+
+      - name: Export IPA
+        run: |
+          ARTIFACT_DIR="$(dirname "${{ inputs.artifact_path }}")"
+          mkdir -p "$ARTIFACT_DIR"
+
+          xcodebuild -exportArchive \
+            -archivePath "${{ inputs.archive_path }}" \
+            -exportOptionsPlist "${{ inputs.export_options_plist_path }}" \
+            -exportPath "$ARTIFACT_DIR"
+
+          EXPORTED_IPA="$(find "$ARTIFACT_DIR" -maxdepth 1 -name "*.ipa" | head -n 1)"
+          if [ -z "$EXPORTED_IPA" ]; then
+            echo "No IPA was produced in $ARTIFACT_DIR"
+            exit 1
+          fi
+
+          if [ "$EXPORTED_IPA" != "${{ inputs.artifact_path }}" ]; then
+            mv "$EXPORTED_IPA" "${{ inputs.artifact_path }}"
+          fi
+
+      - name: Upload Release Artifact
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ inputs.release_tag }} ${{ inputs.artifact_path }}
+
+      - name: Create release notes file
+        run: echo '${{ inputs.release_notes }}' > release-notes.txt
+
+      - name: Install Firebase CLI (standalone)
+        run: curl -sL https://firebase.tools | bash
+
+      - name: Write Firebase service account
+        run: echo '${{ secrets.firebase-credential-file-content }}' > "$RUNNER_TEMP/firebase-sa.json"
+
+      - name: Distribute to Firebase App Distribution (CLI)
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-sa.json
+        run: |
+          firebase appdistribution:distribute ${{ inputs.artifact_path }} \
+            --app "${{ secrets.firebase-app-id }}" \
+            --testers "kevinah95@gmail.com" \
+            --release-notes-file release-notes.txt

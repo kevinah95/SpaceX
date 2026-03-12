@@ -45,3 +45,20 @@ jobs:
       key-alias: ${{ secrets.KEY_ALIAS }}
       firebase-credential-file-content: ${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}
       firebase-app-id: ${{ secrets.ALPHA_FIREBASE_APP_ID }}
+
+  call-build-workflow-ios:
+    needs: semantic-release
+    if: needs.semantic-release.outputs.new_release_published == 'true'
+    uses: ./.github/workflows/build-and-distribute-ios.yml
+    with:
+      release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}
+      release_notes: ${{ needs.semantic-release.outputs.new_release_notes }}
+      artifact_path: ./build/ios/SpaceX-alpha.ipa
+    secrets:
+      google-service-info-plist: ${{ secrets.ALPHA_GOOGLE_SERVICE_INFO_PLIST }}
+      ios-certificate-p12-base64: ${{ secrets.ALPHA_IOS_CERTIFICATE_P12_BASE64 }}
+      ios-certificate-p12-password: ${{ secrets.ALPHA_IOS_CERTIFICATE_P12_PASSWORD }}
+      ios-provisioning-profile-base64: ${{ secrets.ALPHA_IOS_PROVISIONING_PROFILE_BASE64 }}
+      keychain-password: ${{ secrets.ALPHA_IOS_KEYCHAIN_PASSWORD }}
+      firebase-credential-file-content: ${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}
+      firebase-app-id: ${{ secrets.ALPHA_FIREBASE_APP_ID }}
