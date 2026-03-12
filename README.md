@@ -101,7 +101,8 @@ To run the Desktop app:
 ## 🔢 Versioning
 
 - `app.version` in [gradle.properties](./gradle.properties) is the canonical semantic version for the app.
-- Android `versionName`, Android `versionCode`, desktop runtime display version, and desktop native package version are derived from that single value during the Gradle build.
+- `scripts/sync-version.mjs` is the single source of truth for versioning and writes `app.version`, `app.marketingVersion`, and `app.versionCode` into [gradle.properties](./gradle.properties).
+- Android and desktop builds only read those Gradle properties; iOS metadata is synchronized from the same script into [iosApp/Configuration/Config.xcconfig](./iosApp/Configuration/Config.xcconfig).
 - iOS keeps Apple-specific metadata in [iosApp/Configuration/Config.xcconfig](./iosApp/Configuration/Config.xcconfig), but it is synchronized automatically by [scripts/sync-version.mjs](./scripts/sync-version.mjs).
 - To update release metadata locally, run `task version:sync -- 3.1.3-alpha.1`.
 - In CI or any plain Node environment, you can still run `node ./scripts/sync-version.mjs 3.1.3-alpha.1` directly.

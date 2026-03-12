@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import io.github.kevinah95.spacex.Utils.versionCodeFrom
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -26,6 +25,7 @@ plugins {
 }
 
 val appVersion = providers.gradleProperty("app.version").get()
+val appVersionCode = providers.gradleProperty("app.versionCode").get().toInt()
 
 kotlin {
   compilerOptions { jvmTarget.set(JvmTarget.JVM_21) }
@@ -56,7 +56,7 @@ android {
     targetSdk = libs.versions.android.targetSdk.get().toInt()
 
     versionName = appVersion
-    versionCode = versionCodeFrom(appVersion)
+    versionCode = appVersionCode
   }
   signingConfigs {
     create("release") {

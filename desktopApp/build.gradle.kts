@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import io.github.kevinah95.spacex.Utils.marketingVersionFrom
 import org.gradle.api.tasks.JavaExec
 import org.gradle.jvm.tasks.Jar
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
@@ -26,6 +25,7 @@ plugins {
 }
 
 val appVersion = providers.gradleProperty("app.version").get()
+val appMarketingVersion = providers.gradleProperty("app.marketingVersion").get()
 
 tasks.withType<Jar>().configureEach {
   manifest.attributes["Implementation-Version"] = appVersion
@@ -52,7 +52,7 @@ compose.desktop {
     nativeDistributions {
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
       packageName = "io.github.kevinah95.spacex"
-      packageVersion = marketingVersionFrom(appVersion)
+      packageVersion = appMarketingVersion
     }
   }
 }

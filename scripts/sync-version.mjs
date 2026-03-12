@@ -15,6 +15,8 @@ const versionInfo = parseVersion(nextVersion);
 
 updateKeyValueFile(resolve(rootDir, "gradle.properties"), {
   "app.version": nextVersion,
+  "app.marketingVersion": versionInfo.marketingVersion,
+  "app.versionCode": String(versionInfo.versionCode),
 });
 
 updateKeyValueFile(resolve(rootDir, "iosApp/Configuration/Config.xcconfig"), {
