@@ -1,3 +1,10 @@
+## [3.1.3-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.1.2...v3.1.3-alpha.1) (2026-03-12)
+
+
+### Bug Fixes
+
+* **versioning:** centralize version management and update properties ([136dd04](https://github.com/kevinah95/SpaceX/commit/136dd045d0ef564c90b28b52560723bc52999bf4))
+
 ## [3.1.2](https://github.com/kevinah95/SpaceX/compare/v3.1.1...v3.1.2) (2026-03-12)
 
 
