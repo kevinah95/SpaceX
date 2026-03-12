@@ -1,3 +1,11 @@
+## [3.1.2](https://github.com/kevinah95/SpaceX/compare/v3.1.1...v3.1.2) (2026-03-12)
+
+
+### Bug Fixes
+
+* **iosApp:** update Firebase dependencies and configurations ([d374d7b](https://github.com/kevinah95/SpaceX/commit/d374d7b7da0760a092bb3e7557d3542013dad571))
+* **release:** centralize semantic versioning process ([#52](https://github.com/kevinah95/SpaceX/issues/52)) ([9cbf5a2](https://github.com/kevinah95/SpaceX/commit/9cbf5a274aa11b267c3872e5e37475291097036a))
+
 ## [3.1.2-alpha.2](https://github.com/kevinah95/SpaceX/compare/v3.1.2-alpha.1...v3.1.2-alpha.2) (2026-03-12)
 
 
