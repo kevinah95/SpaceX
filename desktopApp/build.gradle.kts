@@ -26,6 +26,11 @@ plugins {
 
 val appVersion = providers.gradleProperty("app.version").get()
 val appMarketingVersion = providers.gradleProperty("app.marketingVersion").get()
+val desktopProguardConfig = layout.projectDirectory.file("proguard-rules.pro")
+val appDisplayName = "SpaceX Launches"
+val appBundleId = "io.github.kevinah95.spacex"
+val appDescription = "Kotlin Multiplatform desktop app for browsing SpaceX launches."
+val appVendor = "Kevin A. Hernandez Rostran"
 
 tasks.withType<Jar>().configureEach { manifest.attributes["Implementation-Version"] = appVersion }
 
@@ -44,11 +49,41 @@ kotlin {
 compose.desktop {
   application {
     mainClass = "io.github.kevinah95.spacex.MainKt"
+    jvmArgs += listOf("-Dspacex.app.version=$appVersion")
+
+    buildTypes.release.proguard {
+      optimize.set(false)
+      configurationFiles.from(desktopProguardConfig)
+    }
 
     nativeDistributions {
+      modules("java.sql")
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-      packageName = "io.github.kevinah95.spacex"
+      packageName = appDisplayName
       packageVersion = appMarketingVersion
+      description = appDescription
+      vendor = appVendor
+      copyright = "Copyright 2026 $appVendor"
+      licenseFile.set(rootProject.file("LICENSE"))
+
+      macOS {
+        packageName = appDisplayName
+        dockName = appDisplayName
+        bundleID = appBundleId
+        packageBuildVersion = appVersion
+        appCategory = "public.app-category.utilities"
+      }
+
+      windows {
+        menuGroup = appDisplayName
+        dirChooser = true
+        perUserInstall = true
+      }
+
+      linux {
+        packageName = "spacex-launches"
+        menuGroup = appDisplayName
+      }
     }
   }
 }
