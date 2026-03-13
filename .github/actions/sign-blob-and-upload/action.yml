@@ -1,0 +1,40 @@
+name: Sign Blob And Upload
+description: Sign a release artifact with cosign keyless and upload both the artifact and its Sigstore bundle to a GitHub release.
+
+inputs:
+  release_tag:
+    description: Git tag for the release.
+    required: true
+  artifact_path:
+    description: Path to the artifact to sign and upload.
+    required: true
+
+outputs:
+  bundle_path:
+    description: Path to the generated Sigstore bundle.
+    value: ${{ steps.sign.outputs.bundle_path }}
+
+runs:
+  using: composite
+  steps:
+    - name: Install Cosign
+      uses: sigstore/cosign-installer@v3
+    - name: Sign artifact with Cosign keyless
+      id: sign
+      shell: bash
+      run: |
+        artifact_path="${{ inputs.artifact_path }}"
+        bundle_path="${artifact_path}.sigstore.json"
+
+        cosign sign-blob --yes --bundle "$bundle_path" "$artifact_path"
+
+        echo "bundle_path=$bundle_path" >> "$GITHUB_OUTPUT"
+    - name: Upload signed release artifacts
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      run: |
+        gh release upload "${{ inputs.release_tag }}" \
+          "${{ inputs.artifact_path }}" \
+          "${{ steps.sign.outputs.bundle_path }}" \
+          --clobber
