@@ -1,13 +1,13 @@
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
 
-version: '3'
+version: "3"
 
 vars:
   GREETING: Hello, world!
 
 tasks:
   android:clean:
-    dir: '{{.TASKFILE_DIR}}'
+    dir: "{{.TASKFILE_DIR}}"
     cmds:
       - ./gradlew clean
   android:alpha:release:

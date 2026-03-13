@@ -27,13 +27,9 @@ plugins {
 val appVersion = providers.gradleProperty("app.version").get()
 val appMarketingVersion = providers.gradleProperty("app.marketingVersion").get()
 
-tasks.withType<Jar>().configureEach {
-  manifest.attributes["Implementation-Version"] = appVersion
-}
+tasks.withType<Jar>().configureEach { manifest.attributes["Implementation-Version"] = appVersion }
 
-tasks.withType<JavaExec>().configureEach {
-  systemProperty("spacex.app.version", appVersion)
-}
+tasks.withType<JavaExec>().configureEach { systemProperty("spacex.app.version", appVersion) }
 
 kotlin {
   dependencies {

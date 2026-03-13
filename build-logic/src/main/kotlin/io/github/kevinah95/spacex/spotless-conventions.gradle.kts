@@ -46,7 +46,7 @@ configure<SpotlessExtension> {
     endWithNewline()
     // Use a pinned Prettier version for reproducible formatting across machines/CI.
     prettier(mapOf("prettier" to "3.8.1"))
-        .configFile(rootProject.file(".prettierrc.json"))
+        .configFile(rootProject.file(".prettierrc.yml"))
         .npmInstallCache("${rootProject.rootDir}/.gradle/spotless-npm-cache")
   }
 }
