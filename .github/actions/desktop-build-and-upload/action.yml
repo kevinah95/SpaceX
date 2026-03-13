@@ -1,0 +1,48 @@
+name: Desktop Build And Upload
+description: Build a desktop distribution artifact and upload it to a GitHub release.
+
+inputs:
+  release_tag:
+    description: Git tag for the release.
+    required: true
+  gradle_task:
+    description: Gradle task used to build the desktop artifact.
+    required: true
+  artifact_glob:
+    description: Glob used to resolve the built desktop artifact.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Set up JDK
+      uses: actions/setup-java@v5
+      with:
+        distribution: temurin
+        java-version: "21"
+    - name: Set up Gradle
+      uses: gradle/actions/setup-gradle@v5
+      with:
+        gradle-version: wrapper
+    - name: Build desktop artifact
+      shell: bash
+      run: ./gradlew ${{ inputs.gradle_task }} --console=plain
+    - name: Resolve desktop artifact path
+      id: artifact
+      shell: bash
+      run: |
+        shopt -s nullglob
+        files=(${{ inputs.artifact_glob }})
+
+        if [ "${#files[@]}" -ne 1 ]; then
+          echo "Expected exactly one desktop artifact for pattern: ${{ inputs.artifact_glob }}" >&2
+          printf '%s\n' "${files[@]}"
+          exit 1
+        fi
+
+        echo "path=${files[0]}" >> "$GITHUB_OUTPUT"
+    - name: Upload desktop release artifact
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      run: gh release upload ${{ inputs.release_tag }} ${{ steps.artifact.outputs.path }} --clobber
