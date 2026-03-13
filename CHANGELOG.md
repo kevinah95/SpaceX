@@ -1,3 +1,10 @@
+# [3.2.0-alpha.3](https://github.com/kevinah95/SpaceX/compare/v3.2.0-alpha.2...v3.2.0-alpha.3) (2026-03-13)
+
+
+### Bug Fixes
+
+* **actions:** quote inputs in release upload commands ([b6c7886](https://github.com/kevinah95/SpaceX/commit/b6c7886e3c5230d4ebfab29d4c77435baf2f17ef))
+
 # [3.2.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v3.2.0-alpha.1...v3.2.0-alpha.2) (2026-03-13)
 
 
