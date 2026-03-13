@@ -29,10 +29,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  call-build-workflow:
+  call-android-build-workflow:
     needs: semantic-release
     if: needs.semantic-release.outputs.new_release_published == 'true'
-    uses: ./.github/workflows/build-and-distribute.yml
+    uses: ./.github/workflows/android-build-and-distribute.yml
     with:
       release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}
       release_notes: ${{ needs.semantic-release.outputs.new_release_notes }}
@@ -45,3 +45,10 @@ jobs:
       key-alias: ${{ secrets.KEY_ALIAS }}
       firebase-credential-file-content: ${{ secrets.FIREBASE_CREDENTIAL_FILE_CONTENT }}
       firebase-app-id: ${{ secrets.FIREBASE_APP_ID }}
+
+  call-desktop-build-workflow:
+    needs: semantic-release
+    if: needs.semantic-release.outputs.new_release_published == 'true'
+    uses: ./.github/workflows/desktop-build-and-distribute.yml
+    with:
+      release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}

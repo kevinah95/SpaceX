@@ -27,11 +27,13 @@ on:
       firebase-app-id:
         required: true
 
-name: build-and-distribute
+name: android-build-and-distribute
 
 jobs:
   build-and-distribute:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v5
         with:
@@ -60,7 +62,7 @@ jobs:
       - name: Upload Release Artifact
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ inputs.release_tag }} ${{ inputs.artifact_path }}
+        run: gh release upload ${{ inputs.release_tag }} ${{ inputs.artifact_path }} --clobber
       - name: Create release notes file
         run: echo '${{ inputs.release_notes }}' > release-notes.md
       - name: Convert Markdown to plain text with Pandoc
