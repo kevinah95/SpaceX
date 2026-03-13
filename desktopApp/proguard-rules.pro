@@ -6,3 +6,5 @@
 -dontwarn okhttp3.internal.graal.**
 -dontwarn okhttp3.internal.platform.**
 -keep class org.sqlite.** { *; }
+-keep class io.ktor.serialization.kotlinx.** { *; }
+-keep class io.ktor.serialization.kotlinx.json.** { *; }
