@@ -64,7 +64,7 @@ runs:
       shell: bash
       env:
         GITHUB_TOKEN: ${{ github.token }}
-      run: gh release upload ${{ inputs.release_tag }} ${{ inputs.artifact_path }} --clobber
+      run: gh release upload "${{ inputs.release_tag }}" "${{ inputs.artifact_path }}" --clobber
     - name: Create release notes file
       shell: bash
       run: echo '${{ inputs.release_notes }}' > release-notes.md

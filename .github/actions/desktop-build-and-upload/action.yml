@@ -45,4 +45,4 @@ runs:
       shell: bash
       env:
         GITHUB_TOKEN: ${{ github.token }}
-      run: gh release upload ${{ inputs.release_tag }} ${{ steps.artifact.outputs.path }} --clobber
+      run: gh release upload "${{ inputs.release_tag }}" "${{ steps.artifact.outputs.path }}" --clobber
