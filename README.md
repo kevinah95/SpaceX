@@ -98,6 +98,20 @@ To run the Desktop app:
   .\gradlew.bat :desktopApp:run
   ```
 
+To build a signed macOS distribution, configure the following values either as Gradle properties or environment variables:
+- `compose.desktop.mac.sign=true` or `COMPOSE_DESKTOP_MAC_SIGN=true`
+- `compose.desktop.mac.signing.identity` or `COMPOSE_DESKTOP_MAC_SIGNING_IDENTITY`
+- Optional: `compose.desktop.mac.signing.keychain` or `COMPOSE_DESKTOP_MAC_SIGNING_KEYCHAIN`
+
+To notarize a macOS distribution, also provide:
+- `compose.desktop.mac.notarization.appleID` or `NOTARIZATION_APPLE_ID`
+- `compose.desktop.mac.notarization.password` or `NOTARIZATION_PASSWORD`
+- `compose.desktop.mac.notarization.teamID` or `NOTARIZATION_TEAM_ID`
+
+Useful tasks:
+- `./gradlew :desktopApp:packageReleaseDmg` builds the release DMG
+- `./gradlew :desktopApp:notarizeReleaseDmg` builds, signs, and submits the release DMG for notarization when notarization credentials are configured
+
 ## 🔢 Versioning
 
 - `app.version` in [gradle.properties](./gradle.properties) is the canonical semantic version for the app.
