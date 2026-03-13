@@ -29,19 +29,56 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  call-build-workflow:
+  android-build-and-distribute:
     needs: semantic-release
     if: needs.semantic-release.outputs.new_release_published == 'true'
-    uses: ./.github/workflows/build-and-distribute.yml
-    with:
-      release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}
-      release_notes: ${{ needs.semantic-release.outputs.new_release_notes }}
-      build_task: :androidApp:assembleAlphaRelease
-      artifact_path: ./androidApp/build/outputs/apk/alpha/release/androidApp-alpha-release.apk
-    secrets:
-      google-services-json: ${{ secrets.ALPHA_GOOGLE_SERVICES_JSON }}
-      keystore-base64: ${{ secrets.KEYSTORE_BASE64 }}
-      keystore-password: ${{ secrets.KEYSTORE_PASSWORD }}
-      key-alias: ${{ secrets.KEY_ALIAS }}
-      firebase-credential-file-content: ${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}
-      firebase-app-id: ${{ secrets.ALPHA_FIREBASE_APP_ID }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ needs.semantic-release.outputs.new_release_git_tag }}
+      - name: Build and distribute Android release
+        uses: ./.github/actions/android-build-and-distribute
+        with:
+          release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}
+          release_notes: ${{ needs.semantic-release.outputs.new_release_notes }}
+          build_task: :androidApp:assembleAlphaRelease
+          artifact_path: ./androidApp/build/outputs/apk/alpha/release/androidApp-alpha-release.apk
+          google_services_json: ${{ secrets.ALPHA_GOOGLE_SERVICES_JSON }}
+          keystore_base64: ${{ secrets.KEYSTORE_BASE64 }}
+          keystore_password: ${{ secrets.KEYSTORE_PASSWORD }}
+          key_alias: ${{ secrets.KEY_ALIAS }}
+          firebase_credential_file_content: ${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}
+          firebase_app_id: ${{ secrets.ALPHA_FIREBASE_APP_ID }}
+
+  desktop-build-and-upload:
+    needs: semantic-release
+    if: needs.semantic-release.outputs.new_release_published == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-latest
+            gradle_task: :desktopApp:packageReleaseDmg
+            artifact_glob: desktopApp/build/compose/binaries/main-release/dmg/*.dmg
+          - runner: windows-latest
+            gradle_task: :desktopApp:packageReleaseMsi
+            artifact_glob: desktopApp/build/compose/binaries/main-release/msi/*.msi
+          - runner: ubuntu-latest
+            gradle_task: :desktopApp:packageReleaseDeb
+            artifact_glob: desktopApp/build/compose/binaries/main-release/deb/*.deb
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ needs.semantic-release.outputs.new_release_git_tag }}
+      - name: Build and upload desktop release
+        uses: ./.github/actions/desktop-build-and-upload
+        with:
+          release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}
+          gradle_task: ${{ matrix.gradle_task }}
+          artifact_glob: ${{ matrix.artifact_glob }}

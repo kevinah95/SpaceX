@@ -1,0 +1,92 @@
+name: Android Build And Distribute
+description: Build an Android release artifact, upload it to GitHub Releases, and distribute it with Firebase App Distribution.
+
+inputs:
+  release_tag:
+    description: Git tag for the release.
+    required: true
+  release_notes:
+    description: Markdown release notes.
+    required: true
+  build_task:
+    description: Gradle task used to build the Android artifact.
+    required: true
+  artifact_path:
+    description: Path to the built Android artifact.
+    required: true
+  google_services_json:
+    description: google-services.json file contents.
+    required: true
+  keystore_base64:
+    description: Base64-encoded Android signing keystore.
+    required: true
+  keystore_password:
+    description: Android keystore password.
+    required: true
+  key_alias:
+    description: Android release key alias.
+    required: true
+  firebase_credential_file_content:
+    description: Firebase service account JSON contents.
+    required: true
+  firebase_app_id:
+    description: Firebase App Distribution app id.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Create google-services.json
+      shell: bash
+      run: echo '${{ inputs.google_services_json }}' > ./androidApp/google-services.json
+    - name: Decode and setup keystore
+      shell: bash
+      run: |
+        echo "${{ inputs.keystore_base64 }}" | base64 -d > "$GITHUB_WORKSPACE/spacex-release-keystore.jks"
+    - name: Set up JDK
+      uses: actions/setup-java@v5
+      with:
+        distribution: temurin
+        java-version: "21"
+    - name: Set up Gradle
+      uses: gradle/actions/setup-gradle@v5
+      with:
+        gradle-version: wrapper
+    - name: Build Android App
+      shell: bash
+      env:
+        RELEASE_KEYSTORE_FILE: ${{ github.workspace }}/spacex-release-keystore.jks
+        RELEASE_KEYSTORE_PASSWORD: ${{ inputs.keystore_password }}
+        RELEASE_KEY_ALIAS: ${{ inputs.key_alias }}
+        RELEASE_KEY_PASSWORD: ${{ inputs.keystore_password }}
+      run: gradle ${{ inputs.build_task }}
+    - name: Upload Release Artifact
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      run: gh release upload "${{ inputs.release_tag }}" "${{ inputs.artifact_path }}" --clobber
+    - name: Create release notes file
+      shell: bash
+      run: echo '${{ inputs.release_notes }}' > release-notes.md
+    - name: Convert Markdown to plain text with Pandoc
+      shell: bash
+      run: |
+        docker run --rm \
+          -v "$PWD:/data" \
+          pandoc/core:3.8 \
+          -f gfm -t plain --wrap=none /data/release-notes.md -o /data/release-notes.txt
+    - name: Install Firebase CLI (standalone)
+      shell: bash
+      run: curl -sL https://firebase.tools | bash
+    - name: Write Firebase service account
+      shell: bash
+      run: echo '${{ inputs.firebase_credential_file_content }}' > "$RUNNER_TEMP/firebase-sa.json"
+    - name: Distribute to Firebase App Distribution (CLI)
+      shell: bash
+      env:
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ runner.temp }}/firebase-sa.json
+      run: |
+        firebase appdistribution:distribute ${{ inputs.artifact_path }} \
+          --app "${{ inputs.firebase_app_id }}" \
+          --testers "kevinah95@gmail.com" \
+          --release-notes-file release-notes.txt

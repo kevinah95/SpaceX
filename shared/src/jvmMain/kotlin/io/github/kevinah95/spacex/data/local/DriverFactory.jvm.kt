@@ -17,14 +17,63 @@ package io.github.kevinah95.spacex.data.local
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
+import java.nio.file.Files
+import java.nio.file.Path
+import java.nio.file.Paths
+import java.sql.DriverManager
 import java.util.Properties
 
 actual class DriverFactory {
   actual fun createDriver(): SqlDriver {
-    // On-Disk: JdbcSqliteDriver("jdbc:sqlite:launch.db", Properties(), AppDatabase.Schema)
+    val databasePath = databasePath()
+    Files.createDirectories(databasePath.parent)
+    registerSqliteDriver()
+
     // In-Memory: JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY, Properties(), AppDatabase.Schema)
     val driver: SqlDriver =
-        JdbcSqliteDriver("jdbc:sqlite:launch.db", Properties(), AppDatabase.Schema)
+        JdbcSqliteDriver(
+            "jdbc:sqlite:${databasePath.toAbsolutePath()}",
+            Properties(),
+            AppDatabase.Schema,
+        )
     return driver
+  }
+
+  private fun registerSqliteDriver() {
+    val driverClassName = "org.sqlite.JDBC"
+    val hasSqliteDriver =
+        DriverManager.getDrivers().asSequence().any { driver ->
+          driver::class.java.name == driverClassName
+        }
+
+    if (!hasSqliteDriver) {
+      Class.forName(driverClassName)
+    }
+  }
+
+  private fun databasePath(): Path {
+    val appDirectory =
+        when (System.getProperty("os.name")?.lowercase()) {
+          null -> Paths.get(System.getProperty("user.home"), ".spacex")
+          else -> {
+            when {
+              "mac" in System.getProperty("os.name").lowercase() ->
+                  Paths.get(
+                      System.getProperty("user.home"),
+                      "Library",
+                      "Application Support",
+                      "io.github.kevinah95.spacex",
+                  )
+              "win" in System.getProperty("os.name").lowercase() ->
+                  Paths.get(
+                      System.getenv("APPDATA") ?: System.getProperty("user.home"),
+                      "io.github.kevinah95.spacex",
+                  )
+              else -> Paths.get(System.getProperty("user.home"), ".local", "share", "spacex")
+            }
+          }
+        }
+
+    return appDirectory.resolve("launch.db")
   }
 }
