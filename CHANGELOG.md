@@ -1,3 +1,10 @@
+# [3.2.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v3.2.0-alpha.1...v3.2.0-alpha.2) (2026-03-13)
+
+
+### Bug Fixes
+
+* **build:** update package versioning for desktop app ([f6f9242](https://github.com/kevinah95/SpaceX/commit/f6f924288c4499fc3eec0a4cd21a0cc59b7e4da9))
+
 # [3.2.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.1.3...v3.2.0-alpha.1) (2026-03-13)
 
 
