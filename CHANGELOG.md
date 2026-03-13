@@ -5,6 +5,21 @@
 
 * **cosign:** implement signing and uploading for artifacts ([894d6ca](https://github.com/kevinah95/SpaceX/commit/894d6ca0733d75b9fec0103734bf333bc9908fce))
 
+# [3.2.0](https://github.com/kevinah95/SpaceX/compare/v3.1.3...v3.2.0) (2026-03-13)
+
+
+### Bug Fixes
+
+* **actions:** quote inputs in release upload commands ([b6c7886](https://github.com/kevinah95/SpaceX/commit/b6c7886e3c5230d4ebfab29d4c77435baf2f17ef))
+* **build:** update package versioning for desktop app ([f6f9242](https://github.com/kevinah95/SpaceX/commit/f6f924288c4499fc3eec0a4cd21a0cc59b7e4da9))
+* **workflows:** remove unused desktop build workflow ([9a3d632](https://github.com/kevinah95/SpaceX/commit/9a3d632b6f108f0f2fc450d76dd60db977a95329))
+
+
+### Features
+
+* **android:** enhance android build workflow with secrets ([4adc696](https://github.com/kevinah95/SpaceX/commit/4adc6967d729ca53f2e05136e34485346fa17f65))
+* **workflows:** add android and desktop build actions ([59536b2](https://github.com/kevinah95/SpaceX/commit/59536b2fd8c3b2c9965613bb04a8c417233215ea))
+
 # [3.2.0-alpha.3](https://github.com/kevinah95/SpaceX/compare/v3.2.0-alpha.2...v3.2.0-alpha.3) (2026-03-13)
 
 
