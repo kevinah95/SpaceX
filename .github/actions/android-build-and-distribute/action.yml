@@ -60,11 +60,11 @@ runs:
         RELEASE_KEY_ALIAS: ${{ inputs.key_alias }}
         RELEASE_KEY_PASSWORD: ${{ inputs.keystore_password }}
       run: gradle ${{ inputs.build_task }}
-    - name: Upload Release Artifact
-      shell: bash
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      run: gh release upload "${{ inputs.release_tag }}" "${{ inputs.artifact_path }}" --clobber
+    - name: Sign and upload Android release artifact
+      uses: ./.github/actions/sign-blob-and-upload
+      with:
+        release_tag: ${{ inputs.release_tag }}
+        artifact_path: ${{ inputs.artifact_path }}
     - name: Create release notes file
       shell: bash
       run: echo '${{ inputs.release_notes }}' > release-notes.md
