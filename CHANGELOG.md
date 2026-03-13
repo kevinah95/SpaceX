@@ -1,3 +1,16 @@
+# [3.2.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.1.3...v3.2.0-alpha.1) (2026-03-13)
+
+
+### Bug Fixes
+
+* **workflows:** remove unused desktop build workflow ([9a3d632](https://github.com/kevinah95/SpaceX/commit/9a3d632b6f108f0f2fc450d76dd60db977a95329))
+
+
+### Features
+
+* **android:** enhance android build workflow with secrets ([4adc696](https://github.com/kevinah95/SpaceX/commit/4adc6967d729ca53f2e05136e34485346fa17f65))
+* **workflows:** add android and desktop build actions ([59536b2](https://github.com/kevinah95/SpaceX/commit/59536b2fd8c3b2c9965613bb04a8c417233215ea))
+
 ## [3.1.3](https://github.com/kevinah95/SpaceX/compare/v3.1.2...v3.1.3) (2026-03-12)
 
 
