@@ -18,22 +18,17 @@ package io.github.kevinah95.spacex.data.remote
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
-import io.ktor.serialization.kotlinx.json.json
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
-import kotlinx.serialization.json.Json
 
 class RemoteRocketLaunchesDataSourceTest {
-
-  private val json = Json { ignoreUnknownKeys = true }
 
   @Test
   fun `latestLaunches should return list of rocket launches on success`() = runTest {
@@ -82,7 +77,7 @@ class RemoteRocketLaunchesDataSourceTest {
       )
     }
 
-    val httpClient = HttpClient(mockEngine) { install(ContentNegotiation) { json(json) } }
+    val httpClient = HttpClient(mockEngine)
 
     val dataSource =
         RemoteRocketLaunchesDataSource(
@@ -133,7 +128,7 @@ class RemoteRocketLaunchesDataSourceTest {
       )
     }
 
-    val httpClient = HttpClient(mockEngine) { install(ContentNegotiation) { json(json) } }
+    val httpClient = HttpClient(mockEngine)
 
     val dataSource =
         RemoteRocketLaunchesDataSource(
@@ -161,7 +156,7 @@ class RemoteRocketLaunchesDataSourceTest {
       )
     }
 
-    val httpClient = HttpClient(mockEngine) { install(ContentNegotiation) { json(json) } }
+    val httpClient = HttpClient(mockEngine)
 
     val dataSource =
         RemoteRocketLaunchesDataSource(
@@ -204,7 +199,7 @@ class RemoteRocketLaunchesDataSourceTest {
       )
     }
 
-    val httpClient = HttpClient(mockEngine) { install(ContentNegotiation) { json(json) } }
+    val httpClient = HttpClient(mockEngine)
 
     val dataSource =
         RemoteRocketLaunchesDataSource(

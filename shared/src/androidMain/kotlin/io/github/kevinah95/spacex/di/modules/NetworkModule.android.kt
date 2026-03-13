@@ -16,8 +16,6 @@
 package io.github.kevinah95.spacex.di.modules
 
 import io.ktor.client.HttpClient
-import org.koin.dsl.module
+import io.ktor.client.engine.okhttp.OkHttp
 
-expect fun createPlatformHttpClient(): HttpClient
-
-val networkModule = module { single { createPlatformHttpClient() } }
+actual fun createPlatformHttpClient(): HttpClient = HttpClient(OkHttp)

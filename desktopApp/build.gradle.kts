@@ -26,6 +26,7 @@ plugins {
 
 val appVersion = providers.gradleProperty("app.version").get()
 val appMarketingVersion = providers.gradleProperty("app.marketingVersion").get()
+val desktopProguardConfig = layout.projectDirectory.file("proguard-rules.pro")
 
 tasks.withType<Jar>().configureEach { manifest.attributes["Implementation-Version"] = appVersion }
 
@@ -44,11 +45,23 @@ kotlin {
 compose.desktop {
   application {
     mainClass = "io.github.kevinah95.spacex.MainKt"
+    jvmArgs += listOf("-Dspacex.app.version=$appVersion")
+
+    buildTypes.release.proguard {
+      optimize.set(false)
+      configurationFiles.from(desktopProguardConfig)
+    }
 
     nativeDistributions {
+      modules("java.sql")
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
       packageName = "io.github.kevinah95.spacex"
       packageVersion = appMarketingVersion
+
+      macOS {
+        bundleID = "io.github.kevinah95.spacex"
+        packageBuildVersion = appVersion
+      }
     }
   }
 }
