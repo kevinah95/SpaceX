@@ -1,3 +1,10 @@
+# [3.3.0](https://github.com/kevinah95/SpaceX/compare/v3.2.0...v3.3.0) (2026-03-13)
+
+
+### Features
+
+* **cosign:** implement signing and uploading of release artifacts with Cosign ([#55](https://github.com/kevinah95/SpaceX/issues/55)) ([ab0b4a9](https://github.com/kevinah95/SpaceX/commit/ab0b4a93de623906adc5bbf5be155a7796c8c311))
+
 # [3.3.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.2.0...v3.3.0-alpha.1) (2026-03-13)
 
 
