@@ -31,14 +31,20 @@ actual class DriverFactory {
 
     // In-Memory: JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY, Properties(), AppDatabase.Schema)
     val driver: SqlDriver =
-        JdbcSqliteDriver("jdbc:sqlite:${databasePath.toAbsolutePath()}", Properties(), AppDatabase.Schema)
+        JdbcSqliteDriver(
+            "jdbc:sqlite:${databasePath.toAbsolutePath()}",
+            Properties(),
+            AppDatabase.Schema,
+        )
     return driver
   }
 
   private fun registerSqliteDriver() {
     val driverClassName = "org.sqlite.JDBC"
     val hasSqliteDriver =
-        DriverManager.getDrivers().asSequence().any { driver -> driver::class.java.name == driverClassName }
+        DriverManager.getDrivers().asSequence().any { driver ->
+          driver::class.java.name == driverClassName
+        }
 
     if (!hasSqliteDriver) {
       Class.forName(driverClassName)

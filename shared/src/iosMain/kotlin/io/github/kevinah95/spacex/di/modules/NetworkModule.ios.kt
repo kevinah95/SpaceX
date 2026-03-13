@@ -21,6 +21,5 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-actual fun createPlatformHttpClient(json: Json): HttpClient = HttpClient(Darwin) {
-	install(ContentNegotiation) { json(json) }
-}
+actual fun createPlatformHttpClient(json: Json): HttpClient =
+    HttpClient(Darwin) { install(ContentNegotiation) { json(json) } }

@@ -32,31 +32,37 @@ val appBundleId = "io.github.kevinah95.spacex"
 val appDescription = "Kotlin Multiplatform desktop app for browsing SpaceX launches."
 val appVendor = "Kevin A. Hernandez Rostran"
 val macSigningEnabled =
-  providers.gradleProperty("compose.desktop.mac.sign")
-    .orElse(providers.environmentVariable("COMPOSE_DESKTOP_MAC_SIGN"))
-    .map(String::toBoolean)
-    .orElse(false)
-    .get()
+    providers
+        .gradleProperty("compose.desktop.mac.sign")
+        .orElse(providers.environmentVariable("COMPOSE_DESKTOP_MAC_SIGN"))
+        .map(String::toBoolean)
+        .orElse(false)
+        .get()
 val macSigningIdentity =
-  providers.gradleProperty("compose.desktop.mac.signing.identity")
-    .orElse(providers.environmentVariable("COMPOSE_DESKTOP_MAC_SIGNING_IDENTITY"))
-    .orNull
+    providers
+        .gradleProperty("compose.desktop.mac.signing.identity")
+        .orElse(providers.environmentVariable("COMPOSE_DESKTOP_MAC_SIGNING_IDENTITY"))
+        .orNull
 val macSigningKeychain =
-  providers.gradleProperty("compose.desktop.mac.signing.keychain")
-    .orElse(providers.environmentVariable("COMPOSE_DESKTOP_MAC_SIGNING_KEYCHAIN"))
-    .orNull
+    providers
+        .gradleProperty("compose.desktop.mac.signing.keychain")
+        .orElse(providers.environmentVariable("COMPOSE_DESKTOP_MAC_SIGNING_KEYCHAIN"))
+        .orNull
 val notarizationAppleId =
-  providers.gradleProperty("compose.desktop.mac.notarization.appleID")
-    .orElse(providers.environmentVariable("NOTARIZATION_APPLE_ID"))
-    .orNull
+    providers
+        .gradleProperty("compose.desktop.mac.notarization.appleID")
+        .orElse(providers.environmentVariable("NOTARIZATION_APPLE_ID"))
+        .orNull
 val notarizationPassword =
-  providers.gradleProperty("compose.desktop.mac.notarization.password")
-    .orElse(providers.environmentVariable("NOTARIZATION_PASSWORD"))
-    .orNull
+    providers
+        .gradleProperty("compose.desktop.mac.notarization.password")
+        .orElse(providers.environmentVariable("NOTARIZATION_PASSWORD"))
+        .orNull
 val notarizationTeamId =
-  providers.gradleProperty("compose.desktop.mac.notarization.teamID")
-    .orElse(providers.environmentVariable("NOTARIZATION_TEAM_ID"))
-    .orNull
+    providers
+        .gradleProperty("compose.desktop.mac.notarization.teamID")
+        .orElse(providers.environmentVariable("NOTARIZATION_TEAM_ID"))
+        .orNull
 
 tasks.withType<Jar>().configureEach { manifest.attributes["Implementation-Version"] = appVersion }
 
@@ -111,9 +117,11 @@ compose.desktop {
           }
         }
 
-        if (!notarizationAppleId.isNullOrBlank() &&
-            !notarizationPassword.isNullOrBlank() &&
-            !notarizationTeamId.isNullOrBlank()) {
+        if (
+            !notarizationAppleId.isNullOrBlank() &&
+                !notarizationPassword.isNullOrBlank() &&
+                !notarizationTeamId.isNullOrBlank()
+        ) {
           notarization {
             appleID.set(notarizationAppleId)
             password.set(notarizationPassword)

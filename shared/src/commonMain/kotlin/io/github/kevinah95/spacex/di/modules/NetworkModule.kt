@@ -22,12 +22,12 @@ import org.koin.dsl.module
 expect fun createPlatformHttpClient(json: Json): HttpClient
 
 val networkModule = module {
-	single {
-		createPlatformHttpClient(
-				Json {
-					ignoreUnknownKeys = true
-					useAlternativeNames = false
-				}
-		)
-	}
+  single {
+    createPlatformHttpClient(
+        Json {
+          ignoreUnknownKeys = true
+          useAlternativeNames = false
+        }
+    )
+  }
 }
