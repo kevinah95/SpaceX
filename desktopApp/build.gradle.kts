@@ -26,11 +26,13 @@ plugins {
 
 val appVersion = providers.gradleProperty("app.version").get()
 val appMarketingVersion = providers.gradleProperty("app.marketingVersion").get()
+val appVersionCode = providers.gradleProperty("app.versionCode").get()
 val desktopProguardConfig = layout.projectDirectory.file("proguard-rules.pro")
 val appDisplayName = "SpaceX Launches"
 val appBundleId = "io.github.kevinah95.spacex"
 val appDescription = "Kotlin Multiplatform desktop app for browsing SpaceX launches."
 val appVendor = "Kevin A. Hernandez Rostran"
+val nativePackageVersion = appMarketingVersion.substringBefore('-').substringBefore('+')
 
 tasks.withType<Jar>().configureEach { manifest.attributes["Implementation-Version"] = appVersion }
 
@@ -60,7 +62,7 @@ compose.desktop {
       modules("java.sql")
       targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
       packageName = appDisplayName
-      packageVersion = appMarketingVersion
+      packageVersion = nativePackageVersion
       description = appDescription
       vendor = appVendor
       copyright = "Copyright 2026 $appVendor"
@@ -68,13 +70,17 @@ compose.desktop {
 
       macOS {
         packageName = appDisplayName
+        packageVersion = nativePackageVersion
+        dmgPackageVersion = nativePackageVersion
         dockName = appDisplayName
         bundleID = appBundleId
-        packageBuildVersion = appVersion
+        packageBuildVersion = appVersionCode
         appCategory = "public.app-category.utilities"
       }
 
       windows {
+        packageVersion = nativePackageVersion
+        msiPackageVersion = nativePackageVersion
         menuGroup = appDisplayName
         dirChooser = true
         perUserInstall = true
