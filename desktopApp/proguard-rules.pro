@@ -1,0 +1,10 @@
+-dontwarn org.graalvm.nativeimage.hosted.**
+-dontwarn com.oracle.svm.core.annotate.**
+-dontwarn org.conscrypt.**
+-dontwarn org.bouncycastle.**
+-dontwarn org.openjsse.**
+-dontwarn okhttp3.internal.graal.**
+-dontwarn okhttp3.internal.platform.**
+-keep class org.sqlite.** { *; }
+-keep class io.ktor.serialization.kotlinx.** { *; }
+-keep class io.ktor.serialization.kotlinx.json.** { *; }

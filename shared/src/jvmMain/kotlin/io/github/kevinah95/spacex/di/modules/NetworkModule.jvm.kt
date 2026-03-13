@@ -16,18 +16,10 @@
 package io.github.kevinah95.spacex.di.modules
 
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.okhttp.OkHttp
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import org.koin.dsl.module
 
-expect fun createPlatformHttpClient(json: Json): HttpClient
-
-val networkModule = module {
-  single {
-    createPlatformHttpClient(
-        Json {
-          ignoreUnknownKeys = true
-          useAlternativeNames = false
-        }
-    )
-  }
-}
+actual fun createPlatformHttpClient(json: Json): HttpClient =
+    HttpClient(OkHttp) { install(ContentNegotiation) { json(json) } }

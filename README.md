@@ -98,6 +98,9 @@ To run the Desktop app:
   .\gradlew.bat :desktopApp:run
   ```
 
+Useful tasks:
+- `./gradlew :desktopApp:packageReleaseDmg` builds the release DMG
+
 ## 🔢 Versioning
 
 - `app.version` in [gradle.properties](./gradle.properties) is the canonical semantic version for the app.

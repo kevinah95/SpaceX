@@ -32,6 +32,26 @@ jobs:
   android-build-and-distribute:
     needs: semantic-release
     if: needs.semantic-release.outputs.new_release_published == 'true'
+    uses: ./.github/workflows/android-build-and-distribute.yml
+    with:
+      release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}
+      release_notes: ${{ needs.semantic-release.outputs.new_release_notes }}
+      build_task: :androidApp:assembleAlphaRelease
+      artifact_path: ./androidApp/build/outputs/apk/alpha/release/androidApp-alpha-release.apk
+    secrets:
+      google-services-json: ${{ secrets.ALPHA_GOOGLE_SERVICES_JSON }}
+      keystore-base64: ${{ secrets.KEYSTORE_BASE64 }}
+      keystore-password: ${{ secrets.KEYSTORE_PASSWORD }}
+      key-alias: ${{ secrets.KEY_ALIAS }}
+      firebase-credential-file-content: ${{ secrets.ALPHA_FIREBASE_CREDENTIAL_FILE_CONTENT }}
+      firebase-app-id: ${{ secrets.ALPHA_FIREBASE_APP_ID }}
+
+  call-desktop-build-workflow:
+    needs: semantic-release
+    if: needs.semantic-release.outputs.new_release_published == 'true'
+    uses: ./.github/workflows/desktop-build-and-distribute.yml
+    with:
+      release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
