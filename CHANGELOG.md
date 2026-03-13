@@ -1,3 +1,10 @@
+# [3.4.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.3.0...v3.4.0-alpha.1) (2026-03-13)
+
+
+### Features
+
+* **cosign:** implement signing and uploading for artifacts ([894d6ca](https://github.com/kevinah95/SpaceX/commit/894d6ca0733d75b9fec0103734bf333bc9908fce))
+
 # [3.3.0](https://github.com/kevinah95/SpaceX/compare/v3.2.0...v3.3.0) (2026-03-13)
 
 
