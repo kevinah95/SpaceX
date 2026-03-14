@@ -1,3 +1,17 @@
+# [3.4.0](https://github.com/kevinah95/SpaceX/compare/v3.3.0...v3.4.0) (2026-03-14)
+
+
+### Bug Fixes
+
+* remove build-src and keep project clean ([#58](https://github.com/kevinah95/SpaceX/issues/58)) ([f35585b](https://github.com/kevinah95/SpaceX/commit/f35585b2a7dafe76ffa3d00ea4c785ab738287e1)), closes [#57](https://github.com/kevinah95/SpaceX/issues/57)
+
+
+### Features
+
+* **cosign:** implement signing and uploading for artifacts ([894d6ca](https://github.com/kevinah95/SpaceX/commit/894d6ca0733d75b9fec0103734bf333bc9908fce))
+* refactor project and test realease ([678368a](https://github.com/kevinah95/SpaceX/commit/678368a123fd54f86096ddbd113f7a732c5d65bd))
+* update spotless configuration to use ratchetFrom 'origin/prod' ([bc697ea](https://github.com/kevinah95/SpaceX/commit/bc697ea94676481c9d8e5a57ac2071a43d04f470))
+
 # [3.4.0-alpha.4](https://github.com/kevinah95/SpaceX/compare/v3.4.0-alpha.3...v3.4.0-alpha.4) (2026-03-14)
 
 
