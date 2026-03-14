@@ -18,7 +18,6 @@ rootProject.name = "SpaceX"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
-  includeBuild("build-logic")
   repositories {
     google {
       mavenContent {
@@ -33,8 +32,16 @@ pluginManagement {
 }
 
 plugins {
-  id("develocity")
+  id("com.gradle.develocity") version "4.2.2"
   id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
+}
+
+develocity {
+  buildScan {
+    publishing.onlyIf { !System.getenv("CI").isNullOrEmpty() }
+    termsOfUseUrl.set("https://gradle.com/help/legal-terms-of-use")
+    termsOfUseAgree.set("yes")
+  }
 }
 
 dependencyResolutionManagement {
