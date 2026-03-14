@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ plugins {
   alias(libs.plugins.kotlinJvm)
   alias(libs.plugins.composeMultiplatform)
   alias(libs.plugins.composeCompiler)
-  alias(libs.plugins.spotlessConventions)
 }
 
 val appVersion = providers.gradleProperty("app.version").get()
