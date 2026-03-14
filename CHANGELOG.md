@@ -1,3 +1,10 @@
+# [3.4.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v3.4.0-alpha.1...v3.4.0-alpha.2) (2026-03-14)
+
+
+### Features
+
+* refactor project and test realease ([678368a](https://github.com/kevinah95/SpaceX/commit/678368a123fd54f86096ddbd113f7a732c5d65bd))
+
 # [3.4.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.3.0...v3.4.0-alpha.1) (2026-03-13)
 
 
