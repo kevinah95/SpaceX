@@ -1,3 +1,10 @@
+# [3.4.0-alpha.4](https://github.com/kevinah95/SpaceX/compare/v3.4.0-alpha.3...v3.4.0-alpha.4) (2026-03-14)
+
+
+### Features
+
+* update spotless configuration to use ratchetFrom 'origin/prod' ([bc697ea](https://github.com/kevinah95/SpaceX/commit/bc697ea94676481c9d8e5a57ac2071a43d04f470))
+
 # [3.4.0-alpha.3](https://github.com/kevinah95/SpaceX/compare/v3.4.0-alpha.2...v3.4.0-alpha.3) (2026-03-14)
 
 
