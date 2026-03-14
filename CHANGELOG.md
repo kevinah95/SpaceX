@@ -1,3 +1,17 @@
+# [3.4.0-alpha.4](https://github.com/kevinah95/SpaceX/compare/v3.4.0-alpha.3...v3.4.0-alpha.4) (2026-03-14)
+
+
+### Features
+
+* update spotless configuration to use ratchetFrom 'origin/prod' ([bc697ea](https://github.com/kevinah95/SpaceX/commit/bc697ea94676481c9d8e5a57ac2071a43d04f470))
+
+# [3.4.0-alpha.3](https://github.com/kevinah95/SpaceX/compare/v3.4.0-alpha.2...v3.4.0-alpha.3) (2026-03-14)
+
+
+### Bug Fixes
+
+* remove build-src and keep project clean ([#58](https://github.com/kevinah95/SpaceX/issues/58)) ([f35585b](https://github.com/kevinah95/SpaceX/commit/f35585b2a7dafe76ffa3d00ea4c785ab738287e1)), closes [#57](https://github.com/kevinah95/SpaceX/issues/57)
+
 # [3.4.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v3.4.0-alpha.1...v3.4.0-alpha.2) (2026-03-14)
 
 
