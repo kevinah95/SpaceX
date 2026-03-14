@@ -26,6 +26,7 @@ firebase-gitlive-sdk = "2.4.0"
 firebase-bom = "34.4.0"
 google-services = "4.4.4"
 firebase-crashlytics-gradle = "3.0.6"
+spotless = "8.3.0"
 
 
 [libraries]
@@ -101,8 +102,8 @@ kotlinxSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 mokkery = { id = "dev.mokkery", version.ref = "mokkery" }
 # SQLDelight
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
-# Plugin Conventions
-spotlessConventions = { id = "spotless-conventions" }
+# Formatting
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 # Desktop
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 googleServices = { id = "com.google.gms.google-services", version.ref = "google-services" }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,8 +21,4 @@ repositories {
   mavenCentral()
 }
 
-// This dependency makes the Spotless plugin API available to your convention plugins
-dependencies {
-  implementation("com.diffplug.spotless:spotless-plugin-gradle:8.3.0")
-  implementation("com.gradle:develocity-gradle-plugin:4.2.2")
-}
+dependencies { implementation("com.gradle:develocity-gradle-plugin:4.2.2") }
