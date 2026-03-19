@@ -15,7 +15,9 @@
  */
 import org.gradle.api.tasks.JavaExec
 import org.gradle.jvm.tasks.Jar
+import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
   alias(libs.plugins.kotlinJvm)
@@ -32,12 +34,16 @@ val appBundleId = "io.github.kevinah95.spacex"
 val appDescription = "Kotlin Multiplatform desktop app for browsing SpaceX launches."
 val appVendor = "Kevin A. Hernandez Rostran"
 val nativePackageVersion = appMarketingVersion.substringBefore('-').substringBefore('+')
+val java21Launcher = javaToolchains.launcherFor { languageVersion.set(JavaLanguageVersion.of(21)) }
 
 tasks.withType<Jar>().configureEach { manifest.attributes["Implementation-Version"] = appVersion }
 
 tasks.withType<JavaExec>().configureEach { systemProperty("spacex.app.version", appVersion) }
 
 kotlin {
+  jvmToolchain(21)
+  compilerOptions { jvmTarget.set(JvmTarget.JVM_21) }
+
   dependencies {
     implementation(projects.composeApp)
     implementation(projects.shared)
@@ -49,6 +55,7 @@ kotlin {
 
 compose.desktop {
   application {
+    javaHome = java21Launcher.get().metadata.installationPath.asFile.absolutePath
     mainClass = "io.github.kevinah95.spacex.MainKt"
     jvmArgs += listOf("-Dspacex.app.version=$appVersion")
 

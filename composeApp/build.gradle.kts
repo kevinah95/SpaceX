@@ -24,6 +24,8 @@ plugins {
 }
 
 kotlin {
+  jvmToolchain(21)
+
   android {
     namespace = "io.github.kevinah95.spacex.library"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -55,7 +57,7 @@ kotlin {
     )
   }
 
-  jvm()
+  jvm { compilerOptions { jvmTarget.set(JvmTarget.JVM_21) } }
 
   sourceSets {
     androidMain.dependencies {
