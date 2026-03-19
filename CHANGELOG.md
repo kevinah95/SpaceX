@@ -1,3 +1,10 @@
+# [3.5.0-alpha.3](https://github.com/kevinah95/SpaceX/compare/v3.5.0-alpha.2...v3.5.0-alpha.3) (2026-03-19)
+
+
+### Features
+
+* **desktopApp:** add run configuration for desktop application ([4027631](https://github.com/kevinah95/SpaceX/commit/4027631002a356f1ce7082cdc94551e12c9e94c5))
+
 # [3.5.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v3.5.0-alpha.1...v3.5.0-alpha.2) (2026-03-19)
 
 
