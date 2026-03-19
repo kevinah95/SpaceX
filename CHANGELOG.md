@@ -1,3 +1,10 @@
+# [3.5.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v3.5.0-alpha.1...v3.5.0-alpha.2) (2026-03-19)
+
+
+### Bug Fixes
+
+* **desktop:** update jvm toolchain to version 21 ([6438220](https://github.com/kevinah95/SpaceX/commit/64382205fb39dfda10085327132ad49f988cb25d))
+
 # [3.5.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.4.0...v3.5.0-alpha.1) (2026-03-19)
 
 
