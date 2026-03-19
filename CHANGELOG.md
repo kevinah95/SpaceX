@@ -1,3 +1,10 @@
+# [3.5.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.4.0...v3.5.0-alpha.1) (2026-03-19)
+
+
+### Features
+
+* **iosApp:** add Xcode scheme and configuration for iosApp ([8e36e59](https://github.com/kevinah95/SpaceX/commit/8e36e59e91cba9a699921d8bb00dcd872981caaa))
+
 # [3.4.0](https://github.com/kevinah95/SpaceX/compare/v3.3.0...v3.4.0) (2026-03-14)
 
 
