@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ pluginManagement {
 }
 
 plugins {
-  id("com.gradle.develocity") version "4.2.2"
+  id("com.gradle.develocity") version "4.3.2"
   id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
