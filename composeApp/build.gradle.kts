@@ -38,7 +38,6 @@ kotlin {
       baseName = "ComposeApp"
       isStatic = true
       freeCompilerArgs += "-Xbinary=bundleId=io.github.kevinah95.composeapp"
-      // linkerOpts.add("-lsqlite3")
     }
   }
 
