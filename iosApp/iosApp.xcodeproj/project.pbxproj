@@ -7,38 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D7F7DEF02F61320A00B038C8 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = D7F7DEEF2F61320A00B038C8 /* FirebaseAnalytics */; };
-		D7F7DEF22F61320A00B038C8 /* FirebaseAnalyticsCore in Frameworks */ = {isa = PBXBuildFile; productRef = D7F7DEF12F61320A00B038C8 /* FirebaseAnalyticsCore */; };
-		D7F7DEF42F61320A00B038C8 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = D7F7DEF32F61320A00B038C8 /* FirebaseCore */; };
-		D7F7DEF62F61320A00B038C8 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = D7F7DEF52F61320A00B038C8 /* FirebaseCrashlytics */; };
-		D7F7DEF82F61320A00B038C8 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D7F7DEF72F61320A00B038C8 /* FirebaseAuth */; };
-		D7F7DEFA2F61320A00B038C8 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = D7F7DEF92F61320A00B038C8 /* FirebaseMessaging */; };
+		87E81CD46F7F404B7BC33656 = {
+			isa = PBXBuildFile;
+			productRef = 1A2F9D007E93D738F718D1BE;
+		};
+		D7F7DEF02F61320A00B038C8 = {
+			isa = PBXBuildFile;
+			productRef = D7F7DEEF2F61320A00B038C8;
+		};
+		D7F7DEF22F61320A00B038C8 = {
+			isa = PBXBuildFile;
+			productRef = D7F7DEF12F61320A00B038C8;
+		};
+		D7F7DEF42F61320A00B038C8 = {
+			isa = PBXBuildFile;
+			productRef = D7F7DEF32F61320A00B038C8;
+		};
+		D7F7DEF62F61320A00B038C8 = {
+			isa = PBXBuildFile;
+			productRef = D7F7DEF52F61320A00B038C8;
+		};
+		D7F7DEF82F61320A00B038C8 = {
+			isa = PBXBuildFile;
+			productRef = D7F7DEF72F61320A00B038C8;
+		};
+		D7F7DEFA2F61320A00B038C8 = {
+			isa = PBXBuildFile;
+			productRef = D7F7DEF92F61320A00B038C8;
+		};
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1F6E69666C26B0CA2DF420D4 /* SpaceX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F6E69666C26B0CA2DF420D4 = {
+			isa = PBXFileReference;
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+			path = SpaceX.app;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		875AD18EA23C5990009EB33C /* Exceptions for "iosApp" folder in "iosApp" target */ = {
+		875AD18EA23C5990009EB33C = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = FCB013E1FFFF29E130587492 /* iosApp */;
+			target = FCB013E1FFFF29E130587492;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		3BBD5B8A149737954557EEEA /* iosApp */ = {
+		3BBD5B8A149737954557EEEA = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				875AD18EA23C5990009EB33C /* Exceptions for "iosApp" folder in "iosApp" target */,
+				875AD18EA23C5990009EB33C,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
 		};
-		FE10E5C83BAA3069E3A2CD75 /* Configuration */ = {
+		FE10E5C83BAA3069E3A2CD75 = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Configuration;
 			sourceTree = "<group>";
@@ -46,16 +74,17 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		826F1AC8B8F593D71E0BDF0E /* Frameworks */ = {
+		826F1AC8B8F593D71E0BDF0E = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7F7DEFA2F61320A00B038C8 /* FirebaseMessaging in Frameworks */,
-				D7F7DEF82F61320A00B038C8 /* FirebaseAuth in Frameworks */,
-				D7F7DEF02F61320A00B038C8 /* FirebaseAnalytics in Frameworks */,
-				D7F7DEF62F61320A00B038C8 /* FirebaseCrashlytics in Frameworks */,
-				D7F7DEF42F61320A00B038C8 /* FirebaseCore in Frameworks */,
-				D7F7DEF22F61320A00B038C8 /* FirebaseAnalyticsCore in Frameworks */,
+				D7F7DEFA2F61320A00B038C8,
+				D7F7DEF82F61320A00B038C8,
+				D7F7DEF02F61320A00B038C8,
+				D7F7DEF62F61320A00B038C8,
+				D7F7DEF42F61320A00B038C8,
+				D7F7DEF22F61320A00B038C8,
+				87E81CD46F7F404B7BC33656,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,16 +94,16 @@
 		2ED7D330BC267B7E277ED256 = {
 			isa = PBXGroup;
 			children = (
-				FE10E5C83BAA3069E3A2CD75 /* Configuration */,
-				3BBD5B8A149737954557EEEA /* iosApp */,
-				5DCC440750C9D80BBFB176B1 /* Products */,
+				FE10E5C83BAA3069E3A2CD75,
+				3BBD5B8A149737954557EEEA,
+				5DCC440750C9D80BBFB176B1,
 			);
 			sourceTree = "<group>";
 		};
-		5DCC440750C9D80BBFB176B1 /* Products */ = {
+		5DCC440750C9D80BBFB176B1 = {
 			isa = PBXGroup;
 			children = (
-				1F6E69666C26B0CA2DF420D4 /* SpaceX.app */,
+				1F6E69666C26B0CA2DF420D4,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,40 +111,35 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FCB013E1FFFF29E130587492 /* iosApp */ = {
+		FCB013E1FFFF29E130587492 = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0BCD527A0CA3CD35FE615B86 /* Build configuration list for PBXNativeTarget "iosApp" */;
+			buildConfigurationList = 0BCD527A0CA3CD35FE615B86;
 			buildPhases = (
-				8955DC9123D92DA95C44EAFD /* Compile Kotlin Framework */,
-				2365F4FAEA16274098239AB5 /* Sources */,
-				826F1AC8B8F593D71E0BDF0E /* Frameworks */,
-				1EB22E1B8C8CFE0B60D96460 /* Resources */,
-				D7F7DEFC2F61320A00B038C8 /* Upload Crashlytics Symbols */,
+				8955DC9123D92DA95C44EAFD,
+				2365F4FAEA16274098239AB5,
+				826F1AC8B8F593D71E0BDF0E,
+				1EB22E1B8C8CFE0B60D96460,
+				D7F7DEFC2F61320A00B038C8,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				3BBD5B8A149737954557EEEA /* iosApp */,
+				3BBD5B8A149737954557EEEA,
 			);
 			name = iosApp;
 			packageProductDependencies = (
-				D7F7DEF72F61320A00B038C8 /* FirebaseAuth */,
-				D7F7DEF92F61320A00B038C8 /* FirebaseMessaging */,
-				D7F7DEEF2F61320A00B038C8 /* FirebaseAnalytics */,
-				D7F7DEF12F61320A00B038C8 /* FirebaseAnalyticsCore */,
-				D7F7DEF32F61320A00B038C8 /* FirebaseCore */,
-				D7F7DEF52F61320A00B038C8 /* FirebaseCrashlytics */,
+				1A2F9D007E93D738F718D1BE,
 			);
 			productName = iosApp;
-			productReference = 1F6E69666C26B0CA2DF420D4 /* SpaceX.app */;
+			productReference = 1F6E69666C26B0CA2DF420D4;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		964FDC0A6E46ED5E14C07F83 /* Project object */ = {
+		964FDC0A6E46ED5E14C07F83 = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
@@ -127,7 +151,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 48455FAE0E42E7B2B98AE3B7 /* Build configuration list for PBXProject "iosApp" */;
+			buildConfigurationList = 48455FAE0E42E7B2B98AE3B7;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -137,20 +161,21 @@
 			mainGroup = 2ED7D330BC267B7E277ED256;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D7F7DEEE2F61320A00B038C8,
+				FC4AB4FC1B9AC3B21409B141,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 5DCC440750C9D80BBFB176B1 /* Products */;
+			productRefGroup = 5DCC440750C9D80BBFB176B1;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FCB013E1FFFF29E130587492 /* iosApp */,
+				FCB013E1FFFF29E130587492,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1EB22E1B8C8CFE0B60D96460 /* Resources */ = {
+		1EB22E1B8C8CFE0B60D96460 = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -160,7 +185,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8955DC9123D92DA95C44EAFD /* Compile Kotlin Framework */ = {
+		8955DC9123D92DA95C44EAFD = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -177,9 +202,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :composeApp:embedAndSignAppleFrameworkForXcode\n";
+			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew --no-configuration-cache :composeApp:embedAndSignAppleFrameworkForXcode\n";
 		};
-		D7F7DEFC2F61320A00B038C8 /* Upload Crashlytics Symbols */ = {
+		D7F7DEFC2F61320A00B038C8 = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -201,7 +226,7 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		2365F4FAEA16274098239AB5 /* Sources */ = {
+		2365F4FAEA16274098239AB5 = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -211,9 +236,9 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		61482D18BDD37B4589BE8761 /* Debug */ = {
+		61482D18BDD37B4589BE8761 = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = FE10E5C83BAA3069E3A2CD75 /* Configuration */;
+			baseConfigurationReferenceAnchor = FE10E5C83BAA3069E3A2CD75;
 			baseConfigurationReferenceRelativePath = Config.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -276,9 +301,9 @@
 			};
 			name = Debug;
 		};
-		BB26EADE47EA1C1123CA3410 /* Release */ = {
+		BB26EADE47EA1C1123CA3410 = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReferenceAnchor = FE10E5C83BAA3069E3A2CD75 /* Configuration */;
+			baseConfigurationReferenceAnchor = FE10E5C83BAA3069E3A2CD75;
 			baseConfigurationReferenceRelativePath = Config.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -334,7 +359,7 @@
 			};
 			name = Release;
 		};
-		D4EBB6C303EE12751D18149E /* Debug */ = {
+		D4EBB6C303EE12751D18149E = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
@@ -346,7 +371,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
-				DEVELOPMENT_TEAM = "${TEAM_ID}";
+				DEVELOPMENT_TEAM = 9W786X2DCC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
@@ -366,7 +391,7 @@
 			};
 			name = Debug;
 		};
-		F6C6B2BF228945477EFFC5FD /* Release */ = {
+		F6C6B2BF228945477EFFC5FD = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
@@ -401,28 +426,35 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0BCD527A0CA3CD35FE615B86 /* Build configuration list for PBXNativeTarget "iosApp" */ = {
+		0BCD527A0CA3CD35FE615B86 = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D4EBB6C303EE12751D18149E /* Debug */,
-				F6C6B2BF228945477EFFC5FD /* Release */,
+				D4EBB6C303EE12751D18149E,
+				F6C6B2BF228945477EFFC5FD,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		48455FAE0E42E7B2B98AE3B7 /* Build configuration list for PBXProject "iosApp" */ = {
+		48455FAE0E42E7B2B98AE3B7 = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				61482D18BDD37B4589BE8761 /* Debug */,
-				BB26EADE47EA1C1123CA3410 /* Release */,
+				61482D18BDD37B4589BE8761,
+				BB26EADE47EA1C1123CA3410,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		FC4AB4FC1B9AC3B21409B141 = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = _internal_linkage_SwiftPMImport;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
-		D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		D7F7DEEE2F61320A00B038C8 = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -433,37 +465,41 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D7F7DEEF2F61320A00B038C8 /* FirebaseAnalytics */ = {
+		1A2F9D007E93D738F718D1BE = {
 			isa = XCSwiftPackageProductDependency;
-			package = D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = _internal_linkage_SwiftPMImport;
+		};
+		D7F7DEEF2F61320A00B038C8 = {
+			isa = XCSwiftPackageProductDependency;
+			package = D7F7DEEE2F61320A00B038C8;
 			productName = FirebaseAnalytics;
 		};
-		D7F7DEF12F61320A00B038C8 /* FirebaseAnalyticsCore */ = {
+		D7F7DEF12F61320A00B038C8 = {
 			isa = XCSwiftPackageProductDependency;
-			package = D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = D7F7DEEE2F61320A00B038C8;
 			productName = FirebaseAnalyticsCore;
 		};
-		D7F7DEF32F61320A00B038C8 /* FirebaseCore */ = {
+		D7F7DEF32F61320A00B038C8 = {
 			isa = XCSwiftPackageProductDependency;
-			package = D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = D7F7DEEE2F61320A00B038C8;
 			productName = FirebaseCore;
 		};
-		D7F7DEF52F61320A00B038C8 /* FirebaseCrashlytics */ = {
+		D7F7DEF52F61320A00B038C8 = {
 			isa = XCSwiftPackageProductDependency;
-			package = D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = D7F7DEEE2F61320A00B038C8;
 			productName = FirebaseCrashlytics;
 		};
-		D7F7DEF72F61320A00B038C8 /* FirebaseAuth */ = {
+		D7F7DEF72F61320A00B038C8 = {
 			isa = XCSwiftPackageProductDependency;
-			package = D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = D7F7DEEE2F61320A00B038C8;
 			productName = FirebaseAuth;
 		};
-		D7F7DEF92F61320A00B038C8 /* FirebaseMessaging */ = {
+		D7F7DEF92F61320A00B038C8 = {
 			isa = XCSwiftPackageProductDependency;
-			package = D7F7DEEE2F61320A00B038C8 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = D7F7DEEE2F61320A00B038C8;
 			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 964FDC0A6E46ED5E14C07F83 /* Project object */;
+	rootObject = 964FDC0A6E46ED5E14C07F83;
 }

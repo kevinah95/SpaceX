@@ -43,6 +43,9 @@ tasks:
         - CLI_ARGS
     cmds:
       - node ./scripts/sync-version.mjs {{.CLI_ARGS}}
+  gradle:tasks:
+    cmds:
+      - ./gradlew tasks
   spotless:
     cmds:
       - ./gradlew spotlessApply

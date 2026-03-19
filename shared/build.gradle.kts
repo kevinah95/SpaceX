@@ -37,6 +37,21 @@ kotlin {
   iosArm64()
   iosSimulatorArm64()
 
+  swiftPMDependencies {
+    swiftPackage(
+        url = url("https://github.com/firebase/firebase-ios-sdk.git"),
+        version = from("12.10.0"),
+        products =
+            listOf(
+                product("FirebaseCore"),
+                product("FirebaseAnalytics"),
+                product("FirebaseCrashlytics"),
+                product("FirebaseAuth"),
+                product("FirebaseMessaging"),
+            ),
+    )
+  }
+
   jvm()
 
   sourceSets {

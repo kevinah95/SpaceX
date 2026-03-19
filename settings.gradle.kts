@@ -19,6 +19,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
   repositories {
+    maven("https://packages.jetbrains.team/maven/p/kt/dev")
     google {
       mavenContent {
         includeGroupAndSubgroups("androidx")
@@ -46,6 +47,7 @@ develocity {
 
 dependencyResolutionManagement {
   repositories {
+    maven("https://packages.jetbrains.team/maven/p/kt/dev")
     google {
       mavenContent {
         includeGroupAndSubgroups("androidx")
