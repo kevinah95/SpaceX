@@ -35,10 +35,11 @@ kotlin {
     androidResources { enable = true }
   }
 
-  iosX64()
+  // https://kotlinlang.org/docs/native-target-support.html
   iosArm64()
   iosSimulatorArm64()
 
+  // https://kotlinlang.org/docs/multiplatform/multiplatform-spm-import.html#add-and-call-swiftpm-dependencies
   swiftPMDependencies {
     swiftPackage(
         url = url("https://github.com/firebase/firebase-ios-sdk.git"),

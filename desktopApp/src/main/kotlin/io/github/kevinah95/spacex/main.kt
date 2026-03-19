@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ fun main() {
   application {
     val state =
         rememberWindowState(
-            size = DpSize(400.dp, 350.dp),
+            size = DpSize(600.dp, 550.dp),
             position = WindowPosition(300.dp, 300.dp),
         )
     Window(
