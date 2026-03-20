@@ -1,3 +1,16 @@
+# [3.5.0](https://github.com/kevinah95/SpaceX/compare/v3.4.0...v3.5.0) (2026-03-20)
+
+
+### Bug Fixes
+
+* **desktop:** update jvm toolchain to version 21 ([6438220](https://github.com/kevinah95/SpaceX/commit/64382205fb39dfda10085327132ad49f988cb25d))
+
+
+### Features
+
+* **desktopApp:** add run configuration for desktop application ([4027631](https://github.com/kevinah95/SpaceX/commit/4027631002a356f1ce7082cdc94551e12c9e94c5))
+* **iosApp:** add Xcode scheme and configuration for iosApp ([8e36e59](https://github.com/kevinah95/SpaceX/commit/8e36e59e91cba9a699921d8bb00dcd872981caaa))
+
 # [3.5.0-alpha.3](https://github.com/kevinah95/SpaceX/compare/v3.5.0-alpha.2...v3.5.0-alpha.3) (2026-03-19)
 
 
