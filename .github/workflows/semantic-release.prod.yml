@@ -84,3 +84,24 @@ jobs:
           release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}
           gradle_task: ${{ matrix.gradle_task }}
           artifact_glob: ${{ matrix.artifact_glob }}
+
+  backmerge-prod-to-alpha:
+    needs:
+      - semantic-release
+    if: needs.semantic-release.outputs.new_release_published == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Backmerge prod into alpha
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git fetch origin
+          git checkout alpha
+          git merge --no-ff -m "chore(backmerge): merge prod into alpha [skip ci]" origin/prod
+          git push origin alpha
