@@ -43,20 +43,6 @@ kotlin {
     }
   }
 
-  swiftPMDependencies {
-    xcodeProjectPathForKmpIJPlugin.set(layout.projectDirectory.file("../iosApp/iosApp.xcodeproj"))
-    swiftPackage(
-        url = url("https://github.com/firebase/firebase-ios-sdk.git"),
-        version = from("12.10.0"),
-        products =
-            listOf(
-                product("FirebaseCore"),
-                product("FirebaseAnalytics"),
-                product("FirebaseCrashlytics"),
-            ),
-    )
-  }
-
   jvm { compilerOptions { jvmTarget.set(JvmTarget.JVM_21) } }
 
   sourceSets {

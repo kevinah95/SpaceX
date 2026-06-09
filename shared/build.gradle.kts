@@ -39,22 +39,6 @@ kotlin {
   iosArm64()
   iosSimulatorArm64()
 
-  // https://kotlinlang.org/docs/multiplatform/multiplatform-spm-import.html#add-and-call-swiftpm-dependencies
-  swiftPMDependencies {
-    swiftPackage(
-        url = url("https://github.com/firebase/firebase-ios-sdk.git"),
-        version = from("12.10.0"),
-        products =
-            listOf(
-                product("FirebaseCore"),
-                product("FirebaseAnalytics"),
-                product("FirebaseCrashlytics"),
-                product("FirebaseAuth"),
-                product("FirebaseMessaging"),
-            ),
-    )
-  }
-
   jvm { compilerOptions { jvmTarget.set(JvmTarget.JVM_21) } }
 
   sourceSets {
