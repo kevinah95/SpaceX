@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,11 +19,14 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,7 +44,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 import io.github.kevinah95.spacex.presentation.rocketLaunch.RocketLaunchViewModel
 import io.github.kevinah95.spacex.theme.app_theme_successful
@@ -83,28 +88,35 @@ fun LaunchListScreen(
     } else {
       LazyColumn {
         items(state.launches) { launch: RocketLaunch ->
-          Column(
-              modifier = Modifier.fillMaxWidth().clickable { onLaunchClick(launch) }.padding(16.dp)
+          Row(
+              verticalAlignment = Alignment.CenterVertically,
+              modifier = Modifier.fillMaxWidth().clickable { onLaunchClick(launch) }.padding(16.dp),
           ) {
-            Text(
-                text = "${launch.missionName} — ${launch.launchYear}",
-                style = MaterialTheme.typography.headlineSmall,
+            LaunchPatchThumbnail(
+                imageUrl = launch.links.patch?.small,
+                contentDescription = "Mission patch for ${launch.missionName}",
             )
-            Spacer(Modifier.height(8.dp))
-            Text(
-                text = if (launch.launchSuccess == true) "Successful" else "Unsuccessful",
-                color =
-                    if (launch.launchSuccess == true) app_theme_successful
-                    else app_theme_unsuccessful,
-            )
-            Spacer(Modifier.height(8.dp))
-            val details = launch.details
-            if (!details.isNullOrBlank()) {
+            Column(modifier = Modifier.fillMaxWidth()) {
               Text(
-                  text = details,
-                  style = MaterialTheme.typography.bodyMedium,
-                  maxLines = 2,
+                  text = "${launch.missionName} — ${launch.launchYear}",
+                  style = MaterialTheme.typography.headlineSmall,
               )
+              Spacer(Modifier.height(8.dp))
+              Text(
+                  text = if (launch.launchSuccess == true) "Successful" else "Unsuccessful",
+                  color =
+                      if (launch.launchSuccess == true) app_theme_successful
+                      else app_theme_unsuccessful,
+              )
+              Spacer(Modifier.height(8.dp))
+              val details = launch.details
+              if (!details.isNullOrBlank()) {
+                Text(
+                    text = details,
+                    style = MaterialTheme.typography.bodyMedium,
+                    maxLines = 2,
+                )
+              }
             }
           }
           HorizontalDivider()
@@ -112,4 +124,21 @@ fun LaunchListScreen(
       }
     }
   }
+}
+
+@Composable
+private fun LaunchPatchThumbnail(imageUrl: String?, contentDescription: String) {
+  val usableUrl = imageUrl?.takeIf { it.isNotBlank() } ?: return
+  var showImage by remember(usableUrl) { mutableStateOf(true) }
+
+  if (!showImage) return
+
+  AsyncImage(
+      model = usableUrl,
+      contentDescription = contentDescription,
+      contentScale = ContentScale.Fit,
+      onError = { showImage = false },
+      modifier = Modifier.size(64.dp),
+  )
+  Spacer(Modifier.width(16.dp))
 }

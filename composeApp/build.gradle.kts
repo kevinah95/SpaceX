@@ -82,6 +82,8 @@ kotlin {
       implementation(libs.koin.compose.viewmodel)
       implementation(libs.koin.compose.viewmodel.navigation)
       implementation(libs.compose.navigation)
+      implementation(libs.coil.compose)
+      implementation(libs.coil.network.ktor3)
       implementation(libs.kotlinx.serialization.json)
     }
     commonTest.dependencies { implementation(libs.kotlin.test) }
