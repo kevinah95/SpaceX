@@ -1,3 +1,10 @@
+## [3.5.1-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.5.0...v3.5.1-alpha.1) (2026-06-16)
+
+
+### Bug Fixes
+
+* Remove old api and use thespacedevs url ([bfe0296](https://github.com/kevinah95/SpaceX/commit/bfe0296e69dea7fbe388896d70b5e4b1d13a2365))
+
 # [3.5.0](https://github.com/kevinah95/SpaceX/compare/v3.4.0...v3.5.0) (2026-03-20)
 
 
