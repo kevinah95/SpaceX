@@ -1,7 +1,7 @@
 import kotlin.Boolean;
 
 CREATE TABLE Launch (
-    flightNumber INTEGER NOT NULL,
+    id TEXT NOT NULL,
     missionName TEXT NOT NULL,
     details TEXT,
     launchSuccess INTEGER AS Boolean DEFAULT NULL,
@@ -11,8 +11,13 @@ CREATE TABLE Launch (
     articleUrl TEXT
 );
 
+CREATE TABLE AppMetadata (
+    key TEXT NOT NULL PRIMARY KEY,
+    value TEXT NOT NULL
+);
+
 insertLaunch:
-INSERT INTO Launch(flightNumber, missionName, details, launchSuccess, launchDateUTC, patchUrlSmall, patchUrlLarge, articleUrl)
+INSERT INTO Launch(id, missionName, details, launchSuccess, launchDateUTC, patchUrlSmall, patchUrlLarge, articleUrl)
 VALUES(?, ?, ?, ?, ?, ?, ?, ?);
 
 removeAllLaunches:
@@ -21,3 +26,9 @@ DELETE FROM Launch;
 selectAllLaunchesInfo:
 SELECT Launch.*
 FROM Launch;
+
+getMetadata:
+SELECT value FROM AppMetadata WHERE key = ?;
+
+upsertMetadata:
+INSERT OR REPLACE INTO AppMetadata(key, value) VALUES(?, ?);

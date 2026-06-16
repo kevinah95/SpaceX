@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,26 +15,29 @@
  */
 package io.github.kevinah95.spacex.domain.entity
 
-import kotlinx.serialization.SerialName
+import kotlinx.datetime.Instant
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toLocalDateTime
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class RocketLaunch(
-    @SerialName("flight_number") val flightNumber: Int,
-    @SerialName("name") val missionName: String,
-    @SerialName("date_utc") val launchDateUTC: String,
-    @SerialName("details") val details: String?,
-    @SerialName("success") val launchSuccess: Boolean?,
-    @SerialName("links") val links: Links,
+    val id: String,
+    val missionName: String,
+    val launchDateUTC: String,
+    val details: String?,
+    val launchSuccess: Boolean?,
+    val links: Links,
 ) {
-  var launchYear = 2025 // TODO: Default value, should be parsed from launchDateUTC
+  val launchYear: Int
+    get() =
+        try {
+          Instant.parse(launchDateUTC).toLocalDateTime(TimeZone.UTC).year
+        } catch (e: Exception) {
+          0
+        }
 }
 
-@Serializable
-data class Links(
-    @SerialName("patch") val patch: Patch?,
-    @SerialName("article") val article: String?,
-)
+@Serializable data class Links(val patch: Patch?, val article: String?)
 
-@Serializable
-data class Patch(@SerialName("small") val small: String?, @SerialName("large") val large: String?)
+@Serializable data class Patch(val small: String?, val large: String?)

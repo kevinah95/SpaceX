@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -89,8 +89,8 @@ fun App(
         topBar = {
           val launch =
               if (isOnDetail) {
-                val flightNumber = navBackStackEntry?.toRoute<LaunchDetail>()?.flightNumber
-                state.launches.find { it.flightNumber == flightNumber }
+                val id = navBackStackEntry?.toRoute<LaunchDetail>()?.id
+                state.launches.find { it.id == id }
               } else null
 
           if (!isOnAuth) {
@@ -190,9 +190,7 @@ fun App(
         composable<LaunchList> {
           LaunchListScreen(
               paddingValues = paddingValues,
-              onLaunchClick = { launch ->
-                navController.navigate(LaunchDetail(flightNumber = launch.flightNumber))
-              },
+              onLaunchClick = { launch -> navController.navigate(LaunchDetail(id = launch.id)) },
               viewModel = viewModel,
           )
         }
@@ -200,7 +198,7 @@ fun App(
           val route = backStackEntry.toRoute<LaunchDetail>()
           LaunchDetailScreen(
               paddingValues = paddingValues,
-              flightNumber = route.flightNumber,
+              id = route.id,
               viewModel = viewModel,
           )
         }

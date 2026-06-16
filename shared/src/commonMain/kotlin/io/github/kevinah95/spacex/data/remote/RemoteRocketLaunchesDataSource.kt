@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,9 @@
  */
 package io.github.kevinah95.spacex.data.remote
 
+import io.github.kevinah95.spacex.data.remote.dto.SpaceDevsLaunchResponse
+import io.github.kevinah95.spacex.domain.entity.Links
+import io.github.kevinah95.spacex.domain.entity.Patch
 import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -24,15 +27,40 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
+private const val LAUNCHES_URL =
+    "https://ll.thespacedevs.com/2.3.0/launches/?format=json&mode=normal"
+
 class RemoteRocketLaunchesDataSource(
     private val httpClient: HttpClient,
     private val ioDispatcher: CoroutineDispatcher,
 ) : IRemoteRocketLaunchesDataSource {
   override fun latestLaunches(): Flow<List<RocketLaunch>> =
       flow {
-            val latestLaunches =
-                httpClient.get("https://api.spacexdata.com/v5/launches").body<List<RocketLaunch>>()
-            emit(latestLaunches)
+            val response = httpClient.get(LAUNCHES_URL).body<SpaceDevsLaunchResponse>()
+            val launches =
+                response.results.map { dto ->
+                  RocketLaunch(
+                      id = dto.id,
+                      missionName = dto.name,
+                      launchDateUTC = dto.net,
+                      details = dto.mission?.description,
+                      launchSuccess =
+                          when (dto.status.abbrev) {
+                            "Success" -> true
+                            "Failure" -> false
+                            else -> null
+                          },
+                      links =
+                          Links(
+                              patch =
+                                  dto.image?.let {
+                                    Patch(small = it.thumbnailUrl, large = it.imageUrl)
+                                  },
+                              article = null,
+                          ),
+                  )
+                }
+            emit(launches)
           }
           .flowOn(ioDispatcher)
 }

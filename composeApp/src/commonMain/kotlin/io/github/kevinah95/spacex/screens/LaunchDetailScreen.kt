@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,11 +35,11 @@ import io.github.kevinah95.spacex.theme.app_theme_unsuccessful
 @Composable
 fun LaunchDetailScreen(
     paddingValues: PaddingValues,
-    flightNumber: Int,
+    id: String,
     viewModel: RocketLaunchViewModel,
 ) {
   val state by viewModel.uiState.collectAsState()
-  val launch = state.launches.find { it.flightNumber == flightNumber }
+  val launch = state.launches.find { it.id == id }
 
   if (launch == null) {
     Column(modifier = Modifier.fillMaxSize().padding(paddingValues).padding(16.dp)) {
@@ -50,12 +50,6 @@ fun LaunchDetailScreen(
       Text(
           text = "${launch.missionName} — ${launch.launchYear}",
           style = MaterialTheme.typography.headlineSmall,
-      )
-      Spacer(Modifier.height(8.dp))
-      Text(
-          text = "Flight #${launch.flightNumber}",
-          style = MaterialTheme.typography.labelLarge,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
       )
       Spacer(Modifier.height(8.dp))
       Text(

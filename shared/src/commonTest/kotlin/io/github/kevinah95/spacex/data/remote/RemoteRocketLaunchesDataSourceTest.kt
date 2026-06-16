@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,41 +40,62 @@ class RemoteRocketLaunchesDataSourceTest {
     // Arrange
     val mockResponse =
         """
-        [
-          {
-            "flight_number": 1,
-            "name": "FalconSat",
-            "date_utc": "2006-03-24T22:30:00.000Z",
-            "details": "Engine failure at 33 seconds and loss of vehicle",
-            "success": false,
-            "links": {
-              "patch": {
-                "small": "https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png",
-                "large": "https://images2.imgbox.com/40/e3/GypSkayF_o.png"
+        {
+          "count": 2,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "id": "e3df2ecd-c239-472f-95e4-2b89b4f75800",
+              "url": "https://ll.thespacedevs.com/2.3.0/launches/e3df2ecd/",
+              "name": "FalconSat",
+              "response_mode": "list",
+              "slug": "falconsat",
+              "launch_designator": "2006-001",
+              "status": { "id": 4, "name": "Launch Failure", "abbrev": "Failure", "description": "Failure" },
+              "last_updated": "2024-01-01T00:00:00Z",
+              "net": "2006-03-24T22:30:00.000Z",
+              "net_precision": null,
+              "window_end": "2006-03-24T22:30:00.000Z",
+              "window_start": "2006-03-24T22:30:00.000Z",
+              "image": {
+                "id": 1,
+                "name": "FalconSat image",
+                "image_url": "https://example.com/large.png",
+                "thumbnail_url": "https://example.com/small.png",
+                "credit": null,
+                "license": { "id": 1, "name": "Unknown", "priority": 9, "link": null },
+                "single_use": true,
+                "variants": []
               },
-              "article": "https://www.space.com/2196-spacex-inaugural-falcon-1-rocket-lost-launch.html"
+              "infographic": null
+            },
+            {
+              "id": "f8c9f344-a6df-4f30-873a-90fe3a7840b3",
+              "url": "https://ll.thespacedevs.com/2.3.0/launches/f8c9f344/",
+              "name": "DemoSat",
+              "response_mode": "list",
+              "slug": "demosat",
+              "launch_designator": "2007-001",
+              "status": { "id": 3, "name": "Launch Successful", "abbrev": "Success", "description": "Success" },
+              "last_updated": "2024-01-01T00:00:00Z",
+              "net": "2007-03-21T01:10:00.000Z",
+              "net_precision": null,
+              "window_end": "2007-03-21T01:10:00.000Z",
+              "window_start": "2007-03-21T01:10:00.000Z",
+              "image": null,
+              "infographic": null
             }
-          },
-          {
-            "flight_number": 2,
-            "name": "DemoSat",
-            "date_utc": "2007-03-21T01:10:00.000Z",
-            "details": "Successful first stage burn and transition to second stage",
-            "success": true,
-            "links": {
-              "patch": {
-                "small": "https://images2.imgbox.com/4f/e3/I0lkuJ2e_o.png",
-                "large": "https://images2.imgbox.com/3d/86/cnu0pan8_o.png"
-              },
-              "article": null
-            }
-          }
-        ]
+          ]
+        }
         """
             .trimIndent()
 
     val mockEngine = MockEngine { request ->
-      assertEquals("https://api.spacexdata.com/v5/launches", request.url.toString())
+      assertEquals(
+          "https://ll.thespacedevs.com/2.3.0/launches/?format=json",
+          request.url.toString(),
+      )
       respond(
           content = mockResponse,
           status = HttpStatusCode.OK,
@@ -96,34 +117,29 @@ class RemoteRocketLaunchesDataSourceTest {
     // Assert
     assertEquals(2, result.size)
 
-    assertEquals(1, result[0].flightNumber)
+    assertEquals("e3df2ecd-c239-472f-95e4-2b89b4f75800", result[0].id)
     assertEquals("FalconSat", result[0].missionName)
     assertEquals("2006-03-24T22:30:00.000Z", result[0].launchDateUTC)
-    assertEquals("Engine failure at 33 seconds and loss of vehicle", result[0].details)
+    assertEquals(null, result[0].details)
     assertEquals(false, result[0].launchSuccess)
-    assertEquals("https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png", result[0].links.patch?.small)
-    assertEquals("https://images2.imgbox.com/40/e3/GypSkayF_o.png", result[0].links.patch?.large)
-    assertEquals(
-        "https://www.space.com/2196-spacex-inaugural-falcon-1-rocket-lost-launch.html",
-        result[0].links.article,
-    )
+    assertEquals("https://example.com/small.png", result[0].links.patch?.small)
+    assertEquals("https://example.com/large.png", result[0].links.patch?.large)
+    assertEquals(null, result[0].links.article)
 
-    assertEquals(2, result[1].flightNumber)
+    assertEquals("f8c9f344-a6df-4f30-873a-90fe3a7840b3", result[1].id)
     assertEquals("DemoSat", result[1].missionName)
     assertEquals("2007-03-21T01:10:00.000Z", result[1].launchDateUTC)
-    assertEquals("Successful first stage burn and transition to second stage", result[1].details)
     assertEquals(true, result[1].launchSuccess)
-    assertEquals("https://images2.imgbox.com/4f/e3/I0lkuJ2e_o.png", result[1].links.patch?.small)
-    assertEquals("https://images2.imgbox.com/3d/86/cnu0pan8_o.png", result[1].links.patch?.large)
+    assertEquals(null, result[1].links.patch)
     assertEquals(null, result[1].links.article)
 
     httpClient.close()
   }
 
   @Test
-  fun `latestLaunches should return empty list when API returns empty array`() = runTest {
+  fun `latestLaunches should return empty list when API returns empty results`() = runTest {
     // Arrange
-    val mockResponse = "[]"
+    val mockResponse = """{"count": 0, "next": null, "previous": null, "results": []}"""
 
     val mockEngine = MockEngine { request ->
       respond(

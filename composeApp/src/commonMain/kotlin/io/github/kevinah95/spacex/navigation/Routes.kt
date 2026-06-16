@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,4 +23,4 @@ import kotlinx.serialization.Serializable
 
 @Serializable object Profile
 
-@Serializable data class LaunchDetail(val flightNumber: Int)
+@Serializable data class LaunchDetail(val id: String)

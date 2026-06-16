@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ import io.github.kevinah95.spacex.domain.entity.Links
 import io.github.kevinah95.spacex.domain.entity.Patch
 import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 
+private const val KEY_LAST_FETCHED_AT = "last_fetched_at"
+
 class LocalRocketLaunchesDataSource(database: AppDatabase) : ILocalRocketLaunchesDataSource {
   private val dbQuery = database.appDatabaseQueries
 
@@ -27,7 +29,7 @@ class LocalRocketLaunchesDataSource(database: AppDatabase) : ILocalRocketLaunche
   }
 
   private fun mapLaunchSelecting(
-      flightNumber: Long,
+      id: String,
       missionName: String,
       details: String?,
       launchSuccess: Boolean?,
@@ -37,7 +39,7 @@ class LocalRocketLaunchesDataSource(database: AppDatabase) : ILocalRocketLaunche
       articleUrl: String?,
   ): RocketLaunch {
     return RocketLaunch(
-        flightNumber = flightNumber.toInt(),
+        id = id,
         missionName = missionName,
         details = details,
         launchDateUTC = launchDateUTC,
@@ -55,7 +57,7 @@ class LocalRocketLaunchesDataSource(database: AppDatabase) : ILocalRocketLaunche
       dbQuery.removeAllLaunches()
       launches.forEach { launch ->
         dbQuery.insertLaunch(
-            flightNumber = launch.flightNumber.toLong(),
+            id = launch.id,
             missionName = launch.missionName,
             details = launch.details,
             launchSuccess = launch.launchSuccess ?: false,
@@ -66,5 +68,13 @@ class LocalRocketLaunchesDataSource(database: AppDatabase) : ILocalRocketLaunche
         )
       }
     }
+  }
+
+  override fun getLastFetchedAt(): Long? {
+    return dbQuery.getMetadata(KEY_LAST_FETCHED_AT).executeAsOneOrNull()?.toLongOrNull()
+  }
+
+  override fun saveLastFetchedAt(epochMillis: Long) {
+    dbQuery.upsertMetadata(KEY_LAST_FETCHED_AT, epochMillis.toString())
   }
 }

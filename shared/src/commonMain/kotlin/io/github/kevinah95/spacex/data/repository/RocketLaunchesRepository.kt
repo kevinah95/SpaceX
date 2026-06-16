@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 kevinah95 (Kevin A. Hernández Rostrán)
+ * Copyright 2025-2026 kevinah95 (Kevin A. Hernández Rostrán)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,9 +21,11 @@ import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 import io.github.kevinah95.spacex.monitoring.CrashReporter
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onEach
+
+// ll.thespacedevs.com throttles at 15 requests per hour for anonymous users (~1 per 4 minutes)
+private const val MIN_FETCH_INTERVAL_MS = 4 * 60 * 1000L
 
 class RocketLaunchesRepository(
     private val localRocketLaunchesDataSource: ILocalRocketLaunchesDataSource,
@@ -32,23 +34,41 @@ class RocketLaunchesRepository(
 ) : IRocketLaunchesRepository {
 
   override val latestLaunches: Flow<List<RocketLaunch>> =
-      remoteRocketLaunchesDataSource
-          .latestLaunches()
-          .onEach { launches -> // Executes on the default dispatcher
-            localRocketLaunchesDataSource.clearAndCreateLaunches(launches)
-          }
-          // flowOn affects the upstream flow ↑
-          .flowOn(defaultDispatcher)
-          // the downstream flow ↓ is not affected
-          // If an error happens, emit the last cached values
-          .catch { exception -> // Executes in the consumer's context
-            CrashReporter.recordException(
-                exception,
-                "Failed fetching launches from network. Falling back to local cache.",
-            )
-            val cachedLaunches = localRocketLaunchesDataSource.getAllLaunches()
-            if (cachedLaunches.isNotEmpty()) {
-              emit(cachedLaunches)
+      flow {
+            // 1. Always emit the local cache first (local-first strategy)
+            val cached = localRocketLaunchesDataSource.getAllLaunches()
+            if (cached.isNotEmpty()) {
+              emit(cached)
+            }
+
+            // 2. Respect rate limit: only fetch from network if enough time has passed
+            val lastFetchedAt = localRocketLaunchesDataSource.getLastFetchedAt()
+            val now = kotlin.time.Clock.System.now().toEpochMilliseconds()
+            val isCacheStale =
+                lastFetchedAt == null || (now - lastFetchedAt) >= MIN_FETCH_INTERVAL_MS
+
+            if (isCacheStale) {
+              try {
+                remoteRocketLaunchesDataSource.latestLaunches().collect { launches ->
+                  localRocketLaunchesDataSource.clearAndCreateLaunches(launches)
+                  localRocketLaunchesDataSource.saveLastFetchedAt(
+                      kotlin.time.Clock.System.now().toEpochMilliseconds()
+                  )
+                  emit(launches)
+                }
+              } catch (exception: Exception) {
+                CrashReporter.recordException(
+                    exception,
+                    "Failed fetching launches from network. Falling back to local cache.",
+                )
+                if (cached.isEmpty()) {
+                  val freshCached = localRocketLaunchesDataSource.getAllLaunches()
+                  if (freshCached.isNotEmpty()) {
+                    emit(freshCached)
+                  }
+                }
+              }
             }
           }
+          .flowOn(defaultDispatcher)
 }
