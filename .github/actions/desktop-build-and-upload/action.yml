@@ -24,8 +24,10 @@ runs:
       uses: gradle/actions/setup-gradle@v5
       with:
         gradle-version: wrapper
+        build-root-directory: app
     - name: Build desktop artifact
       shell: bash
+      working-directory: app
       run: ./gradlew ${{ inputs.gradle_task }} --console=plain
     - name: Resolve desktop artifact path
       id: artifact

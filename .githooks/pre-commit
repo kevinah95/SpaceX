@@ -20,12 +20,12 @@ SPOTLESS_FILES_ARG=$(echo "$STAGED_FORMAT_FILES" | sed 's/^/.*/' | paste -sd, -)
 
 echo "Running Spotless checks on staged files..."
 # Unset Git environment variables to prevent Gradle configuration cache invalidation
-if env -u GIT_INDEX_FILE -u GIT_DIR -u GIT_WORK_TREE -u GIT_PREFIX ./gradlew spotlessCheck "-PspotlessFiles=$SPOTLESS_FILES_ARG"; then
+if env -u GIT_INDEX_FILE -u GIT_DIR -u GIT_WORK_TREE -u GIT_PREFIX app/gradlew -p app spotlessCheck "-PspotlessFiles=$SPOTLESS_FILES_ARG"; then
   exit 0
 fi
 
 echo "Formatting issues found. Running spotlessApply on staged files..."
-env -u GIT_INDEX_FILE -u GIT_DIR -u GIT_WORK_TREE -u GIT_PREFIX ./gradlew spotlessApply "-PspotlessFiles=$SPOTLESS_FILES_ARG"
+env -u GIT_INDEX_FILE -u GIT_DIR -u GIT_WORK_TREE -u GIT_PREFIX app/gradlew -p app spotlessApply "-PspotlessFiles=$SPOTLESS_FILES_ARG"
 
 # Safely re-stage only the files that were modified by spotless
 echo "$STAGED_FORMAT_FILES" | while read -r file; do

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "360963929575",
+    "project_id": "spacex-alpha",
+    "storage_bucket": "spacex-alpha.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:360963929575:android:43deb5351835cec0fd7942",
+        "android_client_info": {
+          "package_name": "io.github.kevinah95.spacex.alpha"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfrPlNtCaS1RfEicYNo0xsN1YNgMS0Xlo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

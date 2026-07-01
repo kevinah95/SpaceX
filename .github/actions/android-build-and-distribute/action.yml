@@ -38,7 +38,7 @@ runs:
   steps:
     - name: Create google-services.json
       shell: bash
-      run: echo '${{ inputs.google_services_json }}' > ./androidApp/google-services.json
+      run: echo '${{ inputs.google_services_json }}' > ./app/androidApp/google-services.json
     - name: Decode and setup keystore
       shell: bash
       run: |
@@ -52,14 +52,16 @@ runs:
       uses: gradle/actions/setup-gradle@v5
       with:
         gradle-version: wrapper
+        build-root-directory: app
     - name: Build Android App
       shell: bash
+      working-directory: app
       env:
         RELEASE_KEYSTORE_FILE: ${{ github.workspace }}/spacex-release-keystore.jks
         RELEASE_KEYSTORE_PASSWORD: ${{ inputs.keystore_password }}
         RELEASE_KEY_ALIAS: ${{ inputs.key_alias }}
         RELEASE_KEY_PASSWORD: ${{ inputs.keystore_password }}
-      run: gradle ${{ inputs.build_task }}
+      run: ./gradlew ${{ inputs.build_task }}
     - name: Sign and upload Android release artifact
       uses: ./.github/actions/sign-blob-and-upload
       with:

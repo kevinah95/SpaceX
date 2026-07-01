@@ -46,7 +46,7 @@ jobs:
           release_tag: ${{ needs.semantic-release.outputs.new_release_git_tag }}
           release_notes: ${{ needs.semantic-release.outputs.new_release_notes }}
           build_task: :androidApp:assembleAlphaRelease
-          artifact_path: ./androidApp/build/outputs/apk/alpha/release/androidApp-alpha-release.apk
+          artifact_path: ./app/androidApp/build/outputs/apk/alpha/release/androidApp-alpha-release.apk
           google_services_json: ${{ secrets.ALPHA_GOOGLE_SERVICES_JSON }}
           keystore_base64: ${{ secrets.KEYSTORE_BASE64 }}
           keystore_password: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -63,13 +63,13 @@ jobs:
         include:
           - runner: macos-latest
             gradle_task: :desktopApp:packageReleaseDmg
-            artifact_glob: desktopApp/build/compose/binaries/main-release/dmg/*.dmg
+            artifact_glob: app/desktopApp/build/compose/binaries/main-release/dmg/*.dmg
           - runner: windows-latest
             gradle_task: :desktopApp:packageReleaseMsi
-            artifact_glob: desktopApp/build/compose/binaries/main-release/msi/*.msi
+            artifact_glob: app/desktopApp/build/compose/binaries/main-release/msi/*.msi
           - runner: ubuntu-latest
             gradle_task: :desktopApp:packageReleaseDeb
-            artifact_glob: desktopApp/build/compose/binaries/main-release/deb/*.deb
+            artifact_glob: app/desktopApp/build/compose/binaries/main-release/deb/*.deb
     runs-on: ${{ matrix.runner }}
     permissions:
       contents: write

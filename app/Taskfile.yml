@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+includes:
+  desktop:
+    taskfile: ./desktopApp
+    flatten: true
+  ios:
+    taskfile: ./iosApp
+    flatten: true
+  android:
+    taskfile: ./androidApp
+    flatten: true
+
+tasks:
+  invalidate-cache:
+    prompt: This will clean all modules and remove cached files including .gradle, .idea, and .kotlin. Do you want to continue?
+    cmds:
+      - rm -rf ../.gradle
+      - rm -rf .gradle
+      - rm -rf ../.idea
+      - rm -rf ../.kotlin
+      - ./gradlew clean
+  clean:all:
+    prompt: This will clean all modules. Do you want to continue?
+    cmds:
+      - ./gradlew clean
+
+  setup:spotless:
+    cmds:
+      - git config core.hooksPath .githooks
+      - chmod +x ../.githooks/pre-commit
+      - echo "Installed Spotless pre-commit hook (.githooks/pre-commit)"
+  setup:prettier:
+    cmds:
+      - node --version
+      - npm --version
+      - ./gradlew spotlessCheck
+  version:sync:
+    desc: "Sync app version across Gradle and iOS metadata. Usage: task version:sync -- 3.1.3-alpha.1"
+    requires:
+      vars:
+        - CLI_ARGS
+    cmds:
+      - node ./scripts/sync-version.mjs {{.CLI_ARGS}}
+  gradle:tasks:
+    cmds:
+      - ./gradlew tasks
+  spotless:
+    cmds:
+      - ./gradlew spotlessApply
