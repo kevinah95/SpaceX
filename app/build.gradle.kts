@@ -30,7 +30,9 @@ plugins {
 }
 
 spotless {
-  ratchetFrom("origin/prod")
+  // Comentado para evitar invalidación del configuration cache de Gradle
+  // debido a consultas Git en la fase de configuración.
+  // ratchetFrom("origin/prod")
 
   kotlin {
     target("**/src/**/*.kt")
