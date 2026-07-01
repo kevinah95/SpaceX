@@ -33,6 +33,10 @@ kotlin {
     compilerOptions { jvmTarget.set(JvmTarget.JVM_21) }
 
     androidResources { enable = true }
+
+    withHostTest {
+      isIncludeAndroidResources = true
+    }
   }
 
   // https://kotlinlang.org/docs/native-target-support.html
