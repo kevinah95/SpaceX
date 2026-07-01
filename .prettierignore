@@ -1,0 +1,2 @@
+# Ignore changelog formatted by semantic-release CI
+app/CHANGELOG.md

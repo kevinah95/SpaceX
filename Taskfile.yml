@@ -10,3 +10,16 @@ includes:
   firebase:
     taskfile: ./firebase/Taskfile.yml
     dir: ./firebase
+
+tasks:
+  format:
+    desc: "Run code formatters (Spotless for Kotlin/Gradle, Prettier for JSON/YAML/Markdown/JS)"
+    cmds:
+      # - task: spotless
+      - npx prettier --write .
+
+  format:check:
+    desc: "Verify code formatting without applying changes"
+    cmds:
+      # - task: spotless:check
+      - npx prettier --check .

@@ -26,12 +26,12 @@ updateKeyValueFile(resolve(rootDir, "iosApp/Configuration/Config.xcconfig"), {
 });
 
 console.log(
-    `Synchronized release version ${nextVersion} (marketing ${versionInfo.marketingVersion}, build ${versionInfo.versionCode}).`,
+  `Synchronized release version ${nextVersion} (marketing ${versionInfo.marketingVersion}, build ${versionInfo.versionCode}).`,
 );
 
 function parseVersion(version) {
   const match = version.match(
-      /^(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)(?:-(?<label>[0-9A-Za-z-]+)(?:\.(?<pre>\d+))?)?$/,
+    /^(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)(?:-(?<label>[0-9A-Za-z-]+)(?:\.(?<pre>\d+))?)?$/,
   );
 
   if (!match?.groups) {
@@ -45,7 +45,9 @@ function parseVersion(version) {
   const preReleaseNumber = match.groups.pre ? Number.parseInt(match.groups.pre, 10) : 0;
 
   if (major > 214 || minor > 99 || patch > 99) {
-    throw new Error("Version component out of range. Max values: major (214), minor (99), patch (99).");
+    throw new Error(
+      "Version component out of range. Max values: major (214), minor (99), patch (99).",
+    );
   }
 
   if (preReleaseNumber > 99) {
@@ -53,22 +55,18 @@ function parseVersion(version) {
   }
 
   const stage =
-      label == null
-          ? 5
-          : {
-              alpha: 1,
-              beta: 2,
-              rc: 3,
-            }[label] ?? 4;
+    label == null
+      ? 5
+      : ({
+          alpha: 1,
+          beta: 2,
+          rc: 3,
+        }[label] ?? 4);
 
   return {
     marketingVersion: `${major}.${minor}.${patch}`,
     versionCode:
-        major * 10_000_000 +
-        minor * 100_000 +
-        patch * 1_000 +
-        stage * 100 +
-        preReleaseNumber,
+      major * 10_000_000 + minor * 100_000 + patch * 1_000 + stage * 100 + preReleaseNumber,
   };
 }
 

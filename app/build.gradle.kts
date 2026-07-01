@@ -45,18 +45,6 @@ spotless {
     ktfmt()
     licenseHeaderFile(rootProject.file("spotless/spotless.license.kt"), "(^(?![\\/ ]\\*).*$)")
   }
-
-  format("misc") {
-    target("../.prettierrc.yml", "../.releaserc.yml", "**/*.yaml", "**/*.yml", "**/*.json")
-    targetExclude("**/build/**", "**/.gradle/**")
-
-    trimTrailingWhitespace()
-    leadingTabsToSpaces(2)
-    endWithNewline()
-    prettier(mapOf("prettier" to "3.8.1"))
-        .configFile(rootProject.file("../.prettierrc.yml"))
-        .npmInstallCache("${rootProject.rootDir}/.gradle/spotless-npm-cache")
-  }
 }
 
 subprojects {

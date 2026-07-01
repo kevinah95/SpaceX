@@ -27,10 +27,8 @@ tasks:
     cmds:
       - ./gradlew clean
 
-  setup:prettier:
+  spotless:check:
     cmds:
-      - node --version
-      - npm --version
       - ./gradlew spotlessCheck
   version:sync:
     desc: "Sync app version across Gradle and iOS metadata. Usage: task version:sync -- 3.1.3-alpha.1"
