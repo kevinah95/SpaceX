@@ -1,3 +1,10 @@
+# [3.6.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v3.6.0-alpha.1...v3.6.0-alpha.2) (2026-07-01)
+
+
+### Features
+
+* modularize firebase emulator task into a dedicated Taskfile ([7d55498](https://github.com/kevinah95/SpaceX/commit/7d5549817dac98755997a98865cab3375d9dfec0))
+
 # [3.6.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.5.1-alpha.1...v3.6.0-alpha.1) (2026-07-01)
 
 
