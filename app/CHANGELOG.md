@@ -1,3 +1,10 @@
+# [3.6.0-alpha.4](https://github.com/kevinah95/SpaceX/compare/v3.6.0-alpha.3...v3.6.0-alpha.4) (2026-07-01)
+
+
+### Features
+
+* implement Firestore data source and migrate local storage to asynchronous operations ([ccea089](https://github.com/kevinah95/SpaceX/commit/ccea089f77d759a7ebb5e00729fa2e3ad1c94674))
+
 # [3.6.0-alpha.3](https://github.com/kevinah95/SpaceX/compare/v3.6.0-alpha.2...v3.6.0-alpha.3) (2026-07-01)
 
 
