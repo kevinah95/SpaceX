@@ -1,3 +1,10 @@
+# [3.6.0-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.5.1-alpha.1...v3.6.0-alpha.1) (2026-07-01)
+
+
+### Features
+
+* implement cross-platform Firebase emulator configuration and add local development environment support ([fa31603](https://github.com/kevinah95/SpaceX/commit/fa316038ace6542877db1e125c941353e15e8b47))
+
 ## [3.5.1-alpha.1](https://github.com/kevinah95/SpaceX/compare/v3.5.0...v3.5.1-alpha.1) (2026-06-16)
 
 
