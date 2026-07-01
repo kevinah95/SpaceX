@@ -1,3 +1,10 @@
+# [3.6.0-alpha.5](https://github.com/kevinah95/SpaceX/compare/v3.6.0-alpha.4...v3.6.0-alpha.5) (2026-07-01)
+
+
+### Performance Improvements
+
+* reduce Kotlin daemon and Gradle JVM heap memory allocations ([b3857b4](https://github.com/kevinah95/SpaceX/commit/b3857b45abf8206c2bad5e560450055fba117ca6))
+
 # [3.6.0-alpha.4](https://github.com/kevinah95/SpaceX/compare/v3.6.0-alpha.3...v3.6.0-alpha.4) (2026-07-01)
 
 
