@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: "3"
+
+tasks:
+  emulator:
+    desc: "Inicia el emulador local de Firebase (Auth, Firestore, Realtime DB y UI)"
+    cmds:
+      - npx -y firebase-tools@latest emulators:start

@@ -45,8 +45,3 @@ tasks:
   spotless:
     cmds:
       - ./gradlew spotlessApply
-
-  firebase:emulator:
-    desc: "Inicia el emulador local de Firebase (Auth, Firestore, Realtime DB y UI)"
-    cmds:
-      - cd ../firebase && npx -y firebase-tools@latest emulators:start

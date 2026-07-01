@@ -7,3 +7,6 @@ includes:
     taskfile: ./app/Taskfile.yml
     dir: ./app
     flatten: true
+  firebase:
+    taskfile: ./firebase/Taskfile.yml
+    dir: ./firebase
