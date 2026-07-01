@@ -27,11 +27,6 @@ tasks:
     cmds:
       - ./gradlew clean
 
-  setup:spotless:
-    cmds:
-      - git config core.hooksPath .githooks
-      - chmod +x ../.githooks/pre-commit
-      - echo "Installed Spotless pre-commit hook (.githooks/pre-commit)"
   setup:prettier:
     cmds:
       - node --version
