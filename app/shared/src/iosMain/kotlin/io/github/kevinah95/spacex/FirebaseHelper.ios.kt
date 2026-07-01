@@ -17,7 +17,6 @@ package io.github.kevinah95.spacex
 
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.auth.auth
-import dev.gitlive.firebase.database.database
 import dev.gitlive.firebase.firestore.firestore
 
 actual object FirebaseHelper {
@@ -26,7 +25,6 @@ actual object FirebaseHelper {
       try {
         Firebase.auth.useEmulator("127.0.0.1", 9099)
         Firebase.firestore.useEmulator("127.0.0.1", 8080)
-        Firebase.database.useEmulator("127.0.0.1", 9000)
       } catch (e: Exception) {
         // Log/ignore
       }

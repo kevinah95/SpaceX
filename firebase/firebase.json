@@ -3,9 +3,6 @@
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
-  "database": {
-    "rules": "database.rules.json"
-  },
   "emulators": {
     "auth": {
       "host": "0.0.0.0",
@@ -14,10 +11,6 @@
     "firestore": {
       "host": "0.0.0.0",
       "port": 8080
-    },
-    "database": {
-      "host": "0.0.0.0",
-      "port": 9000
     },
     "ui": {
       "enabled": true,

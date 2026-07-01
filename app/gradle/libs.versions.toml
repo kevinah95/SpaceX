@@ -83,7 +83,6 @@ gitlive-firebase-common = { module = "dev.gitlive:firebase-common", version.ref 
 gitlive-firebase-analytics = { module = "dev.gitlive:firebase-analytics", version.ref = "firebase-gitlive-sdk" }
 gitlive-firebase-crashlytics = { module = "dev.gitlive:firebase-crashlytics", version.ref = "firebase-gitlive-sdk" }
 gitlive-firebase-auth = { module = "dev.gitlive:firebase-auth", version.ref = "firebase-gitlive-sdk" }
-gitlive-firebase-database = { module = "dev.gitlive:firebase-database", version.ref = "firebase-gitlive-sdk" }
 gitlive-firebase-firestore = { module = "dev.gitlive:firebase-firestore", version.ref = "firebase-gitlive-sdk" }
 gitlive-firebase-messaging = { module = "dev.gitlive:firebase-messaging", version.ref = "firebase-gitlive-sdk" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
