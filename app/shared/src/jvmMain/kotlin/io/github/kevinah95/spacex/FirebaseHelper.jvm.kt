@@ -15,19 +15,8 @@
  */
 package io.github.kevinah95.spacex
 
-import androidx.compose.ui.window.ComposeUIViewController
-import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.initialize
-import io.github.kevinah95.spacex.di.initKoin
-import kotlin.experimental.Platform
-
-fun MainViewController() =
-    ComposeUIViewController(
-        configure = {
-          initKoin()
-          Firebase.initialize()
-          FirebaseHelper.configure(Platform.isDebugBinary)
-        }
-    ) {
-      App()
-    }
+actual object FirebaseHelper {
+  actual fun configure(isDebug: Boolean) {
+    // No-op for Desktop/JVM target as it doesn't use Firebase Auth
+  }
+}

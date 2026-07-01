@@ -36,6 +36,7 @@ class MainApplication : Application() {
     super.onCreate()
 
     Firebase.initialize(this)
+    FirebaseHelper.configure(BuildConfig.DEBUG)
     syncCurrentFcmToken()
 
     initKoin {

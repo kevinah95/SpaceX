@@ -38,7 +38,10 @@ runs:
   steps:
     - name: Create google-services.json
       shell: bash
-      run: echo '${{ inputs.google_services_json }}' > ./app/androidApp/google-services.json
+      run: |
+        echo '${{ inputs.google_services_json }}' > ./app/androidApp/google-services.json
+        echo '${{ inputs.google_services_json }}' > ./app/androidApp/src/alpha/google-services.json
+        echo '${{ inputs.google_services_json }}' > ./app/androidApp/src/prod/google-services.json
     - name: Decode and setup keystore
       shell: bash
       run: |

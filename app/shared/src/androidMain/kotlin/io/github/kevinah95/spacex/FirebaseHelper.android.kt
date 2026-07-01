@@ -15,19 +15,21 @@
  */
 package io.github.kevinah95.spacex
 
-import androidx.compose.ui.window.ComposeUIViewController
+import android.util.Log
 import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.initialize
-import io.github.kevinah95.spacex.di.initKoin
-import kotlin.experimental.Platform
+import dev.gitlive.firebase.auth.auth
 
-fun MainViewController() =
-    ComposeUIViewController(
-        configure = {
-          initKoin()
-          Firebase.initialize()
-          FirebaseHelper.configure(Platform.isDebugBinary)
-        }
-    ) {
-      App()
+actual object FirebaseHelper {
+  private const val TAG = "FirebaseHelper"
+
+  actual fun configure(isDebug: Boolean) {
+    if (isDebug) {
+      try {
+        Log.d(TAG, "Configuring Firebase Auth emulator")
+        Firebase.auth.useEmulator("10.0.2.2", 9099)
+      } catch (e: Exception) {
+        Log.e(TAG, "Error configuring Firebase Auth Emulator", e)
+      }
     }
+  }
+}

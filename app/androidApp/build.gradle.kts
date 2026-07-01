@@ -80,7 +80,10 @@ android {
     }
     getByName("debug") { isDebuggable = true }
   }
-  buildFeatures { resValues = true }
+  buildFeatures {
+    resValues = true
+    buildConfig = true
+  }
   // Define environments (flavors)
   flavorDimensions += "environment"
   productFlavors {
