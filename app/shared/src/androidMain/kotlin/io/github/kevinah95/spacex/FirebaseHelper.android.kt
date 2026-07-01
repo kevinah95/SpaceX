@@ -18,6 +18,8 @@ package io.github.kevinah95.spacex
 import android.util.Log
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.auth.auth
+import dev.gitlive.firebase.database.database
+import dev.gitlive.firebase.firestore.firestore
 
 actual object FirebaseHelper {
   private const val TAG = "FirebaseHelper"
@@ -25,10 +27,12 @@ actual object FirebaseHelper {
   actual fun configure(isDebug: Boolean) {
     if (isDebug) {
       try {
-        Log.d(TAG, "Configuring Firebase Auth emulator")
+        Log.d(TAG, "Configuring Firebase emulators")
         Firebase.auth.useEmulator("10.0.2.2", 9099)
+        Firebase.firestore.useEmulator("10.0.2.2", 8080)
+        Firebase.database.useEmulator("10.0.2.2", 9000)
       } catch (e: Exception) {
-        Log.e(TAG, "Error configuring Firebase Auth Emulator", e)
+        Log.e(TAG, "Error configuring Firebase emulators", e)
       }
     }
   }

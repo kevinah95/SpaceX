@@ -46,8 +46,7 @@ kotlin {
       implementation(libs.ktor.client.okhttp)
       implementation(libs.sqldelight.driver.android)
       implementation(project.dependencies.platform(libs.firebase.bom))
-      implementation(libs.gitlive.firebase.common)
-      implementation(libs.gitlive.firebase.auth)
+      implementation(libs.gitlive.firebase.database)
       implementation(libs.gitlive.firebase.analytics)
       implementation(libs.gitlive.firebase.crashlytics)
       implementation(libs.gitlive.firebase.messaging)
@@ -65,6 +64,9 @@ kotlin {
       implementation(libs.ktor.client.core)
       implementation(libs.ktor.client.content.negotiation)
       implementation(libs.ktor.serialization.kotlinx.json)
+      // Firebase GitLive
+      implementation(libs.gitlive.firebase.common)
+      implementation(libs.gitlive.firebase.auth)
     }
     commonTest.dependencies {
       implementation(libs.kotlin.test)
@@ -76,8 +78,7 @@ kotlin {
     iosMain.dependencies {
       implementation(libs.ktor.client.darwin)
       implementation(libs.sqldelight.driver.native)
-      implementation(libs.gitlive.firebase.common)
-      implementation(libs.gitlive.firebase.auth)
+      implementation(libs.gitlive.firebase.database)
       implementation(libs.gitlive.firebase.analytics)
       implementation(libs.gitlive.firebase.crashlytics)
       implementation(libs.gitlive.firebase.messaging)
