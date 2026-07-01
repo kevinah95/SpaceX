@@ -29,10 +29,6 @@ class RocketLaunchViewModel(private val rocketLaunchesRepository: IRocketLaunche
   private val _uiState = MutableStateFlow(RocketLaunchUiState())
   val uiState: StateFlow<RocketLaunchUiState> = _uiState.asStateFlow()
 
-  init {
-    loadLaunches()
-  }
-
   fun loadLaunches() {
     viewModelScope.launch {
       _uiState.value = _uiState.value.copy(isLoading = true, launches = emptyList())

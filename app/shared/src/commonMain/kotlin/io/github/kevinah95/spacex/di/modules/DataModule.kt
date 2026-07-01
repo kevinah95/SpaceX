@@ -17,6 +17,7 @@ package io.github.kevinah95.spacex.di.modules
 
 import io.github.kevinah95.spacex.data.local.AppDatabase
 import io.github.kevinah95.spacex.data.local.DriverFactory
+import io.github.kevinah95.spacex.data.local.FirestoreRocketLaunchesDataSource
 import io.github.kevinah95.spacex.data.local.ILocalRocketLaunchesDataSource
 import io.github.kevinah95.spacex.data.local.LocalRocketLaunchesDataSource
 import io.github.kevinah95.spacex.data.remote.IRemoteRocketLaunchesDataSource
@@ -31,7 +32,10 @@ val dataModule = module {
   single { get<DriverFactory>().createDriver() }
   single { AppDatabase(get()) }
   single { get<AppDatabase>().appDatabaseQueries }
-  single<ILocalRocketLaunchesDataSource> { LocalRocketLaunchesDataSource(get()) }
+  single { LocalRocketLaunchesDataSource(get()) } // Educational reference
+  single<ILocalRocketLaunchesDataSource> {
+    FirestoreRocketLaunchesDataSource()
+  } // Active Firestore source
   single<IRemoteRocketLaunchesDataSource> { RemoteRocketLaunchesDataSource(get(), Dispatchers.IO) }
   single<IRocketLaunchesRepository> { RocketLaunchesRepository(get(), get(), Dispatchers.Default) }
 }

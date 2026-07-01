@@ -24,7 +24,7 @@ private const val KEY_LAST_FETCHED_AT = "last_fetched_at"
 class LocalRocketLaunchesDataSource(database: AppDatabase) : ILocalRocketLaunchesDataSource {
   private val dbQuery = database.appDatabaseQueries
 
-  override fun getAllLaunches(): List<RocketLaunch> {
+  override suspend fun getAllLaunches(): List<RocketLaunch> {
     return dbQuery.selectAllLaunchesInfo(::mapLaunchSelecting).executeAsList()
   }
 
@@ -52,7 +52,7 @@ class LocalRocketLaunchesDataSource(database: AppDatabase) : ILocalRocketLaunche
     )
   }
 
-  override fun clearAndCreateLaunches(launches: List<RocketLaunch>) {
+  override suspend fun clearAndCreateLaunches(launches: List<RocketLaunch>) {
     dbQuery.transaction {
       dbQuery.removeAllLaunches()
       launches.forEach { launch ->
@@ -70,11 +70,11 @@ class LocalRocketLaunchesDataSource(database: AppDatabase) : ILocalRocketLaunche
     }
   }
 
-  override fun getLastFetchedAt(): Long? {
+  override suspend fun getLastFetchedAt(): Long? {
     return dbQuery.getMetadata(KEY_LAST_FETCHED_AT).executeAsOneOrNull()?.toLongOrNull()
   }
 
-  override fun saveLastFetchedAt(epochMillis: Long) {
+  override suspend fun saveLastFetchedAt(epochMillis: Long) {
     dbQuery.upsertMetadata(KEY_LAST_FETCHED_AT, epochMillis.toString())
   }
 }

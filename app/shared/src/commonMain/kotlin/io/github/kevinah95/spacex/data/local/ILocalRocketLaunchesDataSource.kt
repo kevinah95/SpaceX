@@ -18,11 +18,11 @@ package io.github.kevinah95.spacex.data.local
 import io.github.kevinah95.spacex.domain.entity.RocketLaunch
 
 interface ILocalRocketLaunchesDataSource {
-  fun getAllLaunches(): List<RocketLaunch>
+  suspend fun getAllLaunches(): List<RocketLaunch>
 
-  fun clearAndCreateLaunches(launches: List<RocketLaunch>)
+  suspend fun clearAndCreateLaunches(launches: List<RocketLaunch>)
 
-  fun getLastFetchedAt(): Long?
+  suspend fun getLastFetchedAt(): Long?
 
-  fun saveLastFetchedAt(epochMillis: Long)
+  suspend fun saveLastFetchedAt(epochMillis: Long)
 }

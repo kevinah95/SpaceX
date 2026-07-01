@@ -7,3 +7,7 @@ tasks:
     desc: "Inicia el emulador local de Firebase (Auth, Firestore, Realtime DB y UI)"
     cmds:
       - npx -y firebase-tools@latest emulators:start
+  deploy:
+    desc: "Despliega las reglas de seguridad de Firebase Firestore en producción"
+    cmds:
+      - npx -y firebase-tools@latest deploy --only firestore

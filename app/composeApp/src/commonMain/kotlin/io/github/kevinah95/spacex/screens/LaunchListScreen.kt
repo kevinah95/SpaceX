@@ -60,6 +60,10 @@ fun LaunchListScreen(
   var isRefreshing by remember { mutableStateOf(false) }
   val pullToRefreshState = rememberPullToRefreshState()
 
+  androidx.compose.runtime.LaunchedEffect(Unit) {
+    viewModel.loadLaunches()
+  }
+
   PullToRefreshBox(
       modifier = Modifier.fillMaxSize().padding(paddingValues),
       state = pullToRefreshState,
