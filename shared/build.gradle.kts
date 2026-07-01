@@ -69,6 +69,7 @@ kotlin {
     commonTest.dependencies {
       implementation(libs.kotlin.test)
       implementation(libs.kotlinx.coroutines.test)
+      // Koin
       implementation(libs.koin.test)
       implementation(libs.ktor.client.mock)
     }
