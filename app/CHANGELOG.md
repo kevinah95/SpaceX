@@ -1,3 +1,10 @@
+# [3.6.0-alpha.3](https://github.com/kevinah95/SpaceX/compare/v3.6.0-alpha.2...v3.6.0-alpha.3) (2026-07-01)
+
+
+### Features
+
+* integrate Firebase Realtime Database and Firestore with local emulators and update project configuration ([bdbe017](https://github.com/kevinah95/SpaceX/commit/bdbe017cb212fae45eedfb0014fabd298791fc89))
+
 # [3.6.0-alpha.2](https://github.com/kevinah95/SpaceX/compare/v3.6.0-alpha.1...v3.6.0-alpha.2) (2026-07-01)
 
 
