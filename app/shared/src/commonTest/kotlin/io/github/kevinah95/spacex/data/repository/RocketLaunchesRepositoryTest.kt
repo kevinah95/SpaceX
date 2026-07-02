@@ -17,8 +17,10 @@ package io.github.kevinah95.spacex.data.repository
 
 import dev.mokkery.answering.returns
 import dev.mokkery.every
+import dev.mokkery.everySuspend
+import dev.mokkery.matcher.any
 import dev.mokkery.mock
-import dev.mokkery.verify
+import dev.mokkery.verifySuspend
 import io.github.kevinah95.spacex.data.local.ILocalRocketLaunchesDataSource
 import io.github.kevinah95.spacex.data.remote.IRemoteRocketLaunchesDataSource
 import io.github.kevinah95.spacex.domain.entity.Links
@@ -43,7 +45,7 @@ class RocketLaunchesRepositoryTest {
     val remoteLaunches =
         listOf(
             RocketLaunch(
-                flightNumber = 1,
+                id = "1",
                 missionName = "Falcon 1",
                 launchDateUTC = "2006-03-24T22:30:00.000Z",
                 details = null,
@@ -53,7 +55,10 @@ class RocketLaunchesRepositoryTest {
         )
 
     every { remoteDataSource.latestLaunches() } returns flowOf(remoteLaunches)
-    every { localDataSource.clearAndCreateLaunches(remoteLaunches) } returns Unit
+    everySuspend { localDataSource.clearAndCreateLaunches(remoteLaunches) } returns Unit
+    everySuspend { localDataSource.getLastFetchedAt() } returns null
+    everySuspend { localDataSource.getAllLaunches() } returns emptyList()
+    everySuspend { localDataSource.saveLastFetchedAt(any()) } returns Unit
 
     val repository =
         RocketLaunchesRepository(
@@ -67,7 +72,7 @@ class RocketLaunchesRepositoryTest {
 
     // Assert
     assertEquals(remoteLaunches, result)
-    verify { localDataSource.clearAndCreateLaunches(remoteLaunches) }
+    verifySuspend { localDataSource.clearAndCreateLaunches(remoteLaunches) }
   }
 
   @Test
@@ -76,7 +81,7 @@ class RocketLaunchesRepositoryTest {
     val cachedLaunches =
         listOf(
             RocketLaunch(
-                flightNumber = 2,
+                id = "2",
                 missionName = "Cached Mission",
                 launchDateUTC = "2024-01-01T00:00:00Z",
                 details = null,
@@ -85,7 +90,8 @@ class RocketLaunchesRepositoryTest {
             )
         )
     every { remoteDataSource.latestLaunches() } returns flow { throw Exception("Remote error") }
-    every { localDataSource.getAllLaunches() } returns cachedLaunches
+    everySuspend { localDataSource.getAllLaunches() } returns cachedLaunches
+    everySuspend { localDataSource.getLastFetchedAt() } returns 0L // Mocking so it's stale
 
     val repository =
         RocketLaunchesRepository(
@@ -99,6 +105,6 @@ class RocketLaunchesRepositoryTest {
 
     // Assert
     assertEquals(cachedLaunches, result)
-    verify { localDataSource.getAllLaunches() }
+    verifySuspend { localDataSource.getAllLaunches() }
   }
 }

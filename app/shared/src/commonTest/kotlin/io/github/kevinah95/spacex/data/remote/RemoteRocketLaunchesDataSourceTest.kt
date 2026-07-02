@@ -196,19 +196,26 @@ class RemoteRocketLaunchesDataSourceTest {
     // Arrange
     val mockResponse =
         """
-        [
-          {
-            "flight_number": 3,
-            "name": "Trailblazer",
-            "date_utc": "2008-08-03T03:34:00.000Z",
-            "details": null,
-            "success": null,
-            "links": {
-              "patch": null,
-              "article": null
+        {
+          "count": 1,
+          "next": null,
+          "previous": null,
+          "results": [
+            {
+              "id": "3",
+              "name": "Trailblazer",
+              "net": "2008-08-03T03:34:00.000Z",
+              "status": { "id": 4, "name": "Launch Unknown", "abbrev": "Unknown", "description": "Unknown" },
+              "details": null,
+              "success": null,
+              "image": null,
+              "links": {
+                "patch": null,
+                "article": null
+              }
             }
-          }
-        ]
+          ]
+        }
         """
             .trimIndent()
 
@@ -233,7 +240,7 @@ class RemoteRocketLaunchesDataSourceTest {
 
     // Assert
     assertEquals(1, result.size)
-    assertEquals(3, result[0].flightNumber)
+    assertEquals("3", result[0].id)
     assertEquals("Trailblazer", result[0].missionName)
     assertEquals("2008-08-03T03:34:00.000Z", result[0].launchDateUTC)
     assertEquals(null, result[0].details)
